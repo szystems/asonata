@@ -14,7 +14,7 @@ use App\Models\Config;
 use PDF;
 use DB;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\userMail;
+use App\Mail\UserMail;
 
 class InstructorController extends Controller
 {
@@ -145,7 +145,7 @@ class InstructorController extends Controller
         // }
         $user = User::find($id);
         $user->status = 0;
-        $user->email = $user->email.'-Deleted';
+        $user->email = $user->email.'-Deleted'.$user->id;
         $user->update();
         return redirect('instructores')->with('status',__('Instructor Deleted Successfully'));
     }
