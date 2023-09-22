@@ -102,7 +102,7 @@
                             @php
                                 $inscriptionPayments=DB::table('payments')
                                 ->where('inscription_id',$inscription->id)
-                                ->where('type',2)
+                                ->where('type','>=',2)
                                 ->get();
                             @endphp
                             <p>{{ $config->currency_simbol }}{{ number_format($class->CLmonthly_payment,2, '.', ',') }} @if ($inscription->payments != null) <b>({{ $inscriptionPayments->count() }}/{{ $inscription->payments }})</b>@endif</p>
@@ -369,9 +369,10 @@
                                 <thead>
                                     <tr>
                                         <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Athlete') }}</th>
-                                        <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Inscription Number') }}</th>
+                                        {{-- <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Inscription Number') }}</th> --}}
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Payment Type') }}</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Paid') }}</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('User') }}</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Date') }}</th>
                                         {{-- <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"><i class="material-icons">format_list_bulleted</i></th> --}}
                                     </tr>
@@ -394,27 +395,36 @@
                                               </div>
                                             </div>
                                         </td>
-                                        <td class="align-middle text-center text-sm">
+                                        @php
+                                            $classinfo = \App\Models\Classs::find($payment->inscription->class_id);
+                                            $categoryinfo = \App\Models\Category::find($classinfo->category_id);
+                                            $userinfo = \App\Models\User::find($payment->user_id);
+                                        @endphp
+                                        {{-- <td class="align-middle text-center text-sm">
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-xs"><a href="{{ url('show-inscription/'.$payment->inscription_id) }}">{{ $payment->inscription->inscription_number }} </a></h6>
                                                     <p class="text-xs text-secondary mb-0">{{ $payment->inscription->cycle->name }}</p>
-                                                    @php
-                                                        $classinfo = \App\Models\Classs::find($payment->inscription->class_id);
-                                                        $categoryinfo = \App\Models\Category::find($classinfo->category_id);
-                                                    @endphp
+
                                                     <p class="text-xs text-secondary mb-0">{{ $categoryinfo->name }} ({{ $categoryinfo->group->name }})</p>
                                                 </div>
                                             </div>
-                                        </td>
+                                        </td> --}}
                                         <td class="align-middle text-center text-sm"><strong>
                                             {{ $payment->type == '0' ? __('Inscription')
                                                 : ($payment->type == '1' ? __('Badge')
                                                 : ($payment->type == '2' ? __('Monthly')
-                                                : ""))
+                                                : ($payment->type == '3' ? __('Exoneration')
+                                                : "")))
                                             }}
                                         </strong></td>
                                         <td class="align-middle text-center text-sm"><strong>{{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}</strong></td>
+                                        <td class="align-middle text-center text-sm"><strong>{{ $userinfo->name }}</strong><br>
+                                            ({{ $userinfo->role_as == '1' ? __('Admin')
+                                            : ($userinfo->role_as == '0' ? __('User')
+                                            : ($userinfo->role_as == '3' ? __('Instructor')
+                                            : "")) }})
+                                        </td>
                                         <td class="align-middle text-center text-sm"><strong>{{ $payment->created_at->format('d-m-Y') }}</strong></td>
                                         <td class="align-middle  text-sm">
                                             <a href="{{ url('show-payment/'.$payment->id) }}" type="button" class="btn btn-info"><i class="material-icons">visibility</i></a>
@@ -432,8 +442,24 @@
                                     <tr>
                                         <td></td>
                                         <td></td>
-                                        <td class="align-middle text-rigth text-sm"><h4><b>Total:</b></h4></td>
-                                        <td class="align-middle text-center text-sm"><h4><b><font color="limegreen">{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</font></b></h4></td>
+                                        <td class="align-middle text-rigth text-sm"><h6><b>{{ __('Payments') }}:</b></h6></td>
+                                        <td class="align-middle text-center text-sm"><h6><b><font color="limegreen">{{ $config->currency_simbol }}{{ number_format($subtotal,2, '.', ',') }}</font></b></h6></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="align-middle text-rigth text-sm"><h6><b>{{ __('Exonerations') }}:</b></h6></td>
+                                        <td class="align-middle text-center text-sm"><h6><b><font color="orange">{{ $config->currency_simbol }}{{ number_format($exonerations,2, '.', ',') }}</font></b></h6></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="align-middle text-rigth text-sm"><h4><b>{{ __('Total') }}:</b></h4></td>
+                                        <td class="align-middle text-center text-sm"><h4><b><font color="blue">{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</font></b></h4></td>
                                         <td></td>
                                         <td></td>
                                     </tr>

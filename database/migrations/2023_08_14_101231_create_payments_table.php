@@ -18,6 +18,8 @@ class CreatePaymentsTable extends Migration
             $table->integer('inscription_id');
             $table->tinyInteger('type');
             $table->decimal('paid', $precision = 11, $scale = 2);
+            $table->mediumText('note')->nullable();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

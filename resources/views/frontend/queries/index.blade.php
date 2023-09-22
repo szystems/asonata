@@ -80,7 +80,7 @@
                             </div><!-- End .entry-meta --> --}}
 
                             <h2 class="entry-title">
-                                <u>{{ __('Check Payments and assists') }}</u>
+                                <u>{{ __('Check Payments and Assists') }}</u>
                             </h2><!-- End .entry-title -->
 
                             <div class="entry-content">

@@ -146,7 +146,14 @@
                                                     </div>
                                                 </a>
                                                 <p><u>Mi Perfil</u></p> --}}
-                                                <h5><a href="{{ url('show-user/'.Auth::id()) }}"><i class="icon-user"></i><font color="black"> Mi Perfil</font></a></h5>
+                                                <h5>
+                                                    @if (Auth::user()->role_as != "3")
+                                                        <a href="{{ url('show-user/'.Auth::id()) }}"><i class="icon-user"></i><font color="black"> Mi Perfil</font></a>
+                                                    @endif
+                                                    @if (Auth::user()->role_as == "3")
+                                                        <a href="{{ url('show-instructor/'.Auth::id()) }}"><i class="icon-user"></i><font color="black"> Mi Perfil</font></a>
+                                                    @endif
+                                                </h5>
                                             </li>
                                             @if (Auth::user()->role_as == "1" or Auth::user()->role_as == "0" or Auth::user()->role_as == "3")
                                                 <li>

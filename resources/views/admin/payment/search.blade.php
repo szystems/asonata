@@ -100,7 +100,8 @@
                                         {{ $queryType == '0' ? __('Inscription')
                                             : ($queryType == '1' ? __('Badge')
                                             : ($queryType == '2' ? __('Monthly')
-                                            : ""))
+                                            : ($queryType == '3' ? __('Exoneration')
+                                            : "")))
                                         }}
                                         </option>
                                     @endif
@@ -108,6 +109,7 @@
                                     <option value="0">{{ __('Inscription') }}</option>
                                     <option value="1">{{ __('Badge') }}</option>
                                     <option value="2">{{ __('Monthly') }}</option>
+                                    <option value="3">{{ __('Exoneration') }}</option>
                             </select>
                             {{-- </select> --}}
                         </div>

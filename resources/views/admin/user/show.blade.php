@@ -19,12 +19,12 @@
                 <div class="card-body p-3 pt-2">
                     <h4><u>{{ __('Show') }} {{ __('User') }}</u></h4>
                     <div>
-                        <form action="{{ url('pdf-user') }}" method="GET" target="_blank">
+                        {{-- <form action="{{ url('pdf-user') }}" method="GET" target="_blank">
                             <input type="hidden" name="ruser" value="{{ $user->id }}">
                             <button type="submit" class="btn btn-danger float-end">
                                 <i class="material-icons opacity-10">picture_as_pdf</i> PDF
                             </button>
-                        </form>
+                        </form> --}}
                         <a href="{{ url('edit-user/'.$user->id) }}" type="button" class="btn btn-warning"><i class="material-icons">edit</i></a>
                         @if ($user->principal == "1")
                             <button disabled type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $user->id }}">

@@ -133,12 +133,23 @@
                     <font size="1">{{ __('Paid') }}</font>
                 </th>
                 <th>
+                    <font size="1">{{ __('User') }}</font>
+                </th>
+                <th>
                     <font size="1">{{ __('Date') }}</font>
                 </th>
             </tr>
         </thead>
         <tbody>
+            @php
+                $exonerations = 0;
+            @endphp
             @foreach ($payments as $payment)
+            @php
+                if($payment->type == '3'){
+                    $exonerations = $exonerations + $payment->paid;
+                }
+            @endphp
                 <tr>
                     <td align="center">
                         <font size="1">
@@ -155,6 +166,7 @@
                             @php
                                 $classinfo = \App\Models\Classs::find($payment->inscription->class_id);
                                 $categoryinfo = \App\Models\Category::find($classinfo->category_id);
+                                $userinfo = \App\Models\User::find($payment->user_id);
                             @endphp
                             {{ $categoryinfo->name }} ({{ $categoryinfo->group->name }})
                         </font>
@@ -164,13 +176,22 @@
                             {{ $payment->type == '0' ? __('Inscription')
                                 : ($payment->type == '1' ? __('Badge')
                                 : ($payment->type == '2' ? __('Monthly')
-                                : ""))
+                                : ($payment->type == '3' ? __('Exoneration')
+                                : "")))
                             }}
                         </font>
                     </td>
                     <td align="center">
                         <font size="1" color="limegreen">
                             {{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}
+                        </font>
+                    </td>
+                    <td align="center">
+                        <font size="1"><strong>{{ $userinfo->name }}</strong><br>
+                            ({{ $userinfo->role_as == '1' ? __('Admin')
+                            : ($userinfo->role_as == '0' ? __('User')
+                            : ($userinfo->role_as == '3' ? __('Instructor')
+                            : "")) }})
                         </font>
                     </td>
                     <td align="center">
@@ -181,11 +202,28 @@
 
         </tbody>
         <tfoot>
-            <tr>
+            <tr align="right">
+                <td></td>
+                <td></td>
+                <td><h6><b>{{ __('Payments') }}:</b></h6></td>
+                <td><h6><b><font color="limegreen">{{ $config->currency_simbol }}{{ number_format($total-$exonerations,2, '.', ',') }}</font></b></h6></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr align="right">
+                <td></td>
+                <td></td>
+                <td><h6><b>{{ __('Exonerations') }}:</b></h6></td>
+                <td><h6><b><font color="orange">{{ $config->currency_simbol }}{{ number_format($exonerations,2, '.', ',') }}</font></b></h6></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr align="right">
                 <td></td>
                 <td></td>
                 <td><h4><b>Total:</b></h4></td>
-                <td><h4><b><font color="limegreen">{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</font></b></h4></td>
+                <td><h4><b><font color="blue">{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</font></b></h4></td>
+                <td></td>
                 <td></td>
             </tr>
         </tfoot>

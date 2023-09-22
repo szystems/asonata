@@ -34,15 +34,15 @@
 
     <table class="pure-table pure-table-bordered" Width=100%>
         <thead>
-            <tr>
+            {{-- <tr>
                 <th align="right">
                     <font size="1">{{ __('Role') }}:</font>
                 </th>
                 <td align="left">
                     <font size="1">
-                        @if ($user->role_as == '0')
+                        @if ($atleta->role_as == '0')
                             {{ __('User') }}
-                        @elseif ($user->role_as == '1')
+                        @elseif ($atleta->role_as == '1')
                         {{ __('Admin') }}
                         @endif
                     </font>
@@ -51,21 +51,21 @@
                     <font size="1">{{ __('Name') }}:</font>
                 </th>
                 <td>
-                    <font size="1">{{ $user->name }}</font>
+                    <font size="1">{{ $atleta->name }}</font>
                 </td>
-            </tr>
+            </tr> --}}
             <tr>
                 <th align="right">
                     <font size="1">Email:</font>
                 </th>
                 <td>
-                    <font size="1">{{ $user->email }}</font>
+                    <font size="1">{{ $atleta->email }}</font>
                 </td>
                 <th align="right">
                     <font size="1">{{ __('Phone') }}:</font>
                 </th>
                 <td>
-                    <font size="1">{{ $user->phone }}</font>
+                    <font size="1">{{ $atleta->phone }}</font>
                 </td>
             </tr>
             <tr>
@@ -73,7 +73,7 @@
                     <font size="1">{{ __(('Address')) }} 1:</font>
                 </th>
                 <td colspan="3">
-                    <font size="1">{{ $user->address1 }}</font>
+                    <font size="1">{{ $atleta->address1 }}</font>
                 </td>
             </tr>
             <tr>
@@ -81,7 +81,7 @@
                     <font size="1">{{ __('Address') }} 2:</font>
                 </th>
                 <td colspan="3">
-                    <font size="1">{{ $user->address2 }}</font>
+                    <font size="1">{{ $atleta->address2 }}</font>
                 </td>
             </tr>
             <tr>
@@ -89,13 +89,13 @@
                     <font size="1">{{ __('City') }}:</font>
                 </th>
                 <td>
-                    <font size="1">{{ $user->city }}</font>
+                    <font size="1">{{ $atleta->city }}</font>
                 </td>
                 <th align="right">
                     <font size="1">{{ __('State') }}:</font>
                 </th>
                 <td>
-                    <font size="1">{{ $user->state }}</font>
+                    <font size="1">{{ $atleta->state }}</font>
                 </td>
             </tr>
             <tr>
@@ -103,13 +103,13 @@
                     <font size="1">{{ __('Country') }}:</font>
                 </th>
                 <td>
-                    <font size="1">{{ $user->country }}</font>
+                    <font size="1">{{ $atleta->country }}</font>
                 </td>
                 <th align="right">
                     <font size="1">{{ __('Zipcode') }}:</font>
                 </th>
                 <td>
-                    <font size="1">{{ $user->zipcode }}</font>
+                    <font size="1">{{ $atleta->zipcode }}</font>
                 </td>
             </tr>
             <tr>
@@ -117,14 +117,14 @@
                     <font size="1">{{ __('Description') }}:</font>
                 </th>
                 <td>
-                    <font size="1">{{ $user->description }}</font>
+                    <font size="1">{{ $atleta->description }}</font>
                 </td>
                 <th align="right">
                     <font size="1">{{ __('Image') }}:</font>
                 </th>
                 <td align="center">
-                    @if ($user->image != null)
-                        <img align="center" src="{{ $path . '/users/' . $user->image }}" alt="" height="100">
+                    @if ($atleta->image != null)
+                        <img align="center" src="{{ $path . '/users/' . $atleta->image }}" alt="" height="100">
                     @endif
                 </td>
             </tr>

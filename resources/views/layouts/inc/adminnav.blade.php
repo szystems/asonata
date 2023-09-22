@@ -38,23 +38,44 @@
                     <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
                         aria-labelledby="dropdownMenuButton">
                         <li class="mb-2">
-                            <a class="dropdown-item border-radius-md" href="{{ url('show-user/' . Auth::id()) }}">
-                                <div class="d-flex py-1">
-                                    {{-- <div class="my-auto">
-                                        <img src="{{ asset('dashtemplate/assets/img/team-2.jpg') }}"
-                                            class="avatar avatar-sm  me-3 ">
-                                    </div> --}}
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <h6 class="text-sm font-weight-normal mb-1">
-                                            <span class="font-weight-bold"> {{ __('My Profile') }}</span>
-                                        </h6>
-                                        <p class="text-xs text-secondary mb-0">
-                                            <i class="fa fa-user me-1"></i>
-                                            {{ Auth::user()->name }}
-                                        </p>
+                            @if (Auth::user()->role_as != "3")
+                                <a class="dropdown-item border-radius-md" href="{{ url('show-user/' . Auth::id()) }}">
+                                    <div class="d-flex py-1">
+                                        {{-- <div class="my-auto">
+                                            <img src="{{ asset('dashtemplate/assets/img/team-2.jpg') }}"
+                                                class="avatar avatar-sm  me-3 ">
+                                        </div> --}}
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="text-sm font-weight-normal mb-1">
+                                                <span class="font-weight-bold"> {{ __('My Profile') }}</span>
+                                            </h6>
+                                            <p class="text-xs text-secondary mb-0">
+                                                <i class="fa fa-user me-1"></i>
+                                                {{ Auth::user()->name }}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            @endif
+                            @if (Auth::user()->role_as == "3")
+                                <a class="dropdown-item border-radius-md" href="{{ url('show-instructor/' . Auth::id()) }}">
+                                    <div class="d-flex py-1">
+                                        {{-- <div class="my-auto">
+                                            <img src="{{ asset('dashtemplate/assets/img/team-2.jpg') }}"
+                                                class="avatar avatar-sm  me-3 ">
+                                        </div> --}}
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="text-sm font-weight-normal mb-1">
+                                                <span class="font-weight-bold"> {{ __('My Profile') }}</span>
+                                            </h6>
+                                            <p class="text-xs text-secondary mb-0">
+                                                <i class="fa fa-user me-1"></i>
+                                                {{ Auth::user()->name }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endif
                         </li>
                         <li class="mb-2">
                             <a class="dropdown-item border-radius-md" href="javascript:; {{ route('logout') }}"

@@ -252,25 +252,47 @@
                             </div>
                         </div>
                     @endif
-
-                    <div class="col-md-2 col-6">
-                        <div class="card">
-                            <a href="{{ url('show-user/'.Auth::id()) }}">
-                                <div class="card-header mx-4 p-3 text-center">
-                                    <div
-                                        class="icon icon-shape icon-lg bg-gradient-success shadow text-center border-radius-lg">
-                                        <i class="material-icons opacity-10">person</i>
+                    @if (Auth::user()->role_as != "3")
+                        <div class="col-md-2 col-6">
+                            <div class="card">
+                                <a href="{{ url('show-user/'.Auth::id()) }}">
+                                    <div class="card-header mx-4 p-3 text-center">
+                                        <div
+                                            class="icon icon-shape icon-lg bg-gradient-success shadow text-center border-radius-lg">
+                                            <i class="material-icons opacity-10">person</i>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card-body pt-0 p-3 text-center">
-                                    {{-- <h6 class="text-center mb-0">Salary</h6>
-                                    <span class="text-xs">Belong Interactive</span> --}}
-                                    <hr class="horizontal dark my-3">
-                                    <h5 class="mb-0">{{ __('My Profile') }}</h5>
-                                </div>
-                            </a>
+                                    <div class="card-body pt-0 p-3 text-center">
+                                        {{-- <h6 class="text-center mb-0">Salary</h6>
+                                        <span class="text-xs">Belong Interactive</span> --}}
+                                        <hr class="horizontal dark my-3">
+                                        <h5 class="mb-0">{{ __('My Profile') }}</h5>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
+                    @if (Auth::user()->role_as == "3")
+                        <div class="col-md-2 col-6">
+                            <div class="card">
+                                <a href="{{ url('show-instructor/'.Auth::id()) }}">
+                                    <div class="card-header mx-4 p-3 text-center">
+                                        <div
+                                            class="icon icon-shape icon-lg bg-gradient-success shadow text-center border-radius-lg">
+                                            <i class="material-icons opacity-10">person</i>
+                                        </div>
+                                    </div>
+                                    <div class="card-body pt-0 p-3 text-center">
+                                        {{-- <h6 class="text-center mb-0">Salary</h6>
+                                        <span class="text-xs">Belong Interactive</span> --}}
+                                        <hr class="horizontal dark my-3">
+                                        <h5 class="mb-0">{{ __('My Profile') }}</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>
@@ -413,7 +435,7 @@
                                                 $cuotas = $inscription->payments;
                                                 $cuotasPagadas = DB::table('payments')
                                                 ->where('inscription_id',$inscription->id)
-                                                ->where('type',2)
+                                                ->where('type','>=',2)
                                                 ->get();
                                                 $cuotasPendientes = $cuotas - $cuotasPagadas->count();
                                             @endphp

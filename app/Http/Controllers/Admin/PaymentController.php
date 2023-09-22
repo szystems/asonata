@@ -76,6 +76,7 @@ class PaymentController extends Controller
             // ->paginate($this->paginacion, $this->campos);
             ->get('payments.*','inscriptions.*','atleta.*','cycles.*','class.*','categories.*','groups.*');
 
+
             $total = 0;
             foreach ($payments as $sumaPagos) {
                 $total = $total + $sumaPagos->paid;
@@ -231,6 +232,8 @@ class PaymentController extends Controller
         $payment->inscription_id =$request->input('inscription_id');
         $payment->type = $request->input('type');
         $payment->paid = $request->input('paid');
+        $payment->note = $request->input('note');
+        $payment->user_id = $request->input('user_id');
         $payment->save();
 
         $inscription = Inscription::find($request->input('inscription_id'));

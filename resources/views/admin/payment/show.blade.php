@@ -33,7 +33,7 @@
 
                     </div> --}}
                     <div class="row">
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-2 mb-3">
                             <label for=""><strong>{{ __('Athlete') }}</strong></label>
                             <div class="d-flex px-2 py-1">
                                 @if ($payment->inscription->atleta->image)
@@ -49,7 +49,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-2 mb-3">
                             <label for=""><strong>{{ __('Inscription Number') }}</strong></label>
 
                             <div class="d-flex px-2 py-1">
@@ -59,6 +59,7 @@
                                 @php
                                     $classinfo = \App\Models\Classs::find($payment->inscription->class_id);
                                     $categoryinfo = \App\Models\Category::find($classinfo->category_id);
+                                    $userinfo = \App\Models\User::find($payment->user_id);
                                 @endphp
                                 <p class="text-xs text-secondary mb-0">{{ $categoryinfo->name }} ({{ $categoryinfo->group->name }})</p>
                               </div>
@@ -80,13 +81,27 @@
                                 {{ $payment->type == '0' ? __('Inscription')
                                     : ($payment->type == '1' ? __('Badge')
                                     : ($payment->type == '2' ? __('Monthly')
-                                    : ""))
+                                    : ($payment->type == '3' ? __('Exoneration')
+                                    : "")))
                                 }}
+                            </p>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for=""><strong>{{ __('User') }}</strong></label>
+                            <p>{{ $userinfo->name }}</br>
+                                ({{ $userinfo->role_as == '1' ? __('Admin')
+                                : ($userinfo->role_as == '0' ? __('User')
+                                : ($userinfo->role_as == '3' ? __('Instructor')
+                                : "")) }})
                             </p>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label for=""><strong>{{ __('Paid') }}</strong></label>
                             <p>{{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}</p>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for=""><strong>{{ __('Note') }}</strong></label>
+                            <p>{{ $payment->note }}</p>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">

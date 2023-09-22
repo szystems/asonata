@@ -77,7 +77,7 @@
                         @php
                             $inscriptionPayments=DB::table('payments')
                             ->where('inscription_id',$inscription->id)
-                            ->where('type',2)
+                            ->where('type','>=',2)
                             ->get();
                         @endphp
                         <font size="1">{{ $config->currency_simbol }}{{ number_format($class->CLmonthly_payment,2, '.', ',') }} <b>({{ $inscriptionPayments->count() }}/{{ $inscription->payments }})</b></font>
@@ -256,7 +256,8 @@
                             {{ $payment->type == '0' ? __('Inscription')
                                 : ($payment->type == '1' ? __('Badge')
                                 : ($payment->type == '2' ? __('Monthly')
-                                : ""))
+                                : ($payment->type == '3' ? __('Exoneration')
+                                : "")))
                             }}
                         </font>
                     </td>
@@ -276,7 +277,7 @@
             <tr>
                 <td></td>
                 <td align="right"><font size="3"><b>Total:</b></font></td>
-                <td align="center"><h5><b><font size="3" color="limegreen">{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</font></b></h5></td>
+                <td align="center"><h5><b><font size="3" color="blue">{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</font></b></h5></td>
                 <td></td>
             </tr>
         </tfoot>

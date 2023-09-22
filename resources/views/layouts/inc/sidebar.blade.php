@@ -149,6 +149,7 @@
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">{{ __('Account') }}</h6>
             </li>
+            @if (Auth::user()->role_as != "3")
             <li class="nav-item">
                 <a class="nav-link text-white {{ Request::is('show-user/'.Auth::id(),'edit-user/'.Auth::id()) ? 'active bg-gradient-success':''  }}" href="{{ url('show-user/'.Auth::id()) }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -157,6 +158,17 @@
                     <span class="nav-link-text ms-1">{{ __('My Profile') }}</span>
                 </a>
             </li>
+            @endif
+            @if (Auth::user()->role_as == "3")
+            <li class="nav-item">
+                <a class="nav-link text-white {{ Request::is('show-instructor/'.Auth::id(),'edit-instructor/'.Auth::id()) ? 'active bg-gradient-success':''  }}" href="{{ url('show-instructor/'.Auth::id()) }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">person</i>
+                    </div>
+                    <span class="nav-link-text ms-1">{{ __('My Profile') }}</span>
+                </a>
+            </li>
+            @endif
             <li class="nav-item">
                 <a class="nav-link text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">

@@ -212,7 +212,7 @@
                                         @php
                                             $inscriptionPayments=DB::table('payments')
                                             ->where('inscription_id',$inscription->id)
-                                            ->where('type',2)
+                                            ->where('type','>=',2)
                                             ->get();
                                         @endphp
                                         <p>{{ $config->currency_simbol }}{{ number_format($class->CLmonthly_payment,2, '.', ',') }} <b>({{ $inscriptionPayments->count() }}/{{ $inscription->payments }})</b></p>
@@ -290,24 +290,50 @@
                                 </thead>
 
                                 <tbody>
+                                    @php
+                                        $exonerations = 0;
+                                    @endphp
                                     @foreach ($payments as $payment)
+                                        @php
+                                            if($payment->type == '3'){
+                                                $exonerations = $exonerations + $payment->paid;
+                                            }
+                                        @endphp
                                         <tr>
                                             <td class="price-col">
                                                 {{ $payment->type == '0' ? __('Inscription')
                                                     : ($payment->type == '1' ? __('Badge')
                                                     : ($payment->type == '2' ? __('Monthly')
-                                                    : ""))
+                                                    : ($payment->type == '3' ? __('Exoneration')
+                                                    : "")))
                                                 }}
                                             </td>
-                                            <td class="total-col"><font color="limegreen">{{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}</font></td>
+                                            <td class="total-col"><font color="
+                                            {{ $payment->type == '0' ? 'limegreen'
+                                                : ($payment->type == '1' ? 'limegreen'
+                                                : ($payment->type == '2' ? 'limegreen'
+                                                : ($payment->type == '3' ? 'orange'
+                                                : "")))
+                                            }}">
+                                            {{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}</font></td>
                                             <td class="price-col">{{ $payment->created_at->format('d-m-Y') }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
-                                    <tr>
+                                    <tr align="right">
+                                        <td class="price-col" align="right"><h5> {{ __('Payments') }}:&nbsp;</h5></td>
+                                        <td class="price-col" ><h4><font color="limegreen">{{ $config->currency_simbol }}{{ number_format($total-$exonerations,2, '.', ',') }}</font></h4></td>
+                                        <td class="price-col"></td>
+                                    </tr>
+                                    <tr align="right">
+                                        <td class="price-col" align="right"><h5> {{ __('Exonerations') }}:&nbsp;</h5></td>
+                                        <td class="price-col" ><h4><font color="orange">{{ $config->currency_simbol }}{{ number_format($exonerations,2, '.', ',') }}</font></h4></td>
+                                        <td class="price-col"></td>
+                                    </tr>
+                                    <tr align="right">
                                         <td class="price-col" align="right"><h4> Total:&nbsp;</h4></td>
-                                        <td class="price-col" ><h3><font color="limegreen">{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</font></h3></td>
+                                        <td class="price-col" ><h3><font color="blue">{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</font></h3></td>
                                         <td class="price-col"></td>
                                     </tr>
                                 </tfoot>

@@ -38,10 +38,10 @@
         </nav><!-- End .mobile-nav -->
 
         <div class="social-icons">
-            <a href="" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-            <a href="" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-            <a href="" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-            <a href="" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+            <a href="https://www.facebook.com/AsonataXela" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+            {{-- <a href="" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a> --}}
+            <a href="https://www.instagram.com/asonatacionxela/" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+            <a href="https://www.youtube.com/@AsonataXela1950" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
         </div><!-- End .social-icons -->
     </div><!-- End .mobile-menu-wrapper -->
 </div><!-- End .mobile-menu-container -->

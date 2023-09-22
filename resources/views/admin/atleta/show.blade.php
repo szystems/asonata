@@ -19,12 +19,12 @@
                 <div class="card-body p-3 pt-2">
                     <h4><u>{{ __('Athlete Information') }}</u></h4>
                     <div>
-                        <form action="{{ url('pdf-athlete') }}" method="GET" target="_blank">
+                        {{-- <form action="{{ url('pdf-athlete') }}" method="GET" target="_blank">
                             <input type="hidden" name="ratleta" value="{{ $atleta->id }}">
                             <button type="submit" class="btn btn-danger float-end">
                                 <i class="material-icons opacity-10">picture_as_pdf</i> PDF
                             </button>
-                        </form>
+                        </form> --}}
                         <a href="{{ url('edit-athlete/'.$atleta->id) }}" type="button" class="btn btn-warning"><i class="material-icons">edit</i></a>
                         <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $atleta->id }}">
                             <i class="material-icons">delete</i>
@@ -244,7 +244,7 @@
                                                 @php
                                                     $inscriptionPayments=DB::table('payments')
                                                     ->where('inscription_id',$inscription->id)
-                                                    ->where('type',2)
+                                                    ->where('type','>=',2)
                                                     ->get();
                                                 @endphp
                                                 @if($inscription->inscription_payment == 0)<span class="badge bg-warning text-dark">{{ $inscription->inscription_payment == 0 ? __('Pending') : '' }}</span>@endif @if($inscription->inscription_payment == 1)<span class="badge bg-success text-dark">{{ $inscription->inscription_payment == 1 ? __('Paid') : '' }}</span>@endif /

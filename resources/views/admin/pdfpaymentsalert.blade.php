@@ -50,7 +50,7 @@
                     $cuotas = $inscription->payments;
                     $cuotasPagadas = DB::table('payments')
                     ->where('inscription_id',$inscription->id)
-                    ->where('type',2)
+                    ->where('type','>=',2)
                     ->get();
                     $cuotasPendientes = $cuotas - $cuotasPagadas->count();
                 @endphp
