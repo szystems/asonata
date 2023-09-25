@@ -23,7 +23,7 @@
 
     <div class="page-content pb-0">
         <div class="container">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-6 mb-3 mb-lg-0">
                     <h2 class="title">Vision</h2><!-- End .title -->
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. </p>
@@ -33,7 +33,7 @@
                     <h2 class="title">Mision</h2><!-- End .title -->
                     <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. <br>Praesent elementum hendrerit tortor. Sed semper lorem at felis. </p>
                 </div><!-- End .col-lg-6 -->
-            </div><!-- End .row -->
+            </div><!-- End .row --> --}}
 
             <div class="mb-5"></div><!-- End .mb-4 -->
         </div><!-- End .container -->
@@ -41,23 +41,116 @@
         <div class="bg-light-2 pt-6 pb-5 mb-6 mb-lg-8">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-5 mb-3 mb-lg-0">
+                    <div class="col-lg-8 mb-3 mb-lg-0">
                         <h2 class="title">¿Quiénes somos?</h2><!-- End .title -->
-                        <p class="lead text-primary mb-3">Pellentesque odio nisi, euismod pharetra a ultricies <br>in diam. Sed arcu. Cras consequat</p><!-- End .lead text-primary -->
-                        <p class="mb-2">Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Suspendisse potenti. Sed egestas, ante et vulputate volutpat, uctus metus libero eu augue. </p>
-
+                        <p class="lead text-primary mb-3">Asociación Deportiva Departamental de Quetzaltenango de Natación, Clavados, Polo Acuático, Nado Sincronizado y Aguas Abiertas.</p><!-- End .lead text-primary -->
+                        <p class="mb-2">Afiliada A: Federación Nacional De Natación Y Confederación Deportiva Autónoma De Guatemala</p>
+                        <br>
+                        <h2 class="title">COMITÉ EJECUTIVO</h2>
+                        <ul>
+                            <li>-<strong>Presidente:</strong>  Lic. Vinicio Méndez Barrios</li>
+                            <li>-<strong>Secretario:</strong>  Sr. Geovani José Sapón Lucas</li>
+                            <li>-<strong>Tesorero:</strong>  Dr. Bayron Ines de León de León</li>
+                        </ul>
+                        <br>
+                        <h2 class="title">ÓRGANO DISCIPLINARIO</h2>
+                        <ul>
+                            <li>-<strong>Presidente:</strong>  Lic Felix Marcotulio Archila Salazar</li>
+                            <li>-<strong>Secretaria:</strong>  Profa. Samara Jeannette Elías Ventura</li>
+                            <li>-<strong>Vocal I:</strong>  Lic. Marcel Lorena Sac Morales</li>
+                        </ul>
+                        <br>
+                        <h2 class="title">CUERPO TÉCNICO</h2>
+                        <ul>
+                            <li>-<strong>Coordinador General:</strong>  Msc. Carlos Eduardo Méndez Pérez</li>
+                            <li>-<strong>Coordinador de enseñanza y preequipos:</strong>  PPof. Freddy David Gutiérrez Taracena</li>
+                            <li>-<strong>Coordinadora de matronatación:</strong>  Profa. Cindy Yoselin Marín Velásquez</li>
+                            <li>-<strong>Jefe de entrenadores:</strong>  Prof. Mauricio Colop</li>
+                        </ul>
+                        <br>
+                        <h2 class="title">ENTRENADORES</h2>
+                        <ul>
+                            <li>-Carlos Méndez</li>
+                            <li>-Mauricio Colop</li>
+                            <li>-Selvyn Chuc</li>
+                            <li>-Freddy Gutierrez</li>
+                            <li>-Heidi Perez</li>
+                            <li>-Jesus Perez </li>
+                        </ul>
+                        <br>
+                        <h2 class="title">PERSONAL DE MATRONATACIÓN</h2>
+                        <ul>
+                            <li>-Iris de León</li>
+                            <li>-Cristy Pérez</li>
+                            <li>-María Joj </li>
+                            <li>-Yesica Cop</li>
+                            <li>-Yesica Tzum</li>
+                            <li>-Galinda Chamorro </li>
+                            <li>-Sucely Tzun</li>
+                            <li>-Carmen Cotoc </li>
+                        </ul>
+                        <br>
+                        <h2 class="title">ENSEÑANZA</h2>
+                        <ul>
+                            <li>-Sucely Tzun</li>
+                            <li>-Miguel Ángel López</li>
+                            <li>-Levi Salanic  </li>
+                            <li>-Rebeca Gómez </li>
+                            <li>-Carmen Cotoc </li>
+                            <li>-Evelyn López  </li>
+                            <li>-Birman Martínez</li>
+                        </ul>
+                        <br>
+                        <h2 class="title">MASTER</h2>
+                        <ul>
+                            <li>-Selvyn Chuc</li>
+                            <li>-Jimmy Poz  </li>
+                            <li>-Andrea Álvarez Moran  </li>
+                            <li>-Jhony Pérez </li>
+                            <li>-Jesús Pérez  </li>
+                            <li>-Heidi Pérez   </li>
+                        </ul>
+                        <br>
+                        <h2 class="title">PREPARADORES FISICOS</h2>
+                        <ul>
+                            <li>-Oscar Chuc Pérez</li>
+                            <li>-Selvyn Chuc   </li>
+                        </ul>
+                        <br>
+                        <h2 class="title">EQUIPO MULTIDISCIPLINARIO</h2>
+                        <ul>
+                            <li>-Andrea de León</li>
+                            <li>-Alicia Arroyave   </li>
+                            <li>-Wendy Villagran   </li>
+                            <li>-Alejandro De León  </li>
+                        </ul>
+                        <br>
+                        <h2 class="title">PERSONAL ADMINISTRATIVO </h2>
+                        <ul>
+                            <li>-Keila Morales </li>
+                            <li>-Glenda Tahay   </li>
+                            <li>-Paola Baquiax   </li>
+                            <li>-Patricia Carranza  </li>
+                        </ul>
+                        <br>
+                        <h2 class="title">PERSONAL OPERATIVO</h2>
+                        <ul>
+                            <li>-Olga Alejandro Ixcot </li>
+                            <li>-Estuardo Machic    </li>
+                            <li>-Mario García    </li>
+                        </ul>
                         {{-- <a href="blog.html" class="btn btn-sm btn-minwidth btn-outline-primary-2">
                             <span>VIEW OUR NEWS</span>
                             <i class="icon-long-arrow-right"></i>
                         </a> --}}
                     </div><!-- End .col-lg-5 -->
 
-                    <div class="col-lg-6 offset-lg-1">
+                    {{-- <div class="col-lg-6 offset-lg-1">
                         <div class="about-images">
-                            <img src="assets/images/about/img-1.jpg" alt="" class="about-img-front">
-                            <img src="assets/images/about/img-2.jpg" alt="" class="about-img-back">
+                            <img src="{{ asset('fronttemplate/assets/images/backgrounds/login-bg.jpg') }}" alt="" class="about-img-front">
+                            <img src="{{ asset('fronttemplate/assets/images/backgrounds/cta/bg-8.jpg') }}" alt="" class="about-img-back">
                         </div><!-- End .about-images -->
-                    </div><!-- End .col-lg-6 -->
+                    </div><!-- End .col-lg-6 --> --}}
                 </div><!-- End .row -->
             </div><!-- End .container -->
         </div><!-- End .bg-light-2 pt-6 pb-6 -->

@@ -15,7 +15,7 @@
                     <a href="{{ url('/') }}">{{ __('Home') }}</a>
                 </li>
                 <li class="">
-                    <a href="{{ url('about') }}">{{ __('About') }}</a>
+                    <a href="{{ url('about-us') }}">{{ __('About') }}</a>
                 </li>
                 <li class="">
                     <a href="{{ url('inscriptions-cycles') }}">{{ __('Inscriptions') }}</a>

@@ -71,7 +71,7 @@
                             <i class="icon-bars"></i>
                         </button>
 
-                        <a href="index.html') }}" class="logo">
+                        <a href="{{ url('/') }}" class="logo">
                             <img src="{{ asset('fronttemplate/assets/images/logos/logo.jpg') }}" alt="Asonata Logo" width="105" height="25">
                         </a>
 
