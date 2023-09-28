@@ -34,7 +34,8 @@
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label for="">{{ __('Name') }}</label>
-                                <input type="text" class="form-control border px-2 " name="name" value="{{ $group->name }}" >
+                                <input disabled type="text" class="form-control border px-2" value="{{ $group->name }}" >
+                                <input type="hidden" name="name" value="{{ $group->name }}">
                                 @if ($errors->has('name'))
                                     <span class="help-block opacity-7">
                                             <strong>

@@ -59,10 +59,10 @@ class AssistController extends Controller
             ->join('cycles', 'cycles.id', '=', 'class.cycle_id')
             ->join('atleta', 'atleta.id', '=', 'attendances.atleta_id')
             ->whereBetween('attendances.created_at', [$queryDesde, $queryHasta])
-            ->where('atleta.cui_dpi','LIKE','%'.$queryCui.'%')
-            ->where('class.category_id','LIKE','%'.$queryCategory.'%')
-            ->where('groups.id','LIKE','%'.$queryGroup.'%')
-            ->where('cycles.id','LIKE','%'.$queryCycle.'%')
+            ->where('atleta.cui_dpi','LIKE',$queryCui)
+            ->where('class.category_id','LIKE',$queryCategory)
+            ->where('groups.id','LIKE',$queryGroup)
+            ->where('cycles.id','LIKE',$queryCycle)
             ->orderBy('attendances.created_at','asc')
             ->get('attendances.*','asissts.*','class.*','cycles.*');
 
@@ -73,10 +73,10 @@ class AssistController extends Controller
             ->join('cycles', 'cycles.id', '=', 'class.cycle_id')
             ->join('atleta', 'atleta.id', '=', 'attendances.atleta_id')
             ->whereBetween('attendances.created_at', [$queryDesde, $queryHasta])
-            ->where('atleta.cui_dpi','LIKE','%'.$queryCui.'%')
-            ->where('class.category_id','LIKE','%'.$queryCategory.'%')
-            ->where('groups.id','LIKE','%'.$queryGroup.'%')
-            ->where('cycles.id','LIKE','%'.$queryCycle.'%')
+            ->where('atleta.cui_dpi','LIKE',$queryCui)
+            ->where('class.category_id','LIKE',$queryCategory)
+            ->where('groups.id','LIKE',$queryGroup)
+            ->where('cycles.id','LIKE',$queryCycle)
             ->where('attendances.status',1)->orderBy('attendances.created_at','asc')
             ->get();
 
@@ -87,10 +87,10 @@ class AssistController extends Controller
             ->join('cycles', 'cycles.id', '=', 'class.cycle_id')
             ->join('atleta', 'atleta.id', '=', 'attendances.atleta_id')
             ->whereBetween('attendances.created_at', [$queryDesde, $queryHasta])
-            ->where('atleta.cui_dpi','LIKE','%'.$queryCui.'%')
-            ->where('class.category_id','LIKE','%'.$queryCategory.'%')
-            ->where('groups.id','LIKE','%'.$queryGroup.'%')
-            ->where('cycles.id','LIKE','%'.$queryCycle.'%')
+            ->where('atleta.cui_dpi','LIKE',$queryCui)
+            ->where('class.category_id','LIKE',$queryCategory)
+            ->where('groups.id','LIKE',$queryGroup)
+            ->where('cycles.id','LIKE',$queryCycle)
             ->where('attendances.status',0)->orderBy('attendances.created_at','asc')
             ->get();
 
@@ -152,10 +152,10 @@ class AssistController extends Controller
             ->join('cycles', 'cycles.id', '=', 'class.cycle_id')
             ->join('atleta', 'atleta.id', '=', 'attendances.atleta_id')
             ->whereBetween('attendances.created_at', [$queryDesde, $queryHasta])
-            ->where('atleta.cui_dpi','LIKE','%'.$queryCui.'%')
-            ->where('class.category_id','LIKE','%'.$queryCategory.'%')
-            ->where('groups.id','LIKE','%'.$queryGroup.'%')
-            ->where('cycles.id','LIKE','%'.$queryCycle.'%')
+            ->where('atleta.cui_dpi','LIKE',$queryCui)
+            ->where('class.category_id','LIKE',$queryCategory)
+            ->where('groups.id','LIKE',$queryGroup)
+            ->where('cycles.id','LIKE',$queryCycle)
             ->orderBy('attendances.created_at','asc')
             ->get('attendances.*','asissts.*','class.*','cycles.*');
 
@@ -166,10 +166,10 @@ class AssistController extends Controller
             ->join('cycles', 'cycles.id', '=', 'class.cycle_id')
             ->join('atleta', 'atleta.id', '=', 'attendances.atleta_id')
             ->whereBetween('attendances.created_at', [$queryDesde, $queryHasta])
-            ->where('atleta.cui_dpi','LIKE','%'.$queryCui.'%')
-            ->where('class.category_id','LIKE','%'.$queryCategory.'%')
-            ->where('groups.id','LIKE','%'.$queryGroup.'%')
-            ->where('cycles.id','LIKE','%'.$queryCycle.'%')
+            ->where('atleta.cui_dpi','LIKE',$queryCui)
+            ->where('class.category_id','LIKE',$queryCategory)
+            ->where('groups.id','LIKE',$queryGroup)
+            ->where('cycles.id','LIKE',$queryCycle)
             ->where('attendances.status',1)->orderBy('attendances.created_at','asc')
             ->get();
 
@@ -180,10 +180,10 @@ class AssistController extends Controller
             ->join('cycles', 'cycles.id', '=', 'class.cycle_id')
             ->join('atleta', 'atleta.id', '=', 'attendances.atleta_id')
             ->whereBetween('attendances.created_at', [$queryDesde, $queryHasta])
-            ->where('atleta.cui_dpi','LIKE','%'.$queryCui.'%')
-            ->where('class.category_id','LIKE','%'.$queryCategory.'%')
-            ->where('groups.id','LIKE','%'.$queryGroup.'%')
-            ->where('cycles.id','LIKE','%'.$queryCycle.'%')
+            ->where('atleta.cui_dpi','LIKE',$queryCui)
+            ->where('class.category_id','LIKE',$queryCategory)
+            ->where('groups.id','LIKE',$queryGroup)
+            ->where('cycles.id','LIKE',$queryCycle)
             ->where('attendances.status',0)->orderBy('attendances.created_at','asc')
             ->get();
 

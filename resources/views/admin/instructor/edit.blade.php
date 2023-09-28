@@ -45,7 +45,8 @@
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label for="">{{ __('Name') }}</label>
-                                <input type="text" class="form-control border px-2 " name="name" value="{{ $user->name }}" >
+                                <input disabled type="text" class="form-control border px-2 " value="{{ $user->name }}" >
+                                <input type="hidden" name="name" value="{{ $user->name }}">
                                 @if ($errors->has('name'))
                                     <span class="help-block opacity-7">
                                             <strong>
@@ -56,7 +57,8 @@
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label for="">Email</label>
-                                <input readonly type="text" class="form-control border px-2 " name="email" value="{{ $user->email }}" >
+                                <input disabled type="text" class="form-control border px-2 " value="{{ $user->email }}" >
+                                <input type="hidden" name="email" value="{{ $user->email }}">
                                 @if ($errors->has('email'))
                                     <span class="help-block opacity-7">
                                             <strong>

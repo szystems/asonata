@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Cycle;
 use App\Http\Requests\CycleFormRequest;
+use App\Http\Requests\CycleEditFormRequest;
 use App\Models\Schedule;
 use App\Http\Requests\ScheduleFormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -72,7 +73,7 @@ class CycleController extends Controller
         return view('admin.cycle.edit', compact('cycle'));
     }
 
-    public function update(CycleFormRequest $request, $id)
+    public function update(CycleEditFormRequest $request, $id)
     {
         $start_date = $request->get('start_date');
         $start_date = date("Y-m-d", strtotime($start_date));

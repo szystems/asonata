@@ -19,7 +19,12 @@
                         <div class="input-daterange input-group" >
                             <div class="input-group input-group-dynamic mb-4">
                                 {{ $config->currency_simbol }}
-                                <input readonly type="number" class="form-control" id="inscription_payment" aria-label="Amount (to the nearest dollar)" name="paid" value="{{ number_format($class->CLmonthly_payment,2, '.', ',') }}" >
+                                @if (Auth::user()->role_as == 1)
+                                <input type="number" class="form-control" id="inscription_payment" aria-label="Amount (to the nearest dollar)" name="paid" value="{{ number_format($class->CLmonthly_payment,2, '.', ',') }}" >
+                                @else
+                                    <input readonly type="number" class="form-control" id="inscription_payment" aria-label="Amount (to the nearest dollar)" name="paid" value="{{ number_format($class->CLmonthly_payment,2, '.', ',') }}" >
+                                @endif
+
                             </div>
 
                         </div>

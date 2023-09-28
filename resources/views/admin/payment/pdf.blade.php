@@ -67,10 +67,7 @@
         <font size="1">{{ __('Cycle') }}</font>
         <font size="1" color="blue">
             @if ($queryCycle != null)
-                @php
-                    $cycleinfo = \App\Models\Cycle::find($queryCycle);
-                @endphp
-                {{ $cycleinfo->name }}
+                {{ $queryCycle }}
             @else
                 {{ __('All') }}
             @endif
@@ -80,10 +77,7 @@
         <font size="1">{{ __('Category') }}: </font>
         <font size="1" color="blue">
             @if ($queryCategory != null)
-                @php
-                    $categoryinfo = \App\Models\Category::find($queryCategory);
-                @endphp
-                {{ $categoryinfo->name }}
+                {{ $queryCategory }}
             @else
                 {{ __('All') }}
             @endif
@@ -93,10 +87,7 @@
         <font size="1">{{ __('Group') }}: </font>
         <font size="1" color="blue">
             @if ($queryGroup != null)
-                @php
-                    $groupinfo = \App\Models\Category::find($queryCategory);
-                @endphp
-                {{ $groupinfo->name }}
+                {{ $queryGroup }}
             @else
                 {{ __('All') }}
             @endif
@@ -111,6 +102,16 @@
                     : ($queryType == '2' ? __('Monthly')
                     : ""))
                 }}
+            @else
+                {{ __('All') }}
+            @endif
+        </font>
+    </label>
+    <label for="">
+        <font size="1">{{ __('User') }}: </font>
+        <font size="1" color="blue">
+            @if ($queryUser != null)
+                {{ $queryUser }}
             @else
                 {{ __('All') }}
             @endif

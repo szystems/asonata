@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GroupFormRequest extends FormRequest
+class CategoryEditFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,13 @@ class GroupFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|string|max:100|unique:groups',
-            'description'=>'string|max:500',
+            'group_id'=>'integer',
+            'name'=>'string|max:100',
+            'age_from'=>'integer',
+            'age_to'=>'integer',
+            'requirements'=>'string|nullable',
+            'implements'=>'string|nullable',
+            'description'=>'string|nullable',
             'image'=>'mimes:jpg,jpeg,bmp,png|max:10000',
         ];
     }

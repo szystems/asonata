@@ -13,6 +13,7 @@ use App\Models\Group;
 use App\Models\Inscription;
 use App\Models\Atleta;
 use App\Models\Config;
+use App\Models\User;
 use App\Http\Requests\PaymentFormRequest;
 use Illuminate\Support\Facades\Auth;
 use DateTime;
@@ -40,6 +41,7 @@ class PaymentController extends Controller
             $queryCategory=$request->input('fcategory');
             $queryCycle=$request->input('fcycle');
             $queryGroup=$request->input('fgroup');
+            $queryUser=$request->input('fuser');
             // $payments=Payment::all();
 
             if ($queryDesde != "" or $queryHasta != "") {
@@ -64,13 +66,15 @@ class PaymentController extends Controller
             ->join('class', 'class.id', '=', 'inscriptions.class_id')
             ->join('categories', 'categories.id', '=', 'class.category_id')
             ->join('groups', 'groups.id', '=', 'categories.group_id')
+            ->join('users', 'users.id', '=', 'payments.user_id')
             ->whereBetween('payments.created_at', [$queryDesde, $queryHasta])
-            ->where('payments.type','LIKE','%'.$queryType.'%')
-            ->where('inscriptions.inscription_number','LIKE','%'.$queryIN.'%')
-            ->where('atleta.cui_dpi','LIKE','%'.$queryCui.'%')
-            ->where('class.category_id','LIKE','%'.$queryCategory.'%')
-            ->where('groups.id','LIKE','%'.$queryGroup.'%')
-            ->where('cycles.id','LIKE','%'.$queryCycle.'%')
+            ->where('payments.type','LIKE',$queryType)
+            ->where('inscriptions.inscription_number','LIKE',$queryIN)
+            ->where('atleta.cui_dpi','LIKE',$queryCui)
+            ->where('categories.name','LIKE',$queryCategory)
+            ->where('groups.name','LIKE',$queryGroup)
+            ->where('cycles.name','LIKE',$queryCycle)
+            ->where('users.name','LIKE',$queryUser)
             ->orderBy('payments.created_at','desc')
             // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
             // ->paginate($this->paginacion, $this->campos);
@@ -98,9 +102,10 @@ class PaymentController extends Controller
             $cyclesFilter = Cycle::where('status',1)->get();
             $categoriesFilter = Category::where('status',1)->orderBy('name','asc')->get();
             $groupFilter = Group::where('status',1)->orderBy('name','asc')->get();
+            $usersFilter = User::where('status',1)->where('role_as','!=',3)->orderBy('name','asc')->get();
 
             $config = Config::first();
-            return view('admin.payment.index', compact('queryDesde','queryHasta','queryType','queryIN','queryCui','queryCycle','queryCategory','queryGroup','payments','cyclesFilter','categoriesFilter','groupFilter','desde','hasta','config','total'));
+            return view('admin.payment.index', compact('queryDesde','queryHasta','queryType','queryIN','queryCui','queryCycle','queryCategory','queryGroup','queryUser','payments','cyclesFilter','categoriesFilter','groupFilter','usersFilter','desde','hasta','config','total'));
         }
     }
 
@@ -132,6 +137,7 @@ class PaymentController extends Controller
             $queryCategory=$request->input('fcategory');
             $queryCycle=$request->input('fcycle');
             $queryGroup=$request->input('fgroup');
+            $queryUser=$request->input('fuser');
             // $payments=Payment::all();
 
             if ($queryDesde != "" or $queryHasta != "") {
@@ -143,10 +149,10 @@ class PaymentController extends Controller
             }else
             {
 
-                $queryDesde = Payment::min('created_at');
+                //$queryDesde = Payment::min('created_at');
                 $queryHasta = Payment::max('created_at');
 
-                $queryDesde = date("Y-m-d 00:00:00", strtotime($queryDesde));
+                $queryDesde = date("Y-m-d 00:00:00", strtotime($queryHasta.'- 1 month'));
                 $queryHasta = date("Y-m-d 23:59:59", strtotime($queryHasta));
             }
 
@@ -156,16 +162,20 @@ class PaymentController extends Controller
             ->join('class', 'class.id', '=', 'inscriptions.class_id')
             ->join('categories', 'categories.id', '=', 'class.category_id')
             ->join('groups', 'groups.id', '=', 'categories.group_id')
+            ->join('users', 'users.id', '=', 'payments.user_id')
             ->whereBetween('payments.created_at', [$queryDesde, $queryHasta])
-            ->where('payments.type','LIKE','%'.$queryType.'%')
-            ->where('inscriptions.inscription_number','LIKE','%'.$queryIN.'%')
-            ->where('atleta.cui_dpi','LIKE','%'.$queryCui.'%')
-            ->where('class.category_id','LIKE','%'.$queryCategory.'%')
-            ->where('groups.id','LIKE','%'.$queryGroup.'%')
-            ->where('cycles.id','LIKE','%'.$queryCycle.'%')
+            ->where('payments.type','LIKE',$queryType)
+            ->where('inscriptions.inscription_number','LIKE',$queryIN)
+            ->where('atleta.cui_dpi','LIKE',$queryCui)
+            ->where('categories.name','LIKE',$queryCategory)
+            ->where('groups.name','LIKE',$queryGroup)
+            ->where('cycles.name','LIKE',$queryCycle)
+            ->where('users.name','LIKE',$queryUser)
             ->orderBy('payments.created_at','desc')
             // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
-            ->get('payments.*','atleta. *','cycles.*','class.*','categories.*','groups.*');
+            // ->paginate($this->paginacion, $this->campos);
+            ->get('payments.*','inscriptions.*','atleta.*','cycles.*','class.*','categories.*','groups.*');
+
 
             $total = 0;
             foreach ($payments as $sumaPagos) {
@@ -188,6 +198,7 @@ class PaymentController extends Controller
             $cyclesFilter = Cycle::where('status',1)->get();
             $categoriesFilter = Category::where('status',1)->orderBy('name','asc')->get();
             $groupFilter = Group::where('status',1)->orderBy('name','asc')->get();
+            $usersFilter = User::where('status',1)->where('role_as','!=',3)->orderBy('name','asc')->get();
 
             $config = Config::first();
 
@@ -213,13 +224,13 @@ class PaymentController extends Controller
 
             if ( $verpdf == "Download" )
             {
-                $pdf = PDF::loadView('admin.payment.pdf', compact('imagen','queryDesde','queryHasta','queryType','queryIN','queryCui','queryCycle','queryCategory','queryGroup','payments','cyclesFilter','categoriesFilter','groupFilter','desde','hasta','config','total'));
+                $pdf = PDF::loadView('admin.payment.pdf', compact('imagen','queryDesde','queryHasta','queryType','queryIN','queryCui','queryCycle','queryCategory','queryGroup','queryUser','payments','cyclesFilter','categoriesFilter','groupFilter','usersFilter','desde','hasta','config','total'));
 
                 return $pdf->download ('Reporte Pagos: '.$nompdf.'.pdf');
             }
             if ( $verpdf == "Browser" )
             {
-                $pdf = PDF::loadView('admin.payment.pdf', compact('imagen','queryDesde','queryHasta','queryType','queryIN','queryCui','queryCycle','queryCategory','queryGroup','payments','cyclesFilter','categoriesFilter','groupFilter','desde','hasta','config','total'));
+                $pdf = PDF::loadView('admin.payment.pdf', compact('imagen','queryDesde','queryHasta','queryType','queryIN','queryCui','queryCycle','queryCategory','queryGroup','queryUser','payments','cyclesFilter','categoriesFilter','groupFilter','usersFilter','desde','hasta','config','total'));
 
                 return $pdf->stream ('Reporte Pagos: '.$nompdf.'.pdf');
             }

@@ -25,7 +25,7 @@ class CategoryFormRequest extends FormRequest
     {
         return [
             'group_id'=>'integer',
-            'name'=>'required|string|max:100',
+            'name'=>'required|string|max:100|unique:categories',
             'age_from'=>'integer',
             'age_to'=>'integer',
             'requirements'=>'string|nullable',

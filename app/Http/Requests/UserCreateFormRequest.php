@@ -24,7 +24,7 @@ class UserCreateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|max:191',
+            'name'=>'required|max:191|unique:users',
             'phone'=>'max:191',
             'whatsapp'=>'max:20',
             'email'=>'required|string|email|max:255|unique:users',

@@ -34,7 +34,8 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="">{{ __('Name') }}</label>
-                                <input type="text" class="form-control border px-2 " name="name" value="{{ $category->name }}" >
+                                <input disabled type="text" class="form-control border px-2 " value="{{ $category->name }}" >
+                                <input type="hidden" name="name" value="{{ $category->name }}">
                                 @if ($errors->has('name'))
                                     <span class="help-block opacity-7">
                                             <strong>

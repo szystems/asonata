@@ -249,6 +249,7 @@ class InscriptionAdminController extends Controller
                 $payment->inscription_id = $inscription->id;
                 $payment->type = 0;
                 $payment->paid = $class->CLinscription_payment;
+                $payment->user_id = Auth::user()->id;
                 $payment->save();
 
                 $inscription->inscription_payment = $request->input('inscription_payment');
@@ -261,6 +262,7 @@ class InscriptionAdminController extends Controller
                 $payment->inscription_id = $inscription->id;
                 $payment->type = 1;
                 $payment->paid = $class->CLbadge;
+                $payment->user_id = Auth::user()->id;
                 $payment->save();
 
                 $inscription->badge_payment = $request->input('badge_payment');

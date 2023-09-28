@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 use App\Models\Group;
 use App\Http\Requests\GroupFormRequest;
+use App\Http\Requests\GroupEditFormRequest;
 use App\Models\Category;
 use App\Http\Requests\CategoryFormRequest;
+use App\Http\Requests\CategoryEditFormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use DB;
@@ -73,7 +75,7 @@ class GroupController extends Controller
         return view('admin.group.edit', \compact('group'));
     }
 
-    public function update(GroupFormRequest $request, $id)
+    public function update(GroupEditFormRequest $request, $id)
     {
         $group = Group::find($id);
         if($request->hasFile('image'))
@@ -159,7 +161,7 @@ class GroupController extends Controller
         return view('admin.group.editcategory', \compact('category'));
     }
 
-    public function updatecategory(CategoryFormRequest $request, $id)
+    public function updatecategory(CategoryEditFormRequest $request, $id)
     {
         $category = Category::find($id);
         if($request->hasFile('image'))
