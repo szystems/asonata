@@ -167,6 +167,14 @@ class InscriptionsController extends Controller
             $file4->move('assets/uploads/certificate',$filename4);
             $atleta->birth_certificate = $filename4;
         }
+        if($request->hasFile('signed_contract'))
+        {
+            $file5 = $request->file('signed_contract');
+            $ext5 = $file5->getClientOriginalExtension();
+            $filename5 = time().'.'.$ext5;
+            $file5->move('assets/uploads/signedcontracts',$filename5);
+            $atleta->signed_contract = $filename5;
+        }
         $atleta->name = $request->input('name');
         $atleta->cui_dpi = $request->input('cui_dpi');
         $atleta->birth = $birth;
@@ -297,6 +305,19 @@ class InscriptionsController extends Controller
             $filename4 = time().'.'.$ext4;
             $file4->move('assets/uploads/certificate',$filename4);
             $atleta->birth_certificate = $filename4;
+        }
+        if($request->hasFile('signed_contract'))
+        {
+            $path = 'assets/uploads/signedcontracts/'.$atleta->signed_contract;
+            if(File::exists($path))
+            {
+                File::delete($path);
+            }
+            $file5 = $request->file('signed_contract');
+            $ext5 = $file5->getClientOriginalExtension();
+            $filename5 = time().'.'.$ext5;
+            $file5->move('assets/uploads/signedcontracts',$filename5);
+            $atleta->signed_contract = $filename5;
         }
         $atleta->name = $request->input('name');
         $atleta->cui_dpi = $request->input('cui_dpi');

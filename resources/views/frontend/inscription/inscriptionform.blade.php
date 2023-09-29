@@ -339,6 +339,14 @@
                                     <img src="{{ asset('assets/uploads/responsible/'.$atleta->responsible_image) }}" alt="">
                                 </div><!-- End .col-sm-6 -->
 
+                                <div class="col-sm-12">
+                                    <label for="">{{ __('Signed Contract') }}</label>
+                                    <p>{{ $atleta->signed_contract }}</p>
+                                    <img src="{{ asset('assets/uploads/signedcontracts/'.$atleta->signed_contract) }}" alt="">
+                                </div><!-- End .col-sm-6 -->
+
+                                <h2><font color="red"><i class="icon-arrow-down"></i></font><font color="blue"><a class="border-radius-md w-25" href="{{ asset('assets/uploads/contract/'.$config->contract) }}" target="_blank">{{ __('Download Contract') }}</a></font></h2>
+
                             </div><!-- End .row -->
 
 

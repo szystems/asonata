@@ -163,6 +163,13 @@
                                     src="{{ asset('assets/uploads/responsible/' . $atleta->responsible_image) }}" alt="user Image">
                             </div>
                         @endif
+                        @if ($atleta->signed_contract)
+                            <div class="col-md-4 mb-3">
+                                <label for=""><strong>{{ __('Signed Contract') }} </strong></label><br>
+                                <img class="border-radius-md w-50 img-fluid"
+                                    src="{{ asset('assets/uploads/signedcontracts/' . $atleta->signed_contract) }}" alt="user Image">
+                            </div>
+                        @endif
 
                     </div>
                     <hr class="dark horizontal my-0">

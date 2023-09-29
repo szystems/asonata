@@ -536,6 +536,20 @@
                                         @endif
                                     </div><!-- End .col-sm-6 -->
 
+                                    <div class="col-sm-12">
+                                        <label for="">{{ __('Signed Contract') }}</label>
+                                        <input type="file" name="signed_contract" class="form-control" value="{{ old('signed_contract') }}" required>
+                                        @if ($errors->has('signed_contract'))
+                                            <span class="help-block opacity-7">
+                                                    <strong>
+                                                        <font color="red">{{ $errors->first('signed_contract') }}</font>
+                                                    </strong>
+                                            </span>
+                                        @endif
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <h2><font color="red"><i class="icon-arrow-down"></i></font><font color="blue"><a class="border-radius-md w-25" href="{{ asset('assets/uploads/contract/'.$config->contract) }}" target="_blank">{{ __('Download Contract') }}</a></font></h2>
+
                                 </div><!-- End .row -->
 
 

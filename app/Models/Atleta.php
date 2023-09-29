@@ -32,6 +32,7 @@ class Atleta extends Model
         'status',
         'responsible_name',
         'responsible_dpi',
+        'signed_contract',
         'responsible_image',
         'responsible_phone',
         'responsible_whatsapp',

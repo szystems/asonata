@@ -416,6 +416,24 @@
                                 @endif
                             </div>
 
+                            @if ($atleta->signed_contract)
+                                <div class="col-md-12 mb-3">
+                                    <img class="border-radius-md w-25 img-fluid" src="{{ asset('assets/uploads/signedcontracts/' . $atleta->signed_contract) }}" alt="user Image">
+                                </div>
+                            @endif
+
+                            <div class="col-md-12 mb-3">
+                                <label for="">{{ __('Signed Contract') }}</label>
+                                <input type="file" name="signed_contract" class="form-control border">
+                                @if ($errors->has('signed_contract'))
+                                    <span class="help-block opacity-7">
+                                            <strong>
+                                                <font color="red">{{ $errors->first('signed_contract') }}</font>
+                                            </strong>
+                                    </span>
+                                @endif
+                            </div>
+
                             <div class="col-md-12 mb-3" >
                                 <button type="submit" class="btn btn-success"><i class="material-icons">save</i> {{ __('Save') }}</button>
                             </div>

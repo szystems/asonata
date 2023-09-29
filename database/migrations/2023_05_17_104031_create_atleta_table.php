@@ -38,6 +38,7 @@ class CreateAtletaTable extends Migration
             $table->tinyInteger('status');
             $table->string('responsible_name', 100);
             $table->integer('responsible_dpi')->nullable();
+            $table->integer('signed_contract')->nullable();
             $table->string('responsible_image',100);
             $table->string('responsible_phone', 20);
             $table->string('responsible_whatsapp', 20);

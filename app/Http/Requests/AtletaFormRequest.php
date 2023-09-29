@@ -45,6 +45,7 @@ class AtletaFormRequest extends FormRequest
             'status'=>'integer',
             'responsible_name'=>'required|string|max:100',
             'responsible_dpi'=>'required|integer',
+            'signed_contract'=>'image|required|mimes:jpg,jpeg,bmp,png,gif,pdf|max:5000',
             'responsible_image'=>'image|required|mimes:jpg,jpeg,bmp,png,gif,pdf|max:5000',
             'responsible_phone'=>'required|string|max:20',
             'responsible_whatsapp'=>'required|string|max:20',

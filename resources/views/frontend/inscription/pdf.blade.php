@@ -340,6 +340,17 @@
                 </td>
             </tr>
 
+            <tr>
+                <th align="right">
+                    <font size="1">{{ __('Signed Contract') }}:</font>
+                </th>
+                <td colspan="3">
+                    @if ($atleta->signed_contract != null)
+                        <img align="center" src="{{ $path . '/signedcontracts/' . $atleta->signed_contract }}" alt="" height="300">
+                    @endif
+                </td>
+            </tr>
+
 
         </thead>
         {{-- <tbody>
