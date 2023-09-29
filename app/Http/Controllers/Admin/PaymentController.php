@@ -256,4 +256,52 @@ class PaymentController extends Controller
 
         return redirect('inscriptions')->with('status', __('Payment Added Successfully'));
     }
+
+    public function pdfpayment(Request $request)
+    {
+        if ($request)
+        {
+            $config = Config::first();
+            $payment = Payment::join('inscriptions', 'inscriptions.id', '=', 'payments.inscription_id')
+            ->join('atleta', 'atleta.id', '=', 'inscriptions.atleta_id')
+            ->join('cycles', 'cycles.id', '=', 'inscriptions.cycle_id')
+            ->join('class', 'class.id', '=', 'inscriptions.class_id')
+            ->join('categories', 'categories.id', '=', 'class.category_id')
+            ->join('groups', 'groups.id', '=', 'categories.group_id')
+            ->where('payments.id',$request->input('rid'))
+
+            // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
+            ->first('payments.*','atleta. *','cycles.*','class.*','categories.*','groups.*');
+
+            $verpdf = "Browser";
+            $nompdf = date('m/d/Y g:ia');
+            $path = public_path('assets/uploads/');
+
+            $currency = $config->currency_simbol;
+
+            if ($config->logo == null)
+            {
+                $logo = null;
+                $imagen = null;
+            }
+            else
+            {
+                    $logo = $config->logo;
+                    $imagen = public_path('assets/uploads/logos/'.$logo);
+            }
+
+            if ( $verpdf == "Download" )
+            {
+                $pdf = PDF::loadView('admin.payment.pdfpayment', compact('imagen','payment','config'));
+
+                return $pdf->download ('Reporte Pago: '.$nompdf.'.pdf');
+            }
+            if ( $verpdf == "Browser" )
+            {
+                $pdf = PDF::loadView('admin.payment.pdfpayment', compact('imagen','payment','config'));
+
+                return $pdf->stream ('Reporte Pago: '.$nompdf.'.pdf');
+            }
+        }
+    }
 }

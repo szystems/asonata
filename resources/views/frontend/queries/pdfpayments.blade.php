@@ -210,7 +210,7 @@
     <table class="pure-table pure-table-bordered" Width=100%>
         <thead>
             <tr>
-                <th colspan="4"><u>{{ __('Payments') }}</u></th>
+                <th colspan="5"><u>{{ __('Payments') }}</u></th>
             </tr>
             <tr>
                 {{-- <th>
@@ -221,6 +221,9 @@
                 </th>
                 <th>
                     <font size="1">{{ __('Payment Type') }}</font>
+                </th>
+                <th>
+                    <font size="1">{{ __('Note') }}</font>
                 </th>
                 <th>
                     <font size="1">{{ __('Paid') }}</font>
@@ -262,6 +265,11 @@
                         </font>
                     </td>
                     <td align="center">
+                        <font size="1" color="black">
+                            {{ $payment->note }}
+                        </font>
+                    </td>
+                    <td align="center">
                         <font size="1" color="limegreen">
                             {{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}
                         </font>
@@ -275,6 +283,7 @@
         </tbody>
         <tfoot>
             <tr>
+                <td></td>
                 <td></td>
                 <td align="right"><font size="3"><b>Total:</b></font></td>
                 <td align="center"><h5><b><font size="3" color="blue">{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</font></b></h5></td>

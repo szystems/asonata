@@ -11,7 +11,7 @@
     {{-- CSRF Token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>E-Shop</title>
+    <title>Asonata Xela</title>
     <meta name="keywords" content="HTML5 Template">
     <meta name="description" content="Asonata">
     <meta name="author" content="Szystems">

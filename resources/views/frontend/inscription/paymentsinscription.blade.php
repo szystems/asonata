@@ -284,6 +284,7 @@
                                 <thead>
                                     <tr>
                                         <th>{{ __('Payment Type') }}</th>
+                                        <th>{{ __('Note') }}</th>
                                         <th>{{ __('Paid') }}</th>
                                         <th>{{ __('Date') }}</th>
                                     </tr>
@@ -308,6 +309,9 @@
                                                     : "")))
                                                 }}
                                             </td>
+                                            <td class="price-col">
+                                                {{ $payment->note }}
+                                            </td>
                                             <td class="total-col"><font color="
                                             {{ $payment->type == '0' ? 'limegreen'
                                                 : ($payment->type == '1' ? 'limegreen'
@@ -322,16 +326,19 @@
                                 </tbody>
                                 <tfoot>
                                     <tr align="right">
+                                        <td class="price-col"></td>
                                         <td class="price-col" align="right"><h5> {{ __('Payments') }}:&nbsp;</h5></td>
                                         <td class="price-col" ><h4><font color="limegreen">{{ $config->currency_simbol }}{{ number_format($total-$exonerations,2, '.', ',') }}</font></h4></td>
                                         <td class="price-col"></td>
                                     </tr>
                                     <tr align="right">
+                                        <td class="price-col"></td>
                                         <td class="price-col" align="right"><h5> {{ __('Exonerations') }}:&nbsp;</h5></td>
                                         <td class="price-col" ><h4><font color="orange">{{ $config->currency_simbol }}{{ number_format($exonerations,2, '.', ',') }}</font></h4></td>
                                         <td class="price-col"></td>
                                     </tr>
                                     <tr align="right">
+                                        <td class="price-col"></td>
                                         <td class="price-col" align="right"><h4> Total:&nbsp;</h4></td>
                                         <td class="price-col" ><h3><font color="blue">{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</font></h3></td>
                                         <td class="price-col"></td>

@@ -104,6 +104,10 @@
                                                     : ($payment->type == '3' ? __('Exoneration')
                                                     : "")))
                                                 }}
+                                                @if ($payment->note != null)
+                                                    <br>
+                                                    ({{ $payment->note }})
+                                                @endif
                                             </strong></td>
                                             <td class="align-middle text-center text-sm"><strong>{{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}</strong></td>
                                             <td class="align-middle text-center text-sm"><strong>{{ $userinfo->name }}</strong><br>

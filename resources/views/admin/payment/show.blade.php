@@ -18,20 +18,20 @@
                 </div>
                 <div class="card-body p-3 pt-2">
                     <h4><u>{{ __('Show') }} {{ __('Payment') }}</u></h4>
-                    {{-- <div>
-                        <form action="{{ url('pdf-athlete') }}" method="GET" target="_blank">
-                            <input type="hidden" name="ratleta" value="{{ $atleta->id }}">
+                    <div>
+                        <form action="{{ url('pdf-payment') }}" method="GET" target="_blank">
+                            <input type="hidden" name="rid" value="{{ $payment->id }}">
                             <button type="submit" class="btn btn-danger float-end">
                                 <i class="material-icons opacity-10">picture_as_pdf</i> PDF
                             </button>
                         </form>
-                        <a href="{{ url('edit-athlete/'.$atleta->id) }}" type="button" class="btn btn-warning"><i class="material-icons">edit</i></a>
+                        {{-- <a href="{{ url('edit-athlete/'.$atleta->id) }}" type="button" class="btn btn-warning"><i class="material-icons">edit</i></a>
                         <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $atleta->id }}">
                             <i class="material-icons">delete</i>
                         </button>
-                        @include('admin.atleta.deletemodal')
+                        @include('admin.atleta.deletemodal') --}}
 
-                    </div> --}}
+                    </div>
                     <div class="row">
                         <div class="col-md-2 mb-3">
                             <label for=""><strong>{{ __('Athlete') }}</strong></label>
