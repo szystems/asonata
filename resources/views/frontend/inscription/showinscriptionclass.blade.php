@@ -151,7 +151,7 @@
                         <textarea readonly type="text" class="form-control border px-2 " rows="10">{{  $config->registration_process  }}</textarea>
                     </div>
                     @endif
-                    <h2><font color="red"><i class="icon-arrow-down"></i></font><font color="blue"><a class="border-radius-md w-25" href="{{ asset('assets/uploads/contract/'.$config->contract) }}" target="_blank">{{ __('Download Contract') }}</a></font></h2>
+                    <h2><font color="red"><i class="icon-arrow-down"></i></font><font color="blue"><a class="border-radius-md w-25" href="{{ asset('assets/uploads/contracts/'.$class->Gcontract) }}" target="_blank">{{ __('Download Contract') }}</a></font></h2>
 
 
 

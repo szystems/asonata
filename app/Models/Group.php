@@ -18,6 +18,7 @@ class Group extends Model
         'name',
         'description',
         'image',
+        'contract',
         'status'
     ];
 

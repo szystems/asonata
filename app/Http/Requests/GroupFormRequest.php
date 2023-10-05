@@ -27,6 +27,7 @@ class GroupFormRequest extends FormRequest
             'name'=>'required|string|max:100|unique:groups',
             'description'=>'string|max:500',
             'image'=>'mimes:jpg,jpeg,bmp,png|max:10000',
+            'contract'=>'required|mimetypes:application/pdf|max:10000',
         ];
     }
 }

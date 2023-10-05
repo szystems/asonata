@@ -61,6 +61,14 @@ class GroupController extends Controller
             $file1->move('assets/uploads/groups',$filename1);
             $group->image = $filename1;
         }
+        if($request->hasFile('contract'))
+        {
+            $file2 = $request->file('contract');
+            $ext2 = $file2->getClientOriginalExtension();
+            $filename2 = time().'.'.$ext2;
+            $file2->move('assets/uploads/contracts',$filename2);
+            $group->contract = $filename2;
+        }
         $group->name = $request->input('name');
         $group->description = $request->input('description');
         $group->status = 1;
@@ -90,6 +98,19 @@ class GroupController extends Controller
             $filename1 = time().'.'.$ext1;
             $file1->move('assets/uploads/groups',$filename1);
             $group->image = $filename1;
+        }
+        if($request->hasFile('contract'))
+        {
+            $path2 = 'assets/uploads/contracts/'.$group->contract;
+            if(File::exists($path2))
+            {
+                File::delete($path2);
+            }
+            $file2 = $request->file('contract');
+            $ext2 = $file2->getClientOriginalExtension();
+            $filename2 = time().'.'.$ext2;
+            $file2->move('assets/uploads/contracts',$filename2);
+            $group->contract = $filename2;
         }
         $group->name = $request->input('name');
         $group->description = $request->input('description');

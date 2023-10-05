@@ -133,7 +133,7 @@
                             </div> --}}
                             <input type="hidden" name="tax" value="0">
 
-                            @if ($config->contract)
+                            {{-- @if ($config->contract)
                             <div class="col-md-12 mb-3">
                                 <label for="">{{ __('Contract') }}</label>
                                 <a class="border-radius-md w-25" href="{{ asset('assets/uploads/contract/'.$config->contract) }}" target="_blank">{{ __('Download Contract') }}: {{ $config->contract }}</a>
@@ -142,7 +142,7 @@
                             <div class="col-md-12 mb-3">
                                 <label for="">{{ __('Change Contract') }}</label>
                                 <input type="file" name="contract" class="form-control border">
-                            </div>
+                            </div> --}}
                             @if ($config->logo)
                             <div class="col-md-12 mb-3">
                                 <label for="">{{ __('Image') }}</label>

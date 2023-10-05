@@ -18,6 +18,7 @@ class CreateGroupsTable extends Migration
             $table->string('name', 100);
             $table->string('description', 500)->nullable();
             $table->string('image', 500)->nullable();
+            $table->string('contract', 100)->nullable();
             $table->tinyInteger('status')->default('1');
             $table->timestamps();
         });

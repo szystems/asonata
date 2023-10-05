@@ -60,6 +60,11 @@
                                 <input type="file" name="image" class="form-control border">
                             </div>
 
+                            <div class="col-md-12 mb-3">
+                                <label for="">{{ __('PDF Contract') }}</label>
+                                <input type="file" name="contract" class="form-control border">
+                            </div>
+
                             <div class="col-md-12 mb-3" >
                                 <button type="submit" class="btn btn-success"><i class="material-icons">save</i> {{ __('Save') }}</button>
                             </div>
