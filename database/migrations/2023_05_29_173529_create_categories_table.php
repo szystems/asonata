@@ -17,8 +17,8 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->integer('group_id');
             $table->string('name', 100);
-            $table->integer('age_from');
-            $table->integer('age_to');
+            $table->string('age_from');
+            $table->string('age_to');
             $table->mediumText('description')->nullable();
             $table->mediumText('requirements')->nullable();
             $table->mediumText('implements')->nullable();

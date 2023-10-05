@@ -26,8 +26,8 @@ class CategoryEditFormRequest extends FormRequest
         return [
             'group_id'=>'integer',
             'name'=>'string|max:100',
-            'age_from'=>'integer',
-            'age_to'=>'integer',
+            'age_from'=>'string|max:5',
+            'age_to'=>'string|max:5',
             'requirements'=>'string|nullable',
             'implements'=>'string|nullable',
             'description'=>'string|nullable',

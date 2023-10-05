@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label for="">{{ __('Age from') }}</label>
-                                <input type="number" class="form-control border px-2 " name="age_from" value="{{ $category->age_from }}" >
+                                <input type="number" class="form-control border px-2 " name="age_from" step="any" value="{{ $category->age_from }}" >
                                 @if ($errors->has('age_from'))
                                     <span class="help-block opacity-7">
                                             <strong>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label for="">{{ __('Age to') }}</label>
-                                <input type="number" class="form-control border px-2 " name="age_to" value="{{ $category->age_to }}" >
+                                <input type="number" class="form-control border px-2 " name="age_to" step="any" value="{{ $category->age_to }}" >
                                 @if ($errors->has('age_to'))
                                     <span class="help-block opacity-7">
                                             <strong>
