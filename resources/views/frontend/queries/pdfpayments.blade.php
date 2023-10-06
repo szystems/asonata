@@ -262,6 +262,10 @@
                                 : ($payment->type == '3' ? __('Exoneration')
                                 : "")))
                             }}
+                            @if ($payment->note != null)
+                            <br>
+                            ({{ $payment->note }})
+                        @endif
                         </font>
                     </td>
                     <td align="center">

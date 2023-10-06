@@ -410,14 +410,21 @@
                                                 </div>
                                             </div>
                                         </td> --}}
-                                        <td class="align-middle text-center text-sm"><strong>
+                                        <td class="align-middle text-center text-sm">
+                                            <strong>
                                             {{ $payment->type == '0' ? __('Inscription')
                                                 : ($payment->type == '1' ? __('Badge')
                                                 : ($payment->type == '2' ? __('Monthly')
                                                 : ($payment->type == '3' ? __('Exoneration')
                                                 : "")))
                                             }}
-                                        </strong></td>
+
+                                            </strong>
+                                            @if ($payment->note != null)
+                                                <br>
+                                                ({{ $payment->note }})
+                                            @endif
+                                        </td>
                                         <td class="align-middle text-center text-sm"><strong>{{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}</strong></td>
                                         <td class="align-middle text-center text-sm"><strong>{{ $userinfo->name }}</strong><br>
                                             ({{ $userinfo->role_as == '1' ? __('Admin')
