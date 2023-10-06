@@ -379,7 +379,7 @@
 
                                     <div class="col-sm-4">
                                         <label for="">{{ __('Vaccination Card') }}</label>
-                                        <input type="file" name="vaccination_card" class="form-control" value="{{ old('vaccination_card') }}" required>
+                                        <input type="file" name="vaccination_card" class="form-control" value="{{ old('vaccination_card') }}">
                                         @if ($errors->has('vaccination_card'))
                                             <span class="help-block opacity-7">
                                                     <strong>

@@ -310,11 +310,11 @@
             <tr>
 
                 <th align="right">
-                    <font size="1">{{ __('Vaccination Card') }}:</font>
+                    <font size="1">{{ __('Vaccination Card') }}, {{ __('DPI') }}:</font>
                 </th>
                 <td colspan="3">
                     @if ($atleta->vaccination_card != null)
-                        <img align="center" src="{{ $path . '/vaccination/' . $atleta->vaccination_card }}" alt="" height="300">
+                        <a href="{{ $path . '/vaccination/' . $atleta->vaccination_card }}" target="_blank">{{ __('Download') }}</a>
                     @endif
                 </td>
             </tr>
@@ -324,18 +324,18 @@
                 </th>
                 <td colspan="3">
                     @if ($atleta->birth_certificate != null)
-                        <img align="center" src="{{ $path . '/certificate/' . $atleta->birth_certificate }}" alt="" height="300">
+                        <a href="{{ $path . '/certificate/' . $atleta->birth_certificate }}" target="_blank">{{ __('Download') }}</a>
                     @endif
                 </td>
             </tr>
 
             <tr>
                 <th align="right">
-                    <font size="1">{{ __('Responsible DPI Image') }}:</font>
+                    <font size="1">{{ __('Responsible DPI') }}:</font>
                 </th>
                 <td colspan="3">
                     @if ($atleta->responsible_image != null)
-                        <img align="center" src="{{ $path . '/responsible/' . $atleta->responsible_image }}" alt="" height="300">
+                        <a href="{{ $path . '/responsible/' . $atleta->responsible_image }}" target="_blank">{{ __('Download') }}</a>
                     @endif
                 </td>
             </tr>
@@ -346,7 +346,7 @@
                 </th>
                 <td colspan="3">
                     @if ($atleta->signed_contract != null)
-                        <img align="center" src="{{ $path . '/signedcontracts/' . $atleta->signed_contract }}" alt="" height="300">
+                        <a href="{{ $path . '/signedcontracts/' . $atleta->signed_contract }}" target="_blank">{{ __('Download') }}</a>
                     @endif
                 </td>
             </tr>

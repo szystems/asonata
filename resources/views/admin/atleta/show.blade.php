@@ -112,13 +112,13 @@
                         @if ($atleta->vaccination_card)
                             <div class="col-md-4 mb-3">
                                 <label for=""><strong>{{ __('Vaccination Card') }} </strong></label><br>
-                                <img class="border-radius-md w-50 img-fluid" src="{{ asset('assets/uploads/vaccination/' . $atleta->vaccination_card) }}" alt="user Image">
+                                <a class="btn btn-danger" href="{{ asset('assets/uploads/vaccination/'.$atleta->vaccination_card) }}" target="blank"><i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Download') }}</a>
                             </div>
                         @endif
                         @if ($atleta->birth_certificate)
                             <div class="col-md-4 mb-3">
                                 <label for=""><strong>{{ __('Birth Certificate') }} </strong></label><br>
-                                <img class="border-radius-md w-50 img-fluid" src="{{ asset('assets/uploads/certificate/' . $atleta->birth_certificate) }}" alt="user Image">
+                                <a class="btn btn-danger" href="{{ asset('assets/uploads/certificate/'.$atleta->birth_certificate) }}" target="blank"><i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Download') }}</a>
                             </div>
                         @endif
                         <div class="col-md-12 mb-3">
@@ -158,16 +158,14 @@
                         </div>
                         @if ($atleta->responsible_image)
                             <div class="col-md-4 mb-3">
-                                <label for=""><strong>{{ __('Responsible DPI Image') }} </strong></label><br>
-                                <img class="border-radius-md w-50 img-fluid"
-                                    src="{{ asset('assets/uploads/responsible/' . $atleta->responsible_image) }}" alt="user Image">
+                                <label for=""><strong>{{ __('Responsible DPI') }} </strong></label><br>
+                                <a class="btn btn-danger" href="{{ asset('assets/uploads/responsible/'.$atleta->responsible_image) }}" target="blank"><i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Download') }}</a>
                             </div>
                         @endif
                         @if ($atleta->signed_contract)
                             <div class="col-md-4 mb-3">
                                 <label for=""><strong>{{ __('Signed Contract') }} </strong></label><br>
-                                <img class="border-radius-md w-50 img-fluid"
-                                    src="{{ asset('assets/uploads/signedcontracts/' . $atleta->signed_contract) }}" alt="user Image">
+                                    <a class="btn btn-danger" href="{{ asset('assets/uploads/signedcontracts/'.$atleta->signed_contract) }}" target="blank"><i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Download') }}</a>
                             </div>
                         @endif
 

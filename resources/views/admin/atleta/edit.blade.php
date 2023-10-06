@@ -241,12 +241,6 @@
                                 @endif
                             </div>
 
-                            @if ($atleta->image)
-                                <div class="col-md-6 mb-3">
-                                    <img class="border-radius-md w-25 img-fluid" src="{{ asset('assets/uploads/athletes/' . $atleta->image) }}" alt="user Image">
-                                </div>
-                            @endif
-
                             <div class="col-md-6 mb-3">
                                 <label for="">{{ __('Change Athlete Image') }}</label>
                                 <input type="file" name="image" class="form-control border">
@@ -259,13 +253,14 @@
                                 @endif
                             </div>
 
-                            @if ($atleta->vaccination_card)
+                            @if ($atleta->image)
                                 <div class="col-md-6 mb-3">
-                                    <img class="border-radius-md w-25 img-fluid" src="{{ asset('assets/uploads/vaccination/' . $atleta->vaccination_card) }}" alt="user Image">
+                                    <label for="">{{ __('PDF') }}</label><br>
+                                    <img class="border-radius-md w-25 img-fluid" src="{{ asset('assets/uploads/athletes/' . $atleta->image) }}" alt="user Image">
                                 </div>
                             @endif
 
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-9 mb-3">
                                 <label for="">{{ __('Vaccination Card') }}</label>
                                 <input type="file" name="vaccination_card" class="form-control border">
                                 @if ($errors->has('vaccination_card'))
@@ -277,13 +272,14 @@
                                 @endif
                             </div>
 
-                            @if ($atleta->birth_certificate)
-                                <div class="col-md-6 mb-3">
-                                    <img class="border-radius-md w-25 img-fluid" src="{{ asset('assets/uploads/certificate/' . $atleta->birth_certificate) }}" alt="user Image">
+                            @if ($atleta->vaccination_card)
+                                <div class="col-md-3 mb-3">
+                                    <label for="">{{ __('PDF') }}</label><br>
+                                    <a class="btn btn-danger" href="{{ asset('assets/uploads/vaccination/'.$atleta->vaccination_card) }}" target="blank"><i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Download') }}</a>
                                 </div>
                             @endif
 
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-9 mb-3">
                                 <label for="">{{ __('Birth Certificate') }}</label>
                                 <input type="file" name="birth_certificate" class="form-control border">
                                 @if ($errors->has('birth_certificate'))
@@ -294,6 +290,13 @@
                                     </span>
                                 @endif
                             </div>
+
+                            @if ($atleta->birth_certificate)
+                                <div class="col-md-3 mb-3">
+                                    <label for="">{{ __('PDF') }}</label><br>
+                                    <a class="btn btn-danger" href="{{ asset('assets/uploads/certificate/'.$atleta->birth_certificate) }}" target="blank"><i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Download') }}</a>
+                                </div>
+                            @endif
 
                             <div class="col-md-3 mb-3">
                                 <label for="">{{ __('Responsible Name') }}</label>
@@ -398,14 +401,8 @@
                                 </select>
                             </div>
 
-                            @if ($atleta->responsible_image)
-                                <div class="col-md-12 mb-3">
-                                    <img class="border-radius-md w-25 img-fluid" src="{{ asset('assets/uploads/responsible/' . $atleta->responsible_image) }}" alt="user Image">
-                                </div>
-                            @endif
-
-                            <div class="col-md-12 mb-3">
-                                <label for="">{{ __('Change Responsible DPI Image') }}</label>
+                            <div class="col-md-9 mb-3">
+                                <label for="">{{ __('Responsible DPI') }}</label>
                                 <input type="file" name="responsible_image" class="form-control border">
                                 @if ($errors->has('responsible_image'))
                                     <span class="help-block opacity-7">
@@ -416,13 +413,14 @@
                                 @endif
                             </div>
 
-                            @if ($atleta->signed_contract)
-                                <div class="col-md-12 mb-3">
-                                    <img class="border-radius-md w-25 img-fluid" src="{{ asset('assets/uploads/signedcontracts/' . $atleta->signed_contract) }}" alt="user Image">
+                            @if ($atleta->responsible_image)
+                                <div class="col-md-3 mb-3">
+                                    <label for="">{{ __('PDF') }}</label><br>
+                                    <a class="btn btn-danger" href="{{ asset('assets/uploads/responsible/'.$atleta->responsible_image) }}" target="blank"><i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Download') }}</a>
                                 </div>
                             @endif
 
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-9 mb-3">
                                 <label for="">{{ __('Signed Contract') }}</label>
                                 <input type="file" name="signed_contract" class="form-control border">
                                 @if ($errors->has('signed_contract'))
@@ -433,6 +431,13 @@
                                     </span>
                                 @endif
                             </div>
+
+                            @if ($atleta->signed_contract)
+                                <div class="col-md-3 mb-3">
+                                    <label for="">{{ __('PDF') }}</label><br>
+                                    <a class="btn btn-danger" href="{{ asset('assets/uploads/signedcontracts/'.$atleta->signed_contract) }}" target="blank"><i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Download') }}</a>
+                                </div>
+                            @endif
 
                             <div class="col-md-12 mb-3" >
                                 <button type="submit" class="btn btn-success"><i class="material-icons">save</i> {{ __('Save') }}</button>

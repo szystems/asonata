@@ -276,15 +276,16 @@
                                 </div><!-- End .col-sm-6 -->
 
                                 <div class="col-sm-4">
-                                    <label for="">{{ __('Vaccination Card') }}</label>
+                                    <label for="">{{ __('Vaccination Card') }}, {{ __('DPI') }}</label>
                                     <p>{{ $atleta->vaccination_card }}</p>
-                                    <img src="{{ asset('assets/uploads/vaccination/'.$atleta->vaccination_card) }}" alt="">
+                                    <a class="btn btn-danger" href="{{ asset('assets/uploads/vaccination/'.$atleta->vaccination_card) }}" target="blank">{{ __('Download') }}</a>
                                 </div><!-- End .col-sm-6 -->
 
                                 <div class="col-sm-4">
                                     <label for="">{{ __('Birth Certificate') }}</label>
                                     <p>{{ $atleta->birth_certificate }}</p>
                                     <img src="{{ asset('assets/uploads/certificate/'.$atleta->birth_certificate) }}" alt="">
+                                    <a class="btn btn-danger" href="{{ asset('assets/uploads/certificate/'.$atleta->birth_certificate) }}" target="blank">{{ __('Download') }}</a>
                                 </div><!-- End .col-sm-6 -->
                             </div><!-- End .row -->
 
@@ -333,16 +334,16 @@
                                     <p>{{ $atleta->responsible_doses_number }}</p>
                                 </div><!-- End .col-sm-6 -->
 
-                                <div class="col-sm-12">
+                                <div class="col-sm-6">
                                     <label for="">{{ __('Responsible DPI Image') }}</label>
                                     <p>{{ $atleta->responsible_image }}</p>
-                                    <img src="{{ asset('assets/uploads/responsible/'.$atleta->responsible_image) }}" alt="">
+                                    <a class="btn btn-danger" href="{{ asset('assets/uploads/responsible/'.$atleta->responsible_image) }}" target="blank">{{ __('Download') }}</a>
                                 </div><!-- End .col-sm-6 -->
 
-                                <div class="col-sm-12">
+                                <div class="col-sm-6">
                                     <label for="">{{ __('Signed Contract') }}</label>
                                     <p>{{ $atleta->signed_contract }}</p>
-                                    <img src="{{ asset('assets/uploads/signedcontracts/'.$atleta->signed_contract) }}" alt="">
+                                    <a class="btn btn-danger" href="{{ asset('assets/uploads/signedcontracts/'.$atleta->signed_contract) }}" target="blank">{{ __('Download') }}</a>
                                 </div><!-- End .col-sm-6 -->
 
                                 <h2><font color="red"><i class="icon-arrow-down"></i></font><font color="blue"><a class="border-radius-md w-25" href="{{ asset('assets/uploads/contract/'.$config->contract) }}" target="_blank">{{ __('Download Contract') }}</a></font></h2>
