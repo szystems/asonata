@@ -42,13 +42,16 @@
                             <label for="">{{ __('Cycle') }}</label>
                             <select class="form-select px-2" aria-label="Default select example" name="fcycle">
                                     @if ($queryCycle != null)
-                                        <option selected value="{{ $queryCycle }}">{{ $queryCycle }}</option>
+                                        @php
+                                            $cycleinfo = \App\Models\Cycle::find($queryCycle);
+                                        @endphp
+                                        <option selected value="{{ $cycleinfo->id }}">{{ $cycleinfo->name }}</option>
                                     @else
                                         <option selected value="">{{ __('All') }}</option>
                                     @endif
                                     <option value="">{{ __('All') }}</option>
                                     @foreach ($cyclesFilter as $cycle)
-                                        <option value="{{ $cycle->name }}">{{ $cycle->name }}</option>
+                                        <option value="{{ $cycle->id }}">{{ $cycle->name }}</option>
                                     @endforeach
                             </select>
                             {{-- </select> --}}
@@ -57,13 +60,16 @@
                             <label for="">{{ __('Category') }}</label>
                             <select class="form-select px-2" aria-label="Default select example" name="fcategory">
                                     @if ($queryCategory != null)
-                                        <option selected value="{{ $queryCategory }}">{{ $queryCategory }}</option>
+                                        @php
+                                            $categoryinfo = \App\Models\Category::find($queryCategory);
+                                        @endphp
+                                        <option selected value="{{ $categoryinfo->id }}">{{ $categoryinfo->name }}</option>
                                     @else
                                         <option selected value="">{{ __('All') }}</option>
                                     @endif
                                     <option value="">{{ __('All') }}</option>
                                     @foreach ($categoriesFilter as $category)
-                                        <option value="{{ $category->name }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                             </select>
                             {{-- </select> --}}
@@ -72,13 +78,16 @@
                             <label for="">{{ __('Group') }}</label>
                             <select class="form-select px-2" aria-label="Default select example" name="fgroup">
                                     @if ($queryGroup != null)
-                                        <option selected value="{{ $queryGroup }}">{{ $queryGroup }}</option>
+                                        @php
+                                            $groupinfo = \App\Models\Group::find($queryGroup);
+                                        @endphp
+                                        <option selected value="{{ $groupinfo->id }}">{{ $groupinfo->name }}</option>
                                     @else
                                         <option selected value="">{{ __('All') }}</option>
                                     @endif
                                     <option value="">{{ __('All') }}</option>
                                     @foreach ($groupFilter as $group)
-                                        <option value="{{ $group->name }}">{{ $group->name }}</option>
+                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
                                     @endforeach
                             </select>
                             {{-- </select> --}}
@@ -108,13 +117,16 @@
                             <label for="">{{ __('Users') }}</label>
                             <select class="form-select px-2" aria-label="Default select example" name="fuser">
                                     @if ($queryUser != null)
-                                        <option selected value="{{ $queryUser }}">{{ $queryUser }}</option>
+                                        @php
+                                            $userinfo = \App\Models\User::find($queryUser);
+                                        @endphp
+                                        <option selected value="{{ $userinfo->id }}">{{ $userinfo->name }} ({{ $userinfo->role_as == '0' ? __('User') : ($userinfo->role_as == '1' ? __('Admin') : ($userinfo->role_as == '3' ? __('Instructor') : "")) }})</option>
                                     @else
                                         <option selected value="">{{ __('All') }}</option>
                                     @endif
                                     <option value="">{{ __('All') }}</option>
                                     @foreach ($usersFilter as $user)
-                                        <option value="{{ $user->name }}">{{ $user->name }} ({{ $user->role_as == '0' ? __('User') : ($user->role_as == '1' ? __('Admin') : ($user->role_as == '3' ? __('Instructor') : "")) }})</option>
+                                        <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->role_as == '0' ? __('User') : ($user->role_as == '1' ? __('Admin') : ($user->role_as == '3' ? __('Instructor') : "")) }})</option>
                                     @endforeach
                             </select>
                             {{-- </select> --}}

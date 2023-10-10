@@ -71,10 +71,10 @@ class PaymentController extends Controller
             ->where('payments.type','LIKE',$queryType)
             ->where('inscriptions.inscription_number','LIKE',$queryIN)
             ->where('atleta.cui_dpi','LIKE',$queryCui)
-            ->where('categories.name','LIKE',$queryCategory)
-            ->where('groups.name','LIKE',$queryGroup)
-            ->where('cycles.name','LIKE',$queryCycle)
-            ->where('users.name','LIKE',$queryUser)
+            ->where('categories.id','LIKE',$queryCategory)
+            ->where('groups.id','LIKE',$queryGroup)
+            ->where('cycles.id','LIKE',$queryCycle)
+            ->where('users.id','LIKE',$queryUser)
             ->orderBy('payments.created_at','desc')
             // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
             // ->paginate($this->paginacion, $this->campos);
@@ -167,10 +167,10 @@ class PaymentController extends Controller
             ->where('payments.type','LIKE',$queryType)
             ->where('inscriptions.inscription_number','LIKE',$queryIN)
             ->where('atleta.cui_dpi','LIKE',$queryCui)
-            ->where('categories.name','LIKE',$queryCategory)
-            ->where('groups.name','LIKE',$queryGroup)
-            ->where('cycles.name','LIKE',$queryCycle)
-            ->where('users.name','LIKE',$queryUser)
+            ->where('categories.id','LIKE',$queryCategory)
+            ->where('groups.id','LIKE',$queryGroup)
+            ->where('cycles.id','LIKE',$queryCycle)
+            ->where('users.id','LIKE',$queryUser)
             ->orderBy('payments.created_at','desc')
             // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
             // ->paginate($this->paginacion, $this->campos);

@@ -67,7 +67,10 @@
         <font size="1">{{ __('Cycle') }}</font>
         <font size="1" color="blue">
             @if ($queryCycle != null)
-                {{ $queryCycle }}
+                @php
+                    $cycleinfo = \App\Models\Cycle::find($queryCycle);
+                @endphp
+                {{ $cycleinfo->name }}
             @else
                 {{ __('All') }}
             @endif
@@ -77,7 +80,10 @@
         <font size="1">{{ __('Category') }}: </font>
         <font size="1" color="blue">
             @if ($queryCategory != null)
-                {{ $queryCategory }}
+                @php
+                    $categoryinfo = \App\Models\Category::find($queryCategory);
+                @endphp
+                {{ $categoryinfo->name }}
             @else
                 {{ __('All') }}
             @endif
@@ -87,7 +93,10 @@
         <font size="1">{{ __('Group') }}: </font>
         <font size="1" color="blue">
             @if ($queryGroup != null)
-                {{ $queryGroup }}
+                @php
+                    $groupinfo = \App\Models\Group::find($queryGroup);
+                @endphp
+                {{ $groupinfo->name }}
             @else
                 {{ __('All') }}
             @endif
@@ -111,7 +120,10 @@
         <font size="1">{{ __('User') }}: </font>
         <font size="1" color="blue">
             @if ($queryUser != null)
-                {{ $queryUser }}
+                @php
+                    $userinfo = \App\Models\User::find($queryUser);
+                @endphp
+                {{ $userinfo->name }} ({{ $userinfo->role_as == '0' ? __('User') : ($userinfo->role_as == '1' ? __('Admin') : ($userinfo->role_as == '3' ? __('Instructor') : "")) }})
             @else
                 {{ __('All') }}
             @endif

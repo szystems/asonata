@@ -24,6 +24,7 @@
                                 <input type="hidden" name="fcategory" value="{{ $queryCategory  }}">
                                 <input type="hidden" name="fgroup" value="{{ $queryGroup  }}">
                                 <input type="hidden" name="ftype" value="{{ $queryType  }}">
+                                <input type="hidden" name="fuser" value="{{ $queryUser  }}">
 
 
                                 <button type="submit" class="btn btn-danger float-end">

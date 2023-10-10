@@ -24,7 +24,7 @@ class CycleFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|string|max:100|unique:cycles',
+            'name'=>'required|string|max:100',
             'start_date'=>'date|required',
             'end_date'=>'date|required',
             'description'=>'required|max:500'
