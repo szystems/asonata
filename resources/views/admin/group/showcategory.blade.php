@@ -48,7 +48,7 @@
                             <textarea type="text" class="form-control border px-2 " rows="5">{{ $category->description }}</textarea>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for=""><strong>{{ __('Requirements') }}</strong></label>
+                            <label for=""><strong>{{ __('Registration documents') }}</strong></label>
                             <textarea type="text" class="form-control border px-2 " rows="5">{{ $category->requirements }}</textarea>
                         </div>
                         <div class="col-md-12 mb-3">

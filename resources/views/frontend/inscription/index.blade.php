@@ -27,110 +27,124 @@
                         <p>{{ __('Select the class you want to enroll in') }}</p><!-- End .title -->
                         <hr class="mb-5">
                     </div><!-- End .text-center -->
-                    @php
-                        $available = 0;
-                    @endphp
+                    {{-- @include('frontend.inscription.search') --}}
 
-                    @if ($classes->count() != 0)
-                        @foreach ($classes as $class)
-                            @php
-                                $start_time = date('h:i A', strtotime($class->Sstart_time));
-                                $end_time = date('h:i A', strtotime($class->Send_time));
+                    <div class="col-lg-12">
+                        @php
+                            $available = 0;
+                        @endphp
 
-                                $start_date = date('d-m-Y', strtotime($class->CLstart_date));
-                                $end_date = date('d-m-Y', strtotime($class->CLend_date));
+                        @if ($classes->count() != 0)
+                            <table class="table table-cart table-mobile">
+                                <thead>
+                                    <tr>
+                                        <th>{{ __('Class') }}</th>
+                                        <th>{{ __('Schedule') }}</th>
+                                        <th>{{ __('Quota') }}</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
 
-                                $hoy = date("Y-m-d");
-                                $start_date_status = date("Y-m-d", strtotime($class->CLstart_date));
-                                $end_date_status = date("Y-m-d", strtotime($class->CLend_date));
+                                <tbody>
 
-                                $start_time = date('h:i A', strtotime($class->Sstart_time));
-                                $end_time = date('h:i A', strtotime($class->Send_time));
+                                    @foreach ($classes as $class)
+                                        @php
+                                            $start_time = date('h:i A', strtotime($class->Sstart_time));
+                                            $end_time = date('h:i A', strtotime($class->Send_time));
 
-                                //obtener cupos ocupados
-                                $cuposOcupados=DB::table('inscriptions as i')
-                                ->join('class as c','i.class_id','=','c.id')
-                                ->where('c.schedule_id',$class->CLschedule_id)
-                                ->where('i.inscription_status','=',1)
-                                ->where('i.status','=',1)
-                                ->get();
+                                            $start_date = date('d-m-Y', strtotime($class->CLstart_date));
+                                            $end_date = date('d-m-Y', strtotime($class->CLend_date));
 
-                                //obtenemos cupo total y cupo ocupado
-                                $disponibilidad = $class->quota;
-                                $ocupados = $cuposOcupados->count();
-                                //restamos los cupos ocupados a la disponibilidad
-                                $disponibles = $disponibilidad - $ocupados;
-                                // si hay 1 o mas cupos disponibles se realiza la confirmacion
-                            @endphp
+                                            $hoy = date("Y-m-d");
+                                            $start_date_status = date("Y-m-d", strtotime($class->CLstart_date));
+                                            $end_date_status = date("Y-m-d", strtotime($class->CLend_date));
+
+                                            $start_time = date('h:i A', strtotime($class->Sstart_time));
+                                            $end_time = date('h:i A', strtotime($class->Send_time));
+
+                                            //obtener cupos ocupados
+                                            $cuposOcupados=DB::table('inscriptions as i')
+                                            ->join('class as c','i.class_id','=','c.id')
+                                            ->where('c.schedule_id',$class->CLschedule_id)
+                                            ->where('i.inscription_status','=',1)
+                                            ->where('i.status','=',1)
+                                            ->get();
+
+                                            //obtenemos cupo total y cupo ocupado
+                                            $disponibilidad = $class->quota;
+                                            $ocupados = $cuposOcupados->count();
+                                            //restamos los cupos ocupados a la disponibilidad
+                                            $disponibles = $disponibilidad - $ocupados;
+                                            // si hay 1 o mas cupos disponibles se realiza la confirmacion
+                                        @endphp
 
 
-                            @if ($disponibles >= 1)
-                                @php
-                                    $available = $available + 1;
-                                @endphp
-                                <article class="entry entry-list">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-3">
-                                            <figure class="entry-media">
-                                                {{-- <a href="single.html">
-                                                    <img src="{{ asset('fronttemplate/assets/images/blog/listing/post-1.jpg') }}" alt="image desc">
-                                                </a> --}}
-                                                <a href="{{ url('show-inscription-class/'.$class->id) }}">
-                                                    @if ($class->Cimage)
-                                                        {{-- <img class="img-responsive text-center" src="{{ asset('assets/uploads/categories/'.$class->Cimage) }}" alt="{{ $class->Cname }}" style="min-height:270px;  width:100%;"> --}}
-                                                        <img src="{{ asset('assets/uploads/categories/'.$class->Cimage) }}" alt="image desc">
-                                                    @else
-                                                        {{-- <img class="img-responsive text-center" src="{{ asset('assets/imgs/noimage.png') }}" style="min-height:270px;  width:100%;"> --}}
-                                                        <img src="{{ asset('assets/imgs/noimage.png') }}" alt="image desc">
-                                                    @endif
-                                                </a>
-                                            </figure><!-- End .entry-media -->
-                                        </div><!-- End .col-md-5 -->
+                                        @if ($disponibles >= 1)
+                                            @php
+                                                $available = $available + 1;
+                                            @endphp
+                                            <tr>
+                                                <td class="product-col">
+                                                    <div class="product">
+                                                        <figure class="product-media">
+                                                            <a href="{{ url('show-inscription-class/'.$class->id) }}">
+                                                                @if ($class->Cimage)
+                                                                    {{-- <img class="img-responsive text-center" src="{{ asset('assets/uploads/categories/'.$class->Cimage) }}" alt="{{ $class->Cname }}" style="min-height:270px;  width:100%;"> --}}
+                                                                    <img src="{{ asset('assets/uploads/categories/'.$class->Cimage) }}" alt="Class image">
+                                                                @else
+                                                                    {{-- <img class="img-responsive text-center" src="{{ asset('assets/imgs/noimage.png') }}" style="min-height:270px;  width:100%;"> --}}
+                                                                    <img src="{{ asset('assets/imgs/noimage.png') }}" alt="Class image">
+                                                                @endif
+                                                            </a>
+                                                        </figure>
 
-                                        <div class="col-md-9">
-                                            <div class="entry-body">
-                                                <div class="entry-meta">
-                                                    <span class="entry-author">
-                                                        <font color="limegreen">{{ $start_date }}</font> - <font color="red">{{ $end_date }}</font>
-                                                    </span>
-                                                    <span class="meta-separator">|</span>
-                                                        {{ __('Age') }}:&nbsp;<b>{{ $class->age_from }} - {{ $class->age_to }} {{ __('Years') }}</b>
-                                                    <span class="meta-separator">|</span>
+                                                        <h3 class="product-title">
+                                                            <a href="{{ url('show-inscription-class/'.$class->id) }}"><strong><u>{{ $class->Cname }}</u></strong></a>
+                                                            <br>
+                                                            <small>{{ __('Age') }}:&nbsp;<b>{{ $class->age_from }} - {{ $class->age_to }} {{ __('Years') }}</b></small>
+                                                            <br>
+                                                            <small><font color="limegreen">{{ $start_date }}</font> - <font color="red">{{ $end_date }}</font></small>
+                                                        </h3><!-- End .product-title -->
+                                                    </div><!-- End .product -->
+                                                </td>
+                                                <td class="product-title">
+                                                    <div class="entry-cats">
+                                                        <font color="limegreen">{{ $start_time }}</font> - <font color="red">{{ $end_time }}</font>
+                                                        <br>
+                                                        {{ __('Days') }}: <b>@if($class->sunday == 1) {{ __('Sunday') }},  @endif @if($class->monday == 1) {{ __('Monday') }},  @endif @if($class->tuesday == 1) {{ __('Tuesday') }},  @endif @if($class->wednesday == 1) {{ __('Wednesday') }},  @endif @if($class->thursday == 1) {{ __('Thursday') }},  @endif @if($class->friday == 1) {{ __('Friday') }},  @endif @if($class->saturday == 1) {{ __('Saturday') }}  @endif</b>
+                                                        <br>
                                                         {{ __('Facility') }}:&nbsp;<b>{{ $class->Fname }}</b>
-                                                </div><!-- End .entry-meta -->
+                                                    </div><!-- End .entry-cats -->
+                                                </td>
+                                                <td class="product-title">
+                                                    <p>{{ __('Available') }}: <b>{{ $disponibles }} {{ __('Athletes') }}</b></p>
+                                                </td>
+                                                <td class="product-title">
+                                                    <a href="{{ url('show-inscription-class/'.$class->id) }}" class="btn btn-outline-primary btn-order btn-block">{{ __('Join') }}</a>
+                                                </td>
+                                            </tr>
+                                        @endif
 
-                                                <h2 class="entry-title">
-                                                    <u><a href="{{ url('show-inscription-class/'.$class->id) }}">{{ $class->Cname }}</a></u>
-                                                </h2><!-- End .entry-title -->
 
-                                                <div class="entry-cats">
-                                                    {{ __('Days') }}: <b>@if($class->sunday == 1) {{ __('Sunday') }},  @endif @if($class->monday == 1) {{ __('Monday') }},  @endif @if($class->tuesday == 1) {{ __('Tuesday') }},  @endif @if($class->wednesday == 1) {{ __('Wednesday') }},  @endif @if($class->thursday == 1) {{ __('Thursday') }},  @endif @if($class->friday == 1) {{ __('Friday') }},  @endif @if($class->saturday == 1) {{ __('Saturday') }}  @endif</b>
-                                                    <font color="limegreen">{{ $start_time }}</font> - <font color="red">{{ $end_time }}</font>
-                                                </div><!-- End .entry-cats -->
+                                    @endforeach
 
-                                                <div class="entry-content">
-                                                    <p>{{ $class->Cdescription }}</p>
-                                                    <p>{{ __('Available Quota') }}: <b>{{ $disponibles }} {{ __('Athletes') }}</b></p>
-                                                    <a href="{{ url('show-inscription-class/'.$class->id) }}" class="read-more">{{ __('Join') }}</a>
-                                                </div><!-- End .entry-content -->
-                                            </div><!-- End .entry-body -->
-                                        </div><!-- End .col-md-7 -->
-                                    </div><!-- End .row -->
-                                </article><!-- End .entry -->
+                                </tbody>
+                            </table><!-- End .table table-wishlist -->
+
+                            @if ($available == 0)
+                                <div class="alert alert-primary text-white" role="alert">
+                                    <strong>{{ __('There is no available quota at the moment') }}</strong> <a href="{{ url('inscriptions-cycles') }}"> {{ __('Cycles') }}</a>
+                                </div>
                             @endif
 
-
-                        @endforeach
-                        @if ($available == 0)
+                        @elseif ($classes->count() == null )
                             <div class="alert alert-primary text-white" role="alert">
-                                <strong>{{ __('There is no available quota at the moment') }}</strong> <a href="{{ url('inscriptions-cycles') }}"> {{ __('Cycles') }}</a>
+                                <strong>{{ __('No Classes added or found!') }}</strong> <a href="{{ url('inscriptions-cycles') }}"> {{ __('Cycles') }}</a>
                             </div>
                         @endif
-                    @elseif ($classes->count() == null )
-                        <div class="alert alert-primary text-white" role="alert">
-                            <strong>{{ __('No Classes added or found!') }}</strong> <a href="{{ url('inscriptions-cycles') }}"> {{ __('Cycles') }}</a>
-                        </div>
-                    @endif
+                    </div><!-- End .col-lg-9 -->
+
+
                     <hr class="mb-5">
                 </div>
             </div>

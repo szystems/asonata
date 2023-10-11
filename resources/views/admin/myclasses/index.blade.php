@@ -17,15 +17,19 @@
                     <hr class="dark horizontal my-0">
                 </div>
                 <div class="card-body px-0 pb-3 pt-5">
+
                     <div class="table-responsive p-4">
+                        <div class="row">
+                            @include('admin.myclasses.search')
+                        </div>
                         <table class="table align-items-center mb-0">
                             <thead>
 
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{ __('Cycle') }}</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{ __('Class') }}</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Facility') }}</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{ __('Schedule') }}</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Facility') }}</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{ __('Status') }}</th>
                                     <th class="text-secondary opacity-7"><i class="material-icons">format_list_bulleted</i></th>
                                 </tr>
@@ -93,12 +97,9 @@
                                                     <h6 class="mb-0 text-sm">{{ $category->name }} </h6>
                                                     <p class="text-xs text-secondary mb-0">{{ __('Period') }}: <font color="limegreen">{{ $start_date }}</font> - <font color="red">{{ $end_date }}</font></p>
                                                     <p class="text-xs text-secondary mb-0">({{ $atletas }} Atletas)</p>
+                                                    <p class="text-xs text-secondary mb-0">Instructor: <strong>{{ $instructor->name }}</strong></p>
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $facility->name }}</p>
-                                            {{-- <p class="text-xs text-secondary mb-0">@if ($class->phone != null) </strong><br><i class="fas fa-phone me-1" aria-hidden="true"></i>{{ $class->phone }} @endif @if ($class->whatsapp != null) </strong> <i class="fab fa-whatsapp me-1" aria-hidden="true"></i>{{ $class->whatsapp }} @endif<br>@if ($class->email != null) </strong> <i class="far fa-envelope-open me-1" aria-hidden="true"></i>{{ $class->email }} @endif</p> --}}
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">
@@ -108,6 +109,10 @@
                                                 <br>
                                                 {{ __('Available Quota') }}: {{ $disponibles }}
                                             </span>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $facility->name }}</p>
+                                            {{-- <p class="text-xs text-secondary mb-0">@if ($class->phone != null) </strong><br><i class="fas fa-phone me-1" aria-hidden="true"></i>{{ $class->phone }} @endif @if ($class->whatsapp != null) </strong> <i class="fab fa-whatsapp me-1" aria-hidden="true"></i>{{ $class->whatsapp }} @endif<br>@if ($class->email != null) </strong> <i class="far fa-envelope-open me-1" aria-hidden="true"></i>{{ $class->email }} @endif</p> --}}
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             @if (($start_date_status <= $hoy) and ($end_date_status >= $hoy))
@@ -131,7 +136,7 @@
                     @if ($myClasses->count() == 0)
                         <div class="card-header p-4 position-relative mt-n4 mx-3 z-index-2">
                             <div class="alert alert-primary text-white" role="alert">
-                                <strong>{{ __('No Classes added or found!') }}</strong> <a href="{{ url('add-class') }}"> {{ __('Add Class') }}</a>
+                                <strong>{{ __('No Classes added or found!') }}</strong>
                             </div>
                         </div>
                     @endif

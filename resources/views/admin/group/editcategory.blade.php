@@ -77,7 +77,7 @@
                                 @endif
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="">{{ __('Requirements') }}</label><br>
+                                <label for="">{{ __('Registration documents') }}</label><br>
                                 <textarea class="form-control border px-2" name="requirements" rows="5">{{ $category->requirements }}</textarea>
                                 @if ($errors->has('requirements'))
                                     <span class="help-block opacity-7">

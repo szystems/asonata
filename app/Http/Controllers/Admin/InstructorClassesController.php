@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Classs;
 use App\Models\Category;
 use App\Models\Schedule;
+use App\Models\Facility;
 use App\Models\User;
 use App\Models\Cycle;
 use App\Models\Inscription;
@@ -20,23 +21,39 @@ use DB;
 
 class InstructorClassesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $config = Config::first();
+        if ($request) {
+            $config = Config::first();
 
-        $myClasses = Classs::join('cycles', 'cycles.id', 'class.cycle_id')
-        ->join('categories', 'categories.id', 'class.category_id')
-        ->join('groups', 'groups.id', 'categories.group_id')
-        ->join('schedule', 'schedule.id', 'class.schedule_id')
-        ->join('facilities', 'facilities.id', 'schedule.facility_id')
-        ->join('users', 'users.id', 'class.instructor_id')
-        ->where('class.instructor_id',Auth::user()->id)
-        ->where('class.status',1)
-        ->orderBy('cycles.name','desc')
-        ->orderBy(DB::raw('HOUR(schedule.start_time)'))
-        ->get('class.*','cycles.*','categories.*','groups.*','schedule.*','facilities.*','users.*');
+            $queryCycle=$request->input('fcycle');
+            $queryCategory=$request->input('fcategory');
+            $queryFacility=$request->input('ffacility');
+            $queryUser=$request->input('fuser');
 
-        return view('admin.myclasses.index', compact('myClasses','config'));
+            $myClasses = Classs::join('cycles', 'cycles.id', 'class.cycle_id')
+            ->join('categories', 'categories.id', 'class.category_id')
+            ->join('groups', 'groups.id', 'categories.group_id')
+            ->join('schedule', 'schedule.id', 'class.schedule_id')
+            ->join('facilities', 'facilities.id', 'schedule.facility_id')
+            ->join('users', 'users.id', 'class.instructor_id')
+            // ->where('class.instructor_id',Auth::user()->id)
+            ->where('class.status',1)
+            ->where('cycles.id','LIKE',$queryCycle)
+            ->where('categories.id','LIKE',$queryCategory)
+            ->where('facilities.id','LIKE',$queryFacility)
+            ->where('users.id','LIKE',$queryUser)
+            ->orderBy('cycles.name','desc')
+            ->orderBy(DB::raw('HOUR(schedule.start_time)'))
+            ->get('class.*','cycles.*','categories.*','groups.*','schedule.*','facilities.*','users.*');
+
+            $cyclesFilter = Cycle::where('status',1)->get();
+            $categoriesFilter = Category::where('status',1)->orderBy('name','asc')->get();
+            $facilitiesFilter = Facility::where('status',1)->orderBy('name','asc')->get();
+            $usersFilter = User::where('status',1)->where('role_as',3)->orderBy('name','asc')->get();
+
+            return view('admin.myclasses.index', compact('myClasses','config','cyclesFilter','categoriesFilter','facilitiesFilter','usersFilter','queryCycle','queryCategory','queryFacility','queryUser'));
+        }
     }
 
     public function showclass($id)

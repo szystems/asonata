@@ -436,6 +436,7 @@
     "Notes": "Notas",
     "Inscriptions": "Inscripciones",
     "Inscription": "Inscripción",
+    "Available": "Disponible",
     "Available Classes": "Clases Disponibles",
     "Available Class": "Clase Disponible",
     "Available Cycles": "Ciclos Disponibles",
@@ -580,5 +581,6 @@
     "Admin": "Administrador",
     "Signed Contract": "Contrato Firmado",
     "Change PDF Contract": "Cambiar Contrato PDF",
-    "PDF Contract": "Contrato PDF"
+    "PDF Contract": "Contrato PDF",
+    "Registration documents": "Documentos para inscripción"
 }
