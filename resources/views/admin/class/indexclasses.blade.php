@@ -84,7 +84,9 @@
 
                             </div>
                         </div>
+
                         <div class="table-responsive p-4">
+                            @include('admin.class.searchclass')
                             <table class="table align-items-center mb-0">
                                 <thead>
 

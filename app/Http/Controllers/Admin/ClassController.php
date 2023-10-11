@@ -41,24 +41,30 @@ class ClassController extends Controller
         }
     }
 
-    public function indexclasses($id)
+    public function indexclasses(Request $request, $id)
     {
-        $cycle = Cycle::find($id);
-        $config = Config::first();
-        $classes=DB::table('class as cl')
-        ->join('categories as cat','cl.category_id','=','cat.id')
-        ->join('groups as g','cat.group_id','=','g.id')
-        ->join('schedule as s','cl.schedule_id','=','s.id')
-        ->join('facilities as f','s.facility_id','=','f.id')
-        ->join('users as i','cl.instructor_id','=','i.id')
-        ->select('cl.id','cl.cycle_id as CLcycle_id','cl.category_id as CLcategory_id','cl.schedule_id as CLschedule_id','cl.instructor_id as CLinstructor_id','cl.start_date as CLstart_date','cl.end_date as CLend_date','g.name as Gname','g.description as Gdescription','g.image as Gimage','g.status as Gstatus','cat.name as Cname','cat.age_from','cat.age_to','cat.description as Cdescripcion','cat.image as Cimage','cat.status as Cstatus','s.facility_id','s.start_time as Sstart_time','s.end_time as Send_time','s.sunday','s.monday','s.tuesday','s.wednesday','s.thursday','s.friday','s.saturday','s.quota','f.name as Fname','f.description as Fdescription','f.location','f.image as Fimage','f.status as Fstatus','i.name as Iname','i.email','i.phone','i.whatsapp')
-        ->where('cl.cycle_id',$cycle->id)
-        ->where('cl.status',1)
-        ->orderBy('f.name','asc')
-        ->orderBy(DB::raw('HOUR(s.start_time)'))
-        ->get();
+        if ($request) {
+            $queryCategory = $request->input('fcategory');
+            $cycle = Cycle::find($id);
+            $config = Config::first();
+            $classes=DB::table('class as cl')
+            ->join('categories as cat','cl.category_id','=','cat.id')
+            ->join('groups as g','cat.group_id','=','g.id')
+            ->join('schedule as s','cl.schedule_id','=','s.id')
+            ->join('facilities as f','s.facility_id','=','f.id')
+            ->join('users as i','cl.instructor_id','=','i.id')
+            ->select('cl.id','cl.cycle_id as CLcycle_id','cl.category_id as CLcategory_id','cl.schedule_id as CLschedule_id','cl.instructor_id as CLinstructor_id','cl.start_date as CLstart_date','cl.end_date as CLend_date','g.name as Gname','g.description as Gdescription','g.image as Gimage','g.status as Gstatus','cat.name as Cname','cat.age_from','cat.age_to','cat.description as Cdescripcion','cat.image as Cimage','cat.status as Cstatus','s.facility_id','s.start_time as Sstart_time','s.end_time as Send_time','s.sunday','s.monday','s.tuesday','s.wednesday','s.thursday','s.friday','s.saturday','s.quota','f.name as Fname','f.description as Fdescription','f.location','f.image as Fimage','f.status as Fstatus','i.name as Iname','i.email','i.phone','i.whatsapp')
+            ->where('cl.cycle_id',$cycle->id)
+            ->where('cl.status',1)
+            ->where('cl.category_id','LIKE',$queryCategory)
+            ->orderBy('f.name','asc')
+            ->orderBy(DB::raw('HOUR(s.start_time)'))
+            ->get();
 
-        return view('admin.class.indexclasses', compact('cycle','classes','config'));
+            $categoriesFilter = Category::where('status',1)->orderBy('name','asc')->get();
+
+            return view('admin.class.indexclasses', compact('cycle','classes','config','categoriesFilter','queryCategory'));
+        }
     }
 
     public function addclass($id)
