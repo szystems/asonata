@@ -152,13 +152,6 @@
                     </div>
                     @endif
 
-                    @if($config->registration_process != null)
-                    <div class="pb-1 clearfix"></div><!-- End .clearfix -->
-                    <div class="col-md-12 mb-3">
-                        <label for="">{{ __('Registration Process') }}</label>
-                        <textarea readonly type="text" class="form-control border px-2 " rows="10">{{  $config->registration_process  }}</textarea>
-                    </div>
-                    @endif
                     {{-- @if ($class->Gcontract != null)
                         <h2><font color="red"><i class="icon-arrow-down"></i></font><font color="blue"><a class="border-radius-md w-25" href="{{ asset('assets/uploads/contracts/'.$class->Gcontract) }}" target="_blank">{{ __('Download Contract') }}</a></font></h2>
                     @endif --}}
