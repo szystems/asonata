@@ -67,16 +67,16 @@
                                 <input type="file" name="image" class="form-control border">
                             </div>
 
-                            <div class="col-md-12 mb-3">
+                            {{-- <div class="col-md-12 mb-3">
                                 <label for="">{{ __('Change PDF Contract') }}</label>
                                 <input type="file" name="contract" class="form-control border">
-                            </div>
+                            </div> --}}
 
-                            @if ($group->contract)
+                            {{-- @if ($group->contract)
                             <div class="col-md-12 mb-3">
                                 <a class="btn btn-danger" href="{{ asset('assets/uploads/contracts/'.$group->contract) }}" target="blank"><i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Download Contract') }}</a>
                             </div>
-                            @endif
+                            @endif --}}
 
                             <div class="col-md-12 mb-3" >
                                 <button type="submit" class="btn btn-success"><i class="material-icons">save</i> {{ __('Save') }}</button>

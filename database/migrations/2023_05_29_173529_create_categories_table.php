@@ -23,6 +23,7 @@ class CreateCategoriesTable extends Migration
             $table->mediumText('requirements')->nullable();
             $table->mediumText('implements')->nullable();
             $table->string('image', 500)->nullable();
+            $table->string('contract', 100)->nullable();
             $table->tinyInteger('status')->default('1');
             $table->timestamps();
         });

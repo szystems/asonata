@@ -156,6 +156,14 @@ class GroupController extends Controller
             $file1->move('assets/uploads/categories',$filename1);
             $category->image = $filename1;
         }
+        if($request->hasFile('contract'))
+        {
+            $file2 = $request->file('contract');
+            $ext2 = $file2->getClientOriginalExtension();
+            $filename2 = time().'.'.$ext2;
+            $file2->move('assets/uploads/contracts/categories',$filename2);
+            $category->contract = $filename2;
+        }
         $category->group_id = $request->input('group_id');
         $category->name = $request->input('name');
         $category->age_from = $request->input('age_from');
@@ -197,6 +205,19 @@ class GroupController extends Controller
             $filename1 = time().'.'.$ext1;
             $file1->move('assets/uploads/categories',$filename1);
             $category->image = $filename1;
+        }
+        if($request->hasFile('contract'))
+        {
+            $path2 = 'assets/uploads/contracts/categories'.$category->contract;
+            if(File::exists($path2))
+            {
+                File::delete($path2);
+            }
+            $file2 = $request->file('contract');
+            $ext2 = $file2->getClientOriginalExtension();
+            $filename2 = time().'.'.$ext2;
+            $file2->move('assets/uploads/contracts/categories',$filename2);
+            $category->contract = $filename2;
         }
         $category->name = $request->input('name');
         $category->age_from = $request->input('age_from');

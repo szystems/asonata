@@ -25,6 +25,7 @@ class Category extends Model
         'implements',
         'description',
         'image',
+        'contract',
         'status'
     ];
 

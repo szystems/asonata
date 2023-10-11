@@ -56,6 +56,13 @@
                             <textarea type="text" class="form-control border px-2 " rows="5">{{ $category->implements }}</textarea>
                         </div>
 
+                        @if ($category->contract)
+                            <div class="col-md-3 mb-3">
+                                <label for=""><strong>{{ __('Contract') }} </strong></label><br>
+                                <a class="btn btn-danger" href="{{ asset('assets/uploads/contracts/categories/'.$category->contract) }}" target="blank"><i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Download Contract') }}</a>
+                            </div>
+                        @endif
+
 
 
 

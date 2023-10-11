@@ -32,6 +32,7 @@ class CategoryFormRequest extends FormRequest
             'implements'=>'string|nullable',
             'description'=>'string|nullable',
             'image'=>'mimes:jpg,jpeg,bmp,png|max:10000',
+            'contract'=>'mimetypes:application/pdf|max:10000',
         ];
     }
 }

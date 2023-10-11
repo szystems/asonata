@@ -42,12 +42,12 @@
                             <label for=""><strong>{{ __('Description') }}</strong></label>
                             <p>{{ $group->description }}</p>
                         </div>
-                        @if ($group->contract)
+                        {{-- @if ($group->contract)
                             <div class="col-md-3 mb-3">
                                 <label for=""><strong>{{ __('Contract') }} </strong></label><br>
                                 <a class="btn btn-danger" href="{{ asset('assets/uploads/contracts/'.$group->contract) }}" target="blank"><i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Download Contract') }}</a>
                             </div>
-                        @endif
+                        @endif --}}
 
                         <hr class="dark horizontal my-0">
 
