@@ -539,6 +539,9 @@
                                             </span>
                                         @endif
                                     </div><!-- End .col-sm-6 -->
+                                    @if ($class->Ccontract)
+                                    <h2><font color="red"><i class="icon-arrow-down"></i></font><font color="blue"><a class="border-radius-md w-25" href="{{ asset('assets/uploads/contracts/categories/'.$class->Ccontract) }}" target="_blank">{{ __('Download Contract') }}</a></font></h2>
+                                    @endif
 
                                 </div><!-- End .row -->
 
@@ -562,7 +565,7 @@
                                                 {{-- <input type="text"  class="form-control text-center" name="cui_dpi" onkeypress="return validarentero(event,this.value)" placeholder="{{ __('Athlete CUI') }}" required> --}}
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input" id="register-policy" required>
-                                                    <label class="custom-control-label" for="register-policy">{{ __('I agree to the') }} <a href="{{ asset('assets/uploads/contracts/'.$class->Gcontract) }}" target="_blank">{{ __('Contract') }}</a> *</label>
+                                                    <label class="custom-control-label" for="register-policy">{{ __('I agree to the') }} <a href="{{ asset('assets/uploads/contracts/categories/'.$class->Ccontract) }}" target="_blank">{{ __('Contract') }}</a> *</label>
                                                 </div><!-- End .custom-checkbox -->
                                                 <button type="submit" class="btn btn-outline-primary-2">
                                                     <span>{{ __('End request') }}</span>
