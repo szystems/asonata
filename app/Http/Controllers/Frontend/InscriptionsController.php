@@ -54,11 +54,9 @@ class InscriptionsController extends Controller
             ->where('cl.end_date','>',$today)
             ->where('cl.status',1)
             ->where('cl.category_id','LIKE',$queryCategory)
-            ->orderBy('cl.start_date')
-            ->orderBy('age_from','asc')
-            ->orderBy('cat.name')
-
-            ->orderBy('f.name','asc')
+            // ->orderBy('cl.start_date')
+            // ->orderBy('age_from','asc')
+            ->orderBy('cat.name','asc')
             ->orderBy(DB::raw('HOUR(s.start_time)'))
             ->get();
             $config = Config::first();
