@@ -36,10 +36,10 @@ class InscriptionsController extends Controller
         return view('frontend.inscription.indexcycles', compact('config','cycles'));
     }
 
-    public function inscriptionsclasses($id)
+    public function inscriptionsclasses(Request $request, $id)
     {
-        // if ($request) {
-        //     $queryCategory = $request->input('fcategory');
+        if ($request) {
+            $queryCategory = $request->input('fcategory');
             $idcycle = $id;
             $today = date("Y-m-d");
             $classes=DB::table('class as cl')
@@ -53,7 +53,7 @@ class InscriptionsController extends Controller
             ->where('cl.cycle_id', $id)
             ->where('cl.end_date','>',$today)
             ->where('cl.status',1)
-            // ->where('cl.category_id','LIKE',$queryCategory)
+            ->where('cl.category_id','LIKE',$queryCategory)
             ->orderBy('cl.start_date')
             ->orderBy('age_from','asc')
             ->orderBy('cat.name')
@@ -63,9 +63,9 @@ class InscriptionsController extends Controller
             ->get();
             $config = Config::first();
             $categoriesFilter = Category::where('status',1)->orderBy('name','asc')->get();
-            return view('frontend.inscription.index', compact('config','classes'));
-            // return view('frontend.inscription.index', compact('config','classes','categoriesFilter','queryCategory'));
-        // }
+            // return view('frontend.inscription.index', compact('config','classes'));
+            return view('frontend.inscription.index', compact('config','classes','categoriesFilter','queryCategory','idcycle'));
+        }
     }
 
     public function showinscriptionclass($id)

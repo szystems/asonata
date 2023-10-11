@@ -27,7 +27,7 @@
                         <p>{{ __('Select the class you want to enroll in') }}</p><!-- End .title -->
                         <hr class="mb-5">
                     </div><!-- End .text-center -->
-                    {{-- @include('frontend.inscription.search') --}}
+                    @include('frontend.inscription.search')
 
                     <div class="col-lg-12">
                         @php
