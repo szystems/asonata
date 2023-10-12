@@ -258,7 +258,7 @@
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-3">
-                                        <label>E{{ __('Tshirt Size') }}</label>
+                                        <label>{{ __('Tshirt Size') }}</label>
                                         <select class="form-control" name="tshirt_size">
                                             <option value="{{ old('tshirt_size') }}">{{ old('tshirt_size') }}</option>
                                             <option value="1">1</option>

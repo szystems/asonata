@@ -64,7 +64,7 @@
                                 @endif
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="">{{ __('Payment Description') }}</label>
+                                <label for="">{{ __('Recommendations and rules in the use of facilities') }}</label>
                                 <textarea type="text" class="form-control border px-2 " rows="5" name="payments_description">{{  $config->payments_description  }}</textarea>
                                 @if ($errors->has('payments_description'))
                                     <span class="help-block opacity-7">

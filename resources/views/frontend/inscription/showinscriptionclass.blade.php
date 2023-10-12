@@ -147,7 +147,7 @@
                     @if($config->payments_description != null)
                     <div class="pb-1 clearfix"></div><!-- End .clearfix -->
                     <div class="col-md-12 mb-3">
-                        <label for="">{{ __('Payment Description') }}</label>
+                        <label for="">{{ __('Recommendations and rules in the use of facilities') }}</label>
                         <textarea readonly type="text" class="form-control border px-2 " rows="10">{{  $config->payments_description  }}</textarea>
                     </div>
                     @endif
