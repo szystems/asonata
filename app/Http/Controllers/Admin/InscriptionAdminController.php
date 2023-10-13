@@ -313,15 +313,18 @@ class InscriptionAdminController extends Controller
                         // ECHO "diferencia: ".$difference->y." Años ".$difference->m." Meses ".$difference->d." Dias";
 
                         $meses = 0;
-                        if ($difference->y > 0) {
-                            $meses = ($meses + ($difference->y * 12));
+                        if ($class->CLmonthly_payment != "0.00") {
+                            if ($difference->y > 0) {
+                                $meses = ($meses + ($difference->y * 12));
+                            }
+                            if ($difference->m > 0) {
+                                $meses = $meses + $difference->m;
+                            }
+                            if ($difference->d > 0) {
+                                $meses = $meses + 1;
+                            }
                         }
-                        if ($difference->m > 0) {
-                            $meses = $meses + $difference->m;
-                        }
-                        if ($difference->d > 0) {
-                            $meses = $meses + 1;
-                        }
+
 
                         $hoy = $today->format('Y/m/d');
                         $inicio = $start_date->format('Y/m/d');
@@ -333,6 +336,12 @@ class InscriptionAdminController extends Controller
                         // echo $inicio."<br>";
                         // echo $final."<br>";
                         $inscription->payments = $meses;
+                        if ($class->CLinscription_payment == "0.00") {
+                            $inscription->inscription_payment = 1;
+                        }
+                        if ($class->CLbadge == "0.00") {
+                            $inscription->badge_payment = 1;
+                        }
                         $inscription->inscription_status = 1;
                         $inscription->notes = 'La inscripción fue confirmada.';
                         $inscription->update();
@@ -348,17 +357,25 @@ class InscriptionAdminController extends Controller
                         // ECHO "diferencia: ".$difference->y." Años ".$difference->m." Meses ".$difference->d." Dias";
 
                         $meses = 0;
-                        if ($difference->y > 0) {
-                            $meses = ($meses + ($difference->y * 12));
-                        }
-                        if ($difference->m > 0) {
-                            $meses = $meses + $difference->m;
-                        }
-                        if ($difference->d > 0) {
-                            $meses = $meses + 1;
+                        if ($class->CLmonthly_payment != "0.00") {
+                            if ($difference->y > 0) {
+                                $meses = ($meses + ($difference->y * 12));
+                            }
+                            if ($difference->m > 0) {
+                                $meses = $meses + $difference->m;
+                            }
+                            if ($difference->d > 0) {
+                                $meses = $meses + 1;
+                            }
                         }
 
                         $inscription->payments = $meses;
+                        if ($class->CLinscription_payment == "0.00") {
+                            $inscription->inscription_payment = 1;
+                        }
+                        if ($class->CLbadge == "0.00") {
+                            $inscription->badge_payment = 1;
+                        }
                         $inscription->inscription_status = 1;
                         $inscription->notes = 'La inscripción fue confirmada.';
                         $inscription->update();
