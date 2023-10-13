@@ -44,7 +44,7 @@
                                 @endif
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="">{{ __('Description') }}</label><br>
+                                <label for="">{{ __('Course duration') }}</label><br>
                                 <textarea class="form-control border px-2" name="description" rows="5">{{ old('description') }}</textarea>
                                 @if ($errors->has('description'))
                                     <span class="help-block opacity-7">

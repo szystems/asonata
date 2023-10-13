@@ -66,7 +66,7 @@
                                 @endif
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="">{{ __('Description') }}</label>
+                                <label for="">{{ __('Course duration') }}</label>
                                 <textarea type="text" class="form-control border px-2 " rows="5" name="description">{{  $category->description  }}</textarea>
                                 @if ($errors->has('description'))
                                     <span class="help-block opacity-7">

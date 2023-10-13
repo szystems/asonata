@@ -157,7 +157,7 @@
 
                             @if ($class->notes)
                             <div class="col-md-12 mb-3">
-                                <label for="">{{ __('Notes') }} </label>
+                                <label for="">{{ __('Costs') }} </label>
                                 <textarea readonly class="form-control border px-2" rows="5">{{ $class->notes }}</textarea>
                             </div>
                             @endif

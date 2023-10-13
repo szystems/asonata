@@ -44,7 +44,7 @@
                             <p>{{ $category->age_from }} - {{ $category->age_to }} {{ __('Years') }}</p>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for=""><strong>{{ __('Description') }}</strong></label>
+                            <label for=""><strong>{{ __('Course duration') }}</strong></label>
                             <textarea type="text" class="form-control border px-2 " rows="5">{{ $category->description }}</textarea>
                         </div>
                         <div class="col-md-12 mb-3">

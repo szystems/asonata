@@ -195,7 +195,7 @@
                                         </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="">{{ __('Notes') }}</label><br>
+                                    <label for="">{{ __('Costs') }}</label><br>
                                     <textarea class="form-control border px-2" name="notes" rows="5">{{ $class->notes }}</textarea>
                                     @if ($errors->has('notes'))
                                         <span class="help-block opacity-7">

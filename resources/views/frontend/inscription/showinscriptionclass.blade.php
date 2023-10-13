@@ -108,14 +108,14 @@
                     @if($class->Cdescription != null)
                         <div class="pb-1 clearfix"></div><!-- End .clearfix -->
                         <div class="col-md-12 mb-3">
-                            <label for="">{{ __('Category') }} {{ __('Description') }}</label>
+                            <label for="">{{ __('Course duration') }}</label>
                             <textarea readonly type="text" class="form-control border px-2 " rows="10">{{  $class->Cdescription  }}</textarea>
                         </div>
                     @endif
                     @if($class->CLnotes != null)
                         <div class="pb-1 clearfix"></div><!-- End .clearfix -->
                         <div class="col-md-12 mb-3">
-                            <label for="">{{ __('Notes') }}</label>
+                            <label for="">{{ __('Costs') }}</label>
                             <textarea readonly type="text" class="form-control border px-2 " rows="10">{{  $class->CLnotes  }}</textarea>
                         </div>
                     @endif
