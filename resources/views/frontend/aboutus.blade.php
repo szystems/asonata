@@ -63,7 +63,7 @@
                         <h2 class="title">CUERPO TÉCNICO</h2>
                         <ul>
                             <li>-<strong>Coordinador General:</strong>  Msc. Carlos Eduardo Méndez Pérez</li>
-                            <li>-<strong>Coordinador de enseñanza y preequipos:</strong>  PPof. Freddy David Gutiérrez Taracena</li>
+                            <li>-<strong>Coordinador de enseñanza y preequipos:</strong>  Prof. Freddy David Gutiérrez Taracena</li>
                             <li>-<strong>Coordinadora de matronatación:</strong>  Profa. Cindy Yoselin Marín Velásquez</li>
                             <li>-<strong>Jefe de entrenadores:</strong>  Prof. Mauricio Colop</li>
                         </ul>
@@ -93,7 +93,7 @@
                         <h2 class="title">ENSEÑANZA</h2>
                         <ul>
                             <li>-Sucely Tzun</li>
-                            <li>-Miguel Ángel López</li>
+                            <li>-Miguelangel López</li>
                             <li>-Levi Salanic  </li>
                             <li>-Rebeca Gómez </li>
                             <li>-Carmen Cotoc </li>
@@ -113,7 +113,7 @@
                         <br>
                         <h2 class="title">PREPARADORES FISICOS</h2>
                         <ul>
-                            <li>-Oscar Chuc Pérez</li>
+                            <li>-Oscar Chuc</li>
                             <li>-Selvyn Chuc   </li>
                         </ul>
                         <br>

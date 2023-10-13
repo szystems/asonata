@@ -41,7 +41,7 @@
                                     </li>
                                     <li>
                                         <i class="icon-envelope"></i>
-                                        <a href="mailto:info@asonataxela.com">info@asonataxela.com</a>
+                                        <a href="mailto:asoincripciones2023@gmail.com">asoincripciones2023@gmail.com</a>
                                     </li>
                                 </ul><!-- End .contact-list -->
                             </div><!-- End .contact-info -->
@@ -54,11 +54,11 @@
                                 <ul class="contact-list">
                                     <li>
                                         <i class="icon-clock-o"></i>
-                                        <span class="text-dark">Lunes - Viernes</span> <br>7am-5pm
+                                        <span class="text-dark">Lunes - Viernes</span> <br>7am-1pm<br>2pm-7pm
                                     </li>
                                     <li>
                                         <i class="icon-calendar"></i>
-                                        <span class="text-dark">Sabado</span> <br>8am-12pm ET
+                                        <span class="text-dark">Sabado</span> <br>8am-12pm
                                     </li>
                                 </ul><!-- End .contact-list -->
                             </div><!-- End .contact-info -->
