@@ -200,7 +200,7 @@
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-3">
-                                        <label>E{{ __('Ethnic Group') }}</label>
+                                        <label>{{ __('Ethnic Group') }}</label>
                                         <select class="form-control" name="ethnic_group">
                                             <option value="{{ $atleta->ethnic_group }}">{{ $atleta->ethnic_group }}</option>
                                             <option value="Maya">Maya</option>
@@ -220,7 +220,7 @@
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-3">
-                                        <label>E{{ __('Covid19 Doses Number') }}</label>
+                                        <label>{{ __('Covid19 Doses Number') }}</label>
                                         <select class="form-control" name="doses_number">
                                             <option value="{{ $atleta->doses_number }}">{{ $atleta->doses_number }}</option>
                                             <option value="Ninguna">Ninguna</option>
