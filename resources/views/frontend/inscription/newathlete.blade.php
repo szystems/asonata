@@ -480,7 +480,7 @@
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
-                                        <label>E{{ __('Kinship') }}</label>
+                                        <label>{{ __('Kinship') }}</label>
                                         <select class="form-control" name="kinship">
                                             <option value="{{ old('kinship') }}">{{ old('kinship') }}</option>
                                             <option value="Madre">Madre</option>
@@ -506,7 +506,7 @@
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-6">
-                                        <label>E{{ __('Responsible Covid19 Doses Number') }}</label>
+                                        <label>{{ __('Responsible Covid19 Doses Number') }}</label>
                                         <select class="form-control" name="responsible_doses_number">
                                             <option value="{{ old('responsible_doses_number') }}">{{ old('responsible_doses_number') }}</option>
                                             <option value="Ninguna">Ninguna</option>
