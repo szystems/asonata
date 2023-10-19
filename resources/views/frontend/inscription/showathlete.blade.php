@@ -369,6 +369,15 @@
                                 @endif
 
                                 <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong>{{ __('Note') }}:</strong><br>
+                                            - {{ __('The files should be no larger than 5MB') }}
+                                            <br>
+                                            - {{ __('The upload of the files will depend on the internet speed you have, if the transaction takes more than 2 minutes it will fail, make sure that your files take up as little space as possible to avoid failures in the loading of the form') }}
+                                          </div>
+                                    </div><!-- End .col-sm-6 -->
+
                                     <div class="col-sm-4">
                                         <label for="">{{ __('Athlete Image') }}</label>
                                         <input type="file" name="image" class="form-control" value="{{ $atleta->image }}" required>
@@ -526,6 +535,15 @@
                                                     </strong>
                                             </span>
                                         @endif
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong>{{ __('Note') }}:</strong><br>
+                                            - {{ __('The files should be no larger than 5MB') }}
+                                            <br>
+                                            - {{ __('The upload of the files will depend on the internet speed you have, if the transaction takes more than 2 minutes it will fail, make sure that your files take up as little space as possible to avoid failures in the loading of the form') }}
+                                          </div>
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-12">
