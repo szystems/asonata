@@ -245,9 +245,18 @@ class InscriptionsController extends Controller
         $inscription->inscription_number = $inscription_number;
         $inscription->update();
 
-        Mail::to($atleta->email)->send(new InscriptionMail($inscription));
-        Mail::to($atleta->responsible_email)->send(new InscriptionMail($inscription));
-        Mail::to($config->email)->send(new InscriptionMail($inscription));
+        try {
+            Mail::to($atleta->email)->send(new InscriptionMail($inscription));
+            Mail::to($atleta->responsible_email)->send(new InscriptionMail($inscription));
+            Mail::to($config->email)->send(new InscriptionMail($inscription));
+        }
+        catch (exception $e) {
+            $request->session()->flash('alert-success', __('The registration has been created correctly, save this information to be able to consult again if your request has been confirmed, any questions or comments, contact us. Automatic mail could not be sent.'));
+
+            return view('frontend.inscription.inscriptionform', compact('atleta','class','config','inscription'));
+        }
+
+
 
         $request->session()->flash('alert-success', __('The registration has been created correctly, save this information to be able to consult again if your request has been confirmed, any questions or comments, contact us'));
 
@@ -388,9 +397,16 @@ class InscriptionsController extends Controller
         $inscription->inscription_number = $inscription_number;
         $inscription->update();
 
-        Mail::to($atleta->email)->send(new InscriptionMail($inscription));
-        Mail::to($atleta->responsible_email)->send(new InscriptionMail($inscription));
-        Mail::to($config->email)->send(new InscriptionMail($inscription));
+        try {
+            Mail::to($atleta->email)->send(new InscriptionMail($inscription));
+            Mail::to($atleta->responsible_email)->send(new InscriptionMail($inscription));
+            Mail::to($config->email)->send(new InscriptionMail($inscription));
+        }
+        catch (exception $e) {
+            $request->session()->flash('alert-success', __('The registration has been created correctly, save this information to be able to consult again if your request has been confirmed, any questions or comments, contact us. Automatic mail could not be sent.'));
+
+            return view('frontend.inscription.inscriptionform', compact('atleta','class','config','inscription'));
+        }
 
         $request->session()->flash('alert-success', __('The registration has been created correctly, save this information to be able to consult again if your request has been confirmed, any questions or comments, contact us'));
         return view('frontend.inscription.inscriptionform', compact('atleta','class','config','inscription'));
