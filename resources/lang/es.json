@@ -586,7 +586,7 @@
     "Change PDF Contract": "Cambiar Contrato PDF",
     "PDF Contract": "Contrato PDF",
     "Registration documents": "Documentos para inscripción",
-    "The files should be no larger than 5MB": "Los archivos no debe de pesar más de 5MB",
+    "The files should be no larger than 3MB": "Los archivos no debe de pesar más de 3MB",
     "The upload of the files will depend on the internet speed you have, if the transaction takes more than 2 minutes it will fail, make sure that your files take up as little space as possible to avoid failures in the loading of the form": "La carga de los archivos dependerá de la velocidad de internet que tenga, si la transacción tarda más de 2 minutos esta fallara, asegúrese que sus archivos ocupen el espacio mínimo posible para evitar fallos en la carga del formulario",
     "Automatic mail could not be sent": "El correo automático no se pudo enviar",
     "The registration has been created correctly, save this information to be able to consult again if your request has been confirmed, any questions or comments, contact us. Automatic mail could not be sent.": "Se ha creado la inscripción correctamente, guarda esta información para poder consultar nuevamente si tu solicitud ha sido confirmada, cualquier duda o comentario, comunícate con nosotros, El correo automático no se pudo enviar."

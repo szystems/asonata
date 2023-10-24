@@ -26,8 +26,8 @@ class GroupFormRequest extends FormRequest
         return [
             'name'=>'required|string|max:100',
             'description'=>'string|max:500',
-            'image'=>'mimes:jpg,jpeg,bmp,png|max:10000',
-            'contract'=>'mimetypes:application/pdf|max:10000',
+            'image'=>'mimes:jpg,jpeg,bmp,png|max:3000',
+            'contract'=>'mimetypes:application/pdf|max:3000',
         ];
     }
 }

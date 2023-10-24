@@ -31,8 +31,8 @@ class CategoryEditFormRequest extends FormRequest
             'requirements'=>'string|nullable',
             'implements'=>'string|nullable',
             'description'=>'string|nullable',
-            'image'=>'mimes:jpg,jpeg,bmp,png|max:10000',
-            'contract'=>'mimetypes:application/pdf|max:10000',
+            'image'=>'mimes:jpg,jpeg,bmp,png|max:3000',
+            'contract'=>'mimetypes:application/pdf|max:3000',
         ];
     }
 }
