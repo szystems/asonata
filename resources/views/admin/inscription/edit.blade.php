@@ -94,6 +94,17 @@
                                 </select>
                                 <input type="hidden" value="{{ $class->id }}">
                                 <input type="hidden" value="{{ $class->CLinscription_payment }}">
+                                @if (Auth::user()->role_as == 1 and $inscription->inscription_status ==1)
+                                    <br>
+                                    @if ($inscription->inscription_payment != 1)
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" name="exonerate_inscription">
+                                            <p class="text-warning">{{ __('Exonerate Inscription') }}</p>
+                                        </div>
+                                    @endif
+                                @endif
+
+
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="">{{ __('Badge Payment') }}</label>
@@ -105,6 +116,16 @@
                                     @endif
                                 </select>
                                 <input type="hidden" value="{{ $class->CLbadge }}">
+                                @if (Auth::user()->role_as == 1 and $inscription->inscription_status ==1)
+                                    <br>
+                                    @if ($inscription->badge_payment != 1)
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" name="exonerate_badge">
+                                            <p class="text-warning">{{ __('Exonerate Badge') }}</p>
+                                        </div>
+                                    @endif
+                                @endif
+
                             </div>
 
                             <div class="col-md-12 mb-3">

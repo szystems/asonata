@@ -247,7 +247,15 @@ class InscriptionAdminController extends Controller
 
                 $payment = new Payment();
                 $payment->inscription_id = $inscription->id;
-                $payment->type = 0;
+
+                $exonarate_inscription = $request->input('exonerate_inscription') == TRUE ? '1':'0';
+                if ($exonarate_inscription == 1) {
+                    $payment->type = 3;
+                    $payment->note = "Incripción";
+                }else {
+                    $payment->type = 0;
+                }
+
                 $payment->paid = $class->CLinscription_payment;
                 $payment->user_id = Auth::user()->id;
                 $payment->save();
@@ -260,7 +268,15 @@ class InscriptionAdminController extends Controller
 
                 $payment = new Payment();
                 $payment->inscription_id = $inscription->id;
-                $payment->type = 1;
+
+                $exonarate_badge = $request->input('exonerate_badge') == TRUE ? '1':'0';
+                if ($exonarate_badge == 1) {
+                    $payment->type = 3;
+                    $payment->note = "Gafete";
+                }else {
+                    $payment->type = 1;
+                }
+
                 $payment->paid = $class->CLbadge;
                 $payment->user_id = Auth::user()->id;
                 $payment->save();
