@@ -591,5 +591,6 @@
     "Automatic mail could not be sent": "El correo automático no se pudo enviar",
     "The registration has been created correctly, save this information to be able to consult again if your request has been confirmed, any questions or comments, contact us. Automatic mail could not be sent.": "Se ha creado la inscripción correctamente, guarda esta información para poder consultar nuevamente si tu solicitud ha sido confirmada, cualquier duda o comentario, comunícate con nosotros, El correo automático no se pudo enviar.",
     "Exonerate Inscription": "Exonerar Inscripción",
-    "Exonerate Badge": "Exonerar Gafete"
+    "Exonerate Badge": "Exonerar Gafete",
+    "Amount to be exonerated": "Cantidad a exonerar"
 }

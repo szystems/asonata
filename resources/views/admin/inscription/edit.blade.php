@@ -84,7 +84,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="">{{ __('Inscription Payment') }}</label>
+                                <label for="">{{ __('Inscription Payment') }} ({{ $config->currency_simbol }}{{ $class->CLinscription_payment }})</label>
                                 <select @if ($inscription->inscription_status != 1) disabled @endif class="form-select px-2" aria-label="Default select example" name="inscription_payment">
                                     <option selected value="{{ $inscription->inscription_payment }}">{{ $inscription->inscription_payment == '0' ? __('Pending') : __('Paid') }}</option>
                                     @if ($inscription->inscription_payment != 1)
@@ -101,13 +101,21 @@
                                             <input class="form-check-input" type="checkbox" name="exonerate_inscription">
                                             <p class="text-warning">{{ __('Exonerate Inscription') }}</p>
                                         </div>
+                                        <br>
+                                        <label for="">{{ __('Amount to be exonerated') }}</label>
+                                        <div class="input-daterange input-group" >
+                                            <div class="input-group input-group-dynamic mb-4">
+                                                {{ $config->currency_simbol }}
+                                                <input type="number" step=".01" min="0.01" max="{{ $class->CLinscription_payment }}" class="form-control" id="exoneration_inscription_qty" aria-label="Amount (to the nearest dollar)" name="exoneration_inscription_qty" value="{{ $class->CLinscription_payment }}" required>
+                                            </div>
+                                        </div>
                                     @endif
                                 @endif
 
 
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="">{{ __('Badge Payment') }}</label>
+                                <label for="">{{ __('Badge Payment') }} ({{ $config->currency_simbol }}{{ $class->CLbadge }})</label>
                                 <select @if ($inscription->inscription_status != 1) disabled @endif class="form-select px-2" aria-label="Default select example" name="badge_payment">
                                     <option selected value="{{ $inscription->badge_payment }}">{{ $inscription->badge_payment == '0' ? __('Pending') : __('Paid') }}</option>
                                     @if ($inscription->badge_payment != 1)
@@ -122,6 +130,14 @@
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" name="exonerate_badge">
                                             <p class="text-warning">{{ __('Exonerate Badge') }}</p>
+                                        </div>
+                                        <br>
+                                        <label for="">{{ __('Amount to be exonerated') }}</label>
+                                        <div class="input-daterange input-group" >
+                                            <div class="input-group input-group-dynamic mb-4">
+                                                {{ $config->currency_simbol }}
+                                                <input type="number" step=".01" min="0.01" max="{{ $class->CLbadge }}" class="form-control" id="exoneration_badge_qty" aria-label="Amount (to the nearest dollar)" name="exoneration_badge_qty" value="{{ $class->CLbadge }}" required>
+                                            </div>
                                         </div>
                                     @endif
                                 @endif

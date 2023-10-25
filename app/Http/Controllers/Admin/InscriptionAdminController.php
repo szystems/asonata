@@ -245,20 +245,39 @@ class InscriptionAdminController extends Controller
             //ver si no se a pagado inscripcion: crear pago y actualizar estado
             if ($inscription->inscription_payment == 0 and  $request->input('inscription_payment') == 1) {
 
+                //si hay exoneraciones
+                $exonarate_inscription = $request->input('exonerate_inscription') == TRUE ? '1':'0';
+                $exonerate_inscription_qty = $request->input('exoneration_inscription_qty');
+
+
                 $payment = new Payment();
                 $payment->inscription_id = $inscription->id;
 
-                $exonarate_inscription = $request->input('exonerate_inscription') == TRUE ? '1':'0';
                 if ($exonarate_inscription == 1) {
                     $payment->type = 3;
                     $payment->note = "Incripción";
+                    $payment->paid = $exonerate_inscription_qty;
                 }else {
                     $payment->type = 0;
+                    $payment->paid = $class->CLinscription_payment;
                 }
 
-                $payment->paid = $class->CLinscription_payment;
                 $payment->user_id = Auth::user()->id;
                 $payment->save();
+
+                if ($exonarate_inscription == 1) {
+                    if ($exonerate_inscription_qty < $class->CLinscription_payment) {
+                        $resto_inscripcion = $class->CLinscription_payment - $exonerate_inscription_qty;
+
+                        $payment = new Payment();
+                        $payment->inscription_id = $inscription->id;
+                        $payment->type = 0;
+                        $payment->paid = $resto_inscripcion;
+                        $payment->user_id = Auth::user()->id;
+                        $payment->save();
+                    }
+                }
+
 
                 $inscription->inscription_payment = $request->input('inscription_payment');
             }
@@ -266,20 +285,37 @@ class InscriptionAdminController extends Controller
             //ver si no se a pagado gafete: crear pago y actualizar estado
             if ($inscription->badge_payment == 0 and  $request->input('badge_payment') == 1) {
 
+                $exonarate_badge = $request->input('exonerate_badge') == TRUE ? '1':'0';
+                $exonerate_badge_qty = $request->input('exoneration_badge_qty');
+
                 $payment = new Payment();
                 $payment->inscription_id = $inscription->id;
 
-                $exonarate_badge = $request->input('exonerate_badge') == TRUE ? '1':'0';
                 if ($exonarate_badge == 1) {
                     $payment->type = 3;
                     $payment->note = "Gafete";
+                    $payment->paid = $exonerate_badge_qty;
                 }else {
                     $payment->type = 1;
+                    $payment->paid = $class->CLbadge;
                 }
 
-                $payment->paid = $class->CLbadge;
                 $payment->user_id = Auth::user()->id;
                 $payment->save();
+
+                if ($exonarate_badge == 1) {
+                    if ($exonerate_badge_qty < $class->CLbadge) {
+                        $resto_gafete = $class->CLbadge - $exonerate_badge_qty;
+
+                        $payment = new Payment();
+                        $payment->inscription_id = $inscription->id;
+                        $payment->type = 1;
+                        $payment->paid = $resto_gafete;
+                        $payment->user_id = Auth::user()->id;
+                        $payment->save();
+                    }
+                }
+
 
                 $inscription->badge_payment = $request->input('badge_payment');
             }
