@@ -85,7 +85,7 @@
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Facility') }}</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Schedule') }}</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Days') }}</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Quota') }}</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Quota') }} ({{ __('Registered') }})</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"><i class="material-icons">format_list_bulleted</i></th>
 
                                         </tr>
@@ -97,13 +97,21 @@
                                                 $facility = \App\Models\Facility::find($schedule->facility_id);
                                                 $start_time = date('h:i A', strtotime($schedule->start_time));
                                                 $end_time = date('h:i A', strtotime($schedule->end_time));
+
+                                                $inscritos=DB::table('inscriptions as i')
+                                                ->join('class as c','i.class_id','=','c.id')
+                                                ->join('schedule as s','c.schedule_id','=','s.id')
+                                                ->where('i.status',1)
+                                                ->where('i.inscription_status',1)
+                                                ->where('c.schedule_id', $schedule->id)
+                                                ->get();
                                             @endphp
                                             <td class="align-middle text-left text-sm">
                                                 <a href="{{ url('show-facility/'.$schedule->facility_id) }}">{{ $facility->name }} </a>
                                             </td>
                                             <td class="align-middle text-left text-sm"><h6 class="mb-0 text-xs">{{ __('From') }}: <font color="limegreen">{{ $start_time }}</font> {{ __('To') }}: <font color="red">{{ $end_time }}</font></h6></td>
                                             <td class="align-middle text-center text-sm">{{ $schedule->sunday == 1 ? __('Sunday').',' : '' }} {{ $schedule->monday == 1 ? __('Monday').',' : '' }} {{ $schedule->tuesday == 1 ? __('Tuesday').',' : '' }} {{ $schedule->wednesday == 1 ? __('Wednesday').',' : '' }} {{ $schedule->thursday == 1 ? __('Thursday').',' : '' }} {{ $schedule->friday == 1 ? __('Friday').',' : '' }} {{ $schedule->saturday == 1 ? __('Saturday').',' : '' }}</td>
-                                            <td class="align-middle text-center text-sm">{{ $schedule->quota }}</td>
+                                            <td class="align-middle text-center text-sm">{{ $schedule->quota }} ({{ $inscritos->count() }})</td>
                                             <td class="align-middle  text-sm">
                                                 {{-- <a href="{{ url('show-schedule/'.$schedule->id) }}" type="button" class="btn btn-info"><i class="material-icons">visibility</i></a> --}}
                                                 <a href="{{ url('edit-schedule/'.$schedule->id) }}" type="button" class="btn btn-warning"><i class="material-icons">edit</i></a>

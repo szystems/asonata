@@ -49,12 +49,14 @@
                                 <table class="table table-sm align-products-center mb-0 table-striped table-bordered">
                                     <thead>
                                         <tr>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Payment') }} #</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Date') }}</th>
                                             <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Athlete') }}</th>
                                             <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Inscription Number') }}</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Payment Type') }}</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Paid') }}</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('User') }}</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Date') }}</th>
+
                                             {{-- <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"><i class="material-icons">format_list_bulleted</i></th> --}}
                                         </tr>
                                     </thead>
@@ -69,6 +71,8 @@
                                             }
                                         @endphp
                                         <tr>
+                                            <td class="align-middle text-center text-sm"><strong>{{ $payment->id }}</strong></td>
+                                            <td class="align-middle text-center text-sm"><strong>{{ $payment->created_at->format('d-m-Y') }}</strong></td>
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     @if ($payment->inscription->atleta->image)
@@ -117,7 +121,7 @@
                                                 : ($userinfo->role_as == '3' ? __('Instructor')
                                                 : "")) }})
                                             </td>
-                                            <td class="align-middle text-center text-sm"><strong>{{ $payment->created_at->format('d-m-Y') }}</strong></td>
+
                                             <td class="align-middle  text-sm">
                                                 <a href="{{ url('show-payment/'.$payment->id) }}" type="button" class="btn btn-info"><i class="material-icons">visibility</i></a>
                                                 {{-- <a href="{{ url('edit-athlete/'.$payment->id) }}" type="button" class="btn btn-warning"><i class="material-icons">edit</i></a>

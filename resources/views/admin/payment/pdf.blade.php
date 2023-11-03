@@ -134,6 +134,12 @@
         <thead>
             <tr>
                 <th>
+                    <font size="1">{{ __('Payment') }} #</font>
+                </th>
+                <th>
+                    <font size="1">{{ __('Date') }}</font>
+                </th>
+                <th>
                     <font size="1">{{ __('Athlete') }}</font>
                 </th>
                 <th>
@@ -148,9 +154,7 @@
                 <th>
                     <font size="1">{{ __('User') }}</font>
                 </th>
-                <th>
-                    <font size="1">{{ __('Date') }}</font>
-                </th>
+
             </tr>
         </thead>
         <tbody>
@@ -164,6 +168,14 @@
                 }
             @endphp
                 <tr>
+                    <td align="center">
+                        <font size="1">
+                            <b>{{ $payment->id }}</b>
+                        </font>
+                    </td>
+                    <td align="center">
+                        <font size="1"><strong>{{ $payment->created_at->format('d-m-Y') }}</strong></font>
+                    </td>
                     <td align="center">
                         <font size="1">
                             <b>{{ $payment->inscription->atleta->name }}</b><br>
@@ -211,9 +223,7 @@
                             : "")) }})
                         </font>
                     </td>
-                    <td align="center">
-                        <font size="1"><strong>{{ $payment->created_at->format('d-m-Y') }}</strong></font>
-                    </td>
+
                 </tr>
             @endforeach
 

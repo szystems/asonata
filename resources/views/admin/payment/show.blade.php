@@ -33,6 +33,21 @@
 
                     </div>
                     <div class="row">
+
+                        <div class="col-md-2 mb-3">
+                            <label for=""><strong>{{ __('Payment') }} #</strong></label>
+                            <p>{{ $payment->id }}</p>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <label for=""><strong>{{ __('Date') }}</strong></label>
+                            <div class="d-flex px-2 py-1">
+                              <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-xs">{{ $payment->created_at->format('d-m-Y') }}</h6>
+                              </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-2 mb-3">
                             <label for=""><strong>{{ __('Athlete') }}</strong></label>
                             <div class="d-flex px-2 py-1">
@@ -67,15 +82,6 @@
                         </div>
 
                         <div class="col-md-2 mb-3">
-                            <label for=""><strong>{{ __('Date') }}</strong></label>
-                            <div class="d-flex px-2 py-1">
-                              <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-xs">{{ $payment->created_at->format('d-m-Y') }}</h6>
-                              </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2 mb-3">
                             <label for=""><strong>{{ __('Payment Type') }}</strong></label>
                             <p>
                                 {{ $payment->type == '0' ? __('Inscription')
@@ -86,6 +92,7 @@
                                 }}
                             </p>
                         </div>
+
                         <div class="col-md-2 mb-3">
                             <label for=""><strong>{{ __('User') }}</strong></label>
                             <p>{{ $userinfo->name }}</br>
@@ -95,14 +102,17 @@
                                 : "")) }})
                             </p>
                         </div>
+
                         <div class="col-md-2 mb-3">
                             <label for=""><strong>{{ __('Paid') }}</strong></label>
                             <p>{{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}</p>
                         </div>
-                        <div class="col-md-2 mb-3">
+
+                        <div class="col-md-8 mb-3">
                             <label for=""><strong>{{ __('Note') }}</strong></label>
                             <p>{{ $payment->note }}</p>
                         </div>
+
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">

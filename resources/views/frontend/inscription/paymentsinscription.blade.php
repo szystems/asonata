@@ -283,10 +283,12 @@
                             <table class="table table-cart table-mobile">
                                 <thead>
                                     <tr>
+                                        <th>{{ __('Payment') }} #</th>
+                                        <th>{{ __('Date') }}</th>
                                         <th>{{ __('Payment Type') }}</th>
                                         <th>{{ __('Note') }}</th>
                                         <th>{{ __('Paid') }}</th>
-                                        <th>{{ __('Date') }}</th>
+
                                     </tr>
                                 </thead>
 
@@ -301,6 +303,8 @@
                                             }
                                         @endphp
                                         <tr>
+                                            <td class="price-col">{{ $payment->id }}</td>
+                                            <td class="price-col">{{ $payment->created_at->format('d-m-Y') }}</td>
                                             <td class="price-col">
                                                 {{ $payment->type == '0' ? __('Inscription')
                                                     : ($payment->type == '1' ? __('Badge')
@@ -320,7 +324,7 @@
                                                 : "")))
                                             }}">
                                             {{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}</font></td>
-                                            <td class="price-col">{{ $payment->created_at->format('d-m-Y') }}</td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>

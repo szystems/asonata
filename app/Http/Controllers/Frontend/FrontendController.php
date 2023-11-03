@@ -117,7 +117,7 @@ class FrontendController extends Controller
             ->join('categories', 'categories.id', '=', 'class.category_id')
             ->join('groups', 'groups.id', '=', 'categories.group_id')
             ->where('payments.inscription_id',$inscription->id)
-            ->orderBy('payments.created_at','desc')
+            ->orderBy('payments.id','desc')
             // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
             ->get('payments.*','atleta.*','cycles.*','class.*','categories.*','groups.*');
 
@@ -167,7 +167,7 @@ class FrontendController extends Controller
                 ->join('categories', 'categories.id', '=', 'class.category_id')
                 ->join('groups', 'groups.id', '=', 'categories.group_id')
                 ->where('payments.inscription_id',$inscription->id)
-                ->orderBy('payments.created_at','desc')
+                ->orderBy('payments.id','desc')
                 // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
                 ->get('payments.*','atleta.*','cycles.*','class.*','categories.*','groups.*');
 

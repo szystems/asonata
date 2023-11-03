@@ -210,12 +210,15 @@
     <table class="pure-table pure-table-bordered" Width=100%>
         <thead>
             <tr>
-                <th colspan="5"><u>{{ __('Payments') }}</u></th>
+                <th colspan="6"><u>{{ __('Payments') }}</u></th>
             </tr>
             <tr>
-                {{-- <th>
-                    <font size="1">{{ __('Athlete') }}</font>
-                </th> --}}
+                <th>
+                    <font size="1">{{ __('Payment') }} #</font>
+                </th>
+                <th>
+                    <font size="1">{{ __('Date') }}</font>
+                </th>
                 <th>
                     <font size="1">{{ __('Cycle') }} / {{ __('Class') }} / {{ __('Group') }}</font>
                 </th>
@@ -228,22 +231,20 @@
                 <th>
                     <font size="1">{{ __('Paid') }}</font>
                 </th>
-                <th>
-                    <font size="1">{{ __('Date') }}</font>
-                </th>
+
             </tr>
         </thead>
         <tbody>
             @foreach ($payments as $payment)
                 <tr>
-                    {{-- <td align="center">
+                    <td align="center">
                         <font size="1">
-                            <b>{{ $payment->inscription->atleta->name }}</b><br>
-                            CUI: {{ $payment->inscription->atleta->cui_dpi }}<br>
-                            {{ $payment->inscription->atleta->email }}<br>
-                            {{ $payment->inscription->atleta->phone }} / {{ $payment->inscription->atleta->whatsapp }}
+                            <b>{{ $payment->id }}</b>
                         </font>
-                    </td> --}}
+                    </td>
+                    <td align="center">
+                        <font size="1"><strong>{{ $payment->created_at->format('d-m-Y') }}</strong></font>
+                    </td>
                     <td align="center">
                         <font size="1" color="blue">
                             {{ $payment->inscription->cycle->name }}
@@ -278,15 +279,13 @@
                             {{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}
                         </font>
                     </td>
-                    <td align="center">
-                        <font size="1"><strong>{{ $payment->created_at->format('d-m-Y') }}</strong></font>
-                    </td>
                 </tr>
             @endforeach
 
         </tbody>
         <tfoot>
             <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td align="right"><font size="3"><b>Total:</b></font></td>

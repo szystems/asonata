@@ -94,7 +94,7 @@
                                 </select>
                                 <input type="hidden" value="{{ $class->id }}">
                                 <input type="hidden" value="{{ $class->CLinscription_payment }}">
-                                @if (Auth::user()->role_as == 1 and $inscription->inscription_status ==1)
+                                {{-- @if (Auth::user()->role_as == 1 and $inscription->inscription_status ==1) --}}
                                     <br>
                                     @if ($inscription->inscription_payment != 1)
                                         <div class="form-check form-switch">
@@ -107,10 +107,18 @@
                                             <div class="input-group input-group-dynamic mb-4">
                                                 {{ $config->currency_simbol }}
                                                 <input type="number" step=".01" min="0.01" max="{{ $class->CLinscription_payment }}" class="form-control" id="exoneration_inscription_qty" aria-label="Amount (to the nearest dollar)" name="exoneration_inscription_qty" value="{{ $class->CLinscription_payment }}" required>
+
+                                            </div>
+                                        </div>
+                                        <div class="input-daterange input-group" >
+                                            <label for="">{{ __('Registration Waiver Note') }}</label>
+                                            <div class="input-group input-group-dynamic mb-4">
+
+                                                <textarea class="form-control border px-2 " name="note_inscription" cols="30" rows="3" required></textarea>
                                             </div>
                                         </div>
                                     @endif
-                                @endif
+                                {{-- @endif --}}
 
 
                             </div>
@@ -124,7 +132,7 @@
                                     @endif
                                 </select>
                                 <input type="hidden" value="{{ $class->CLbadge }}">
-                                @if (Auth::user()->role_as == 1 and $inscription->inscription_status ==1)
+                                {{-- @if (Auth::user()->role_as == 1 and $inscription->inscription_status ==1) --}}
                                     <br>
                                     @if ($inscription->badge_payment != 1)
                                         <div class="form-check form-switch">
@@ -139,8 +147,15 @@
                                                 <input type="number" step=".01" min="0.01" max="{{ $class->CLbadge }}" class="form-control" id="exoneration_badge_qty" aria-label="Amount (to the nearest dollar)" name="exoneration_badge_qty" value="{{ $class->CLbadge }}" required>
                                             </div>
                                         </div>
+                                        <div class="input-daterange input-group" >
+                                            <label for="">{{ __('Badge Waiver Note') }}</label>
+                                            <div class="input-group input-group-dynamic mb-4">
+
+                                                <textarea class="form-control border px-2 " name="note_badge" cols="30" rows="3" required></textarea>
+                                            </div>
+                                        </div>
                                     @endif
-                                @endif
+                                {{-- @endif --}}
 
                             </div>
 
