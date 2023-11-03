@@ -94,7 +94,7 @@
                                 </select>
                                 <input type="hidden" value="{{ $class->id }}">
                                 <input type="hidden" value="{{ $class->CLinscription_payment }}">
-                                {{-- @if (Auth::user()->role_as == 1 and $inscription->inscription_status ==1) --}}
+                                @if ($inscription->inscription_status ==1)
                                     <br>
                                     @if ($inscription->inscription_payment != 1)
                                         <div class="form-check form-switch">
@@ -118,7 +118,7 @@
                                             </div>
                                         </div>
                                     @endif
-                                {{-- @endif --}}
+                                @endif
 
 
                             </div>
@@ -132,7 +132,7 @@
                                     @endif
                                 </select>
                                 <input type="hidden" value="{{ $class->CLbadge }}">
-                                {{-- @if (Auth::user()->role_as == 1 and $inscription->inscription_status ==1) --}}
+                                @if ($inscription->inscription_status ==1)
                                     <br>
                                     @if ($inscription->badge_payment != 1)
                                         <div class="form-check form-switch">
@@ -155,7 +155,7 @@
                                             </div>
                                         </div>
                                     @endif
-                                {{-- @endif --}}
+                                @endif
 
                             </div>
 
