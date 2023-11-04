@@ -197,9 +197,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $talla = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                                    @endphp
                                     @foreach ($inscritos as $inscrito)
                                     @php
                                         $atleta = \App\Models\Atleta::find($inscrito->atleta_id);
+
+                                        for ($i=0; $i <= 16 ; $i++) {
+                                            if($atleta->tshirt_size == $i)
+                                            {
+                                                $talla[$i]++;
+                                            }
+                                        }
                                     @endphp
                                     <tr>
                                         <td>
@@ -210,10 +220,11 @@
                                                 </div>
                                             @endif
                                               <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-xs"><a href="{{ url('show-athlete/'.$atleta->id) }}">{{ $atleta->name }} </a></h6>
+                                                <h6 class="mb-0 text-xs"><a href="{{ url('show-athlete/'.$atleta->id) }}">{{ $atleta->name }} </a> </h6>
                                                 <p class="text-xs text-secondary mb-0">CUI: {{ $atleta->cui_dpi }}</p>
                                                 <p class="text-xs text-secondary mb-0"><i class="fa fa-envelope-o me-1" aria-hidden="true"></i>{{ $atleta->email }}</p>
                                                 <p class="text-xs text-secondary mb-0"><i class="fa fa-phone me-1" aria-hidden="true"></i>{{ $atleta->phone }} @if ($atleta->whatsapp != null) / <i class="fab fa-whatsapp me-1" aria-hidden="true"></i> {{ $atleta->whatsapp }} @endif</p>
+                                                <p class="text-xs text-secondary mb-0"><i class="fas fa-tshirt me-1" aria-hidden="true"></i>{{ $atleta->tshirt_size }}</p>
                                               </div>
                                             </div>
                                         </td>
@@ -261,6 +272,23 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+
+                            <div class="card-body p-4 pt-5">
+                                <h6 class=" text-capitalize">Total de Tallas:</h6>
+                                <div class="d-flex px-2 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        @for ($i = 0; $i <= 16; $i++)
+                                            @if ($talla[$i] != 0)
+                                                <p class="text-xs text-secondary mb-0"><b>Talla {{$i}}:</b>&nbsp;&nbsp;{{$talla[$i]}}</p>
+                                            @endif
+                                        @endfor
+                                    </div>
+                                </div>
+
+                            </div>
+
+
                         </div>
                         @if ($inscritos->count() == 0)
                             <div class="card-header p-4 position-relative mt-n4 mx-3 z-index-2">
