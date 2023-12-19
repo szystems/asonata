@@ -155,7 +155,6 @@ class PaymentController extends Controller
                 $queryDesde = date("Y-m-d 00:00:00", strtotime($queryHasta.'- 1 month'));
                 $queryHasta = date("Y-m-d 23:59:59", strtotime($queryHasta));
             }
-
             $payments = Payment::join('inscriptions', 'inscriptions.id', '=', 'payments.inscription_id')
             ->join('atleta', 'atleta.id', '=', 'inscriptions.atleta_id')
             ->join('cycles', 'cycles.id', '=', 'inscriptions.cycle_id')
@@ -174,7 +173,7 @@ class PaymentController extends Controller
             ->orderBy('payments.id','desc')
             // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
             // ->paginate($this->paginacion, $this->campos);
-            ->get('payments.*','inscriptions.*','atleta.*','cycles.*','class.*','categories.*','groups.*');
+            ->get('payments.*','inscription.*','atleta.*','cycles.*','class.id','categories.*','groups.*');
 
 
             $total = 0;
@@ -271,7 +270,7 @@ class PaymentController extends Controller
             ->where('payments.id',$request->input('rid'))
 
             // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
-            ->first('payments.*','atleta. *','cycles.*','class.*','categories.*','groups.*');
+            ->first('payments.*','atleta*','cycles.*','class.*','categories.*','groups.*');
 
             $verpdf = "Browser";
             $nompdf = date('m/d/Y g:ia');

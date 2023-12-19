@@ -75,11 +75,11 @@
                                             <td class="align-middle text-center text-sm"><strong>{{ $payment->created_at->format('d-m-Y') }}</strong></td>
                                             <td>
                                                 <div class="d-flex px-2 py-1">
-                                                    @if ($payment->inscription->atleta->image)
+                                                    {{-- @if ($payment->inscription->atleta->image)
                                                         <div>
                                                             <img src="{{ asset('assets/uploads/athletes/'.$payment->inscription->atleta->image) }}" class="avatar avatar-sm me-3">
                                                         </div>
-                                                    @endif
+                                                    @endif --}}
                                                   <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-xs"><a href="{{ url('show-athlete/'.$payment->inscription->atleta->id) }}">{{ $payment->inscription->atleta->name }} </a></h6>
                                                     <p class="text-xs text-secondary mb-0">CUI: {{ $payment->inscription->atleta->cui_dpi }}</p>
