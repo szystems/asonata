@@ -27,7 +27,7 @@ class CycleEditFormRequest extends FormRequest
             'name'=>'required|string|max:100',
             'start_date'=>'date|required',
             'end_date'=>'date|required',
-            'description'=>'required|max:500'
+            'description'=>'max:500|nullable'
         ];
     }
 }

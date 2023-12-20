@@ -21,7 +21,7 @@ class CreateClassTable extends Migration
             $table->integer('instructor_id');
             $table->date('start_date');
             $table->date('end_date');
-            $table->mediumText('notes');
+            $table->mediumText('notes')->nullable();
             $table->decimal('inscription_payment');
             $table->decimal('monthly_payment');
             $table->decimal('badge');

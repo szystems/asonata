@@ -18,7 +18,7 @@ class CreateCyclesTable extends Migration
             $table->string('name', 100);
             $table->date('start_date');
             $table->date('end_date');
-            $table->mediumText('description');
+            $table->mediumText('description')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
         });

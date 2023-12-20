@@ -25,7 +25,7 @@ class GroupEditFormRequest extends FormRequest
     {
         return [
             'name'=>'string|max:100',
-            'description'=>'string|max:500',
+            'description'=>'string|max:500|nullable',
             'image'=>'mimes:jpg,jpeg,bmp,png|max:3000',
             'contract'=>'mimetypes:application/pdf|max:3000',
         ];

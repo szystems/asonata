@@ -26,7 +26,7 @@ class FacilityFormRequest extends FormRequest
         return [
             'name'=>'required|string|max:100',
             'description'=>'string|nullable',
-            'location'=>'string|max:500',
+            'location'=>'string|max:500|nullable',
             'image'=>'mimes:jpg,jpeg,bmp,png|max:3000',
         ];
     }
