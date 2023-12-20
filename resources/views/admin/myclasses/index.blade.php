@@ -47,8 +47,8 @@
                                             $facility = \App\Models\Facility::find($schedule->facility_id);
                                             $instructor = \App\Models\User::find($class->instructor_id);
 
-                                            $start_time = date('h:i A', strtotime($schedule->start_time));
-                                            $end_time = date('h:i A', strtotime($schedule->end_time));
+                                            $start_time = date('H:i A', strtotime($schedule->start_time));
+                                            $end_time = date('H:i A', strtotime($schedule->end_time));
 
                                             $start_date = date('d-m-Y', strtotime($class->start_date));
                                             $end_date = date('d-m-Y', strtotime($class->end_date));
@@ -63,8 +63,8 @@
                                             ->where('inscription_status',1)
                                             ->count();
 
-                                            $start_timeClass = date('h:i A', strtotime($schedule->start_time));
-                                            $end_timeClass = date('h:i A', strtotime($schedule->end_time));
+                                            $start_timeClass = date('H:i A', strtotime($schedule->start_time));
+                                            $end_timeClass = date('H:i A', strtotime($schedule->end_time));
 
                                             //obtener cupos ocupados
                                             $cuposOcupados=DB::table('inscriptions as i')

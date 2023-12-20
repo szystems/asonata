@@ -72,8 +72,8 @@
 
                                             $facilityName = \App\Models\Facility::find($scheduleClass->facility_id);
 
-                                            $start_timeClass = date('h:i A', strtotime($scheduleClass->start_time));
-                                            $end_timeClass = date('h:i A', strtotime($scheduleClass->end_time));
+                                            $start_timeClass = date('H:i A', strtotime($scheduleClass->start_time));
+                                            $end_timeClass = date('H:i A', strtotime($scheduleClass->end_time));
 
                                             //obtener cupos ocupados
                                             $cuposOcupados=DB::table('inscriptions as i')
@@ -106,8 +106,8 @@
 
                                         $facilityName = \App\Models\Facility::find($scheduleClass->facility_id);
 
-                                        $start_timeClass = date('h:i A', strtotime($scheduleClass->start_time));
-                                        $end_timeClass = date('h:i A', strtotime($scheduleClass->end_time));
+                                        $start_timeClass = date('H:i A', strtotime($scheduleClass->start_time));
+                                        $end_timeClass = date('H:i A', strtotime($scheduleClass->end_time));
                                     @endphp
                                         <option value="{{ $class->Cname }} ({{ $class->age_from }}-{{ $class->age_to }} {{ __('Years') }}), {{ __('Cycle') }}: {{ $class->CYid }}, {{ $facilityName->name }} / {{ $start_timeClass }} - {{ $end_timeClass }} / {{ $scheduleClass->sunday == 1 ? __('Sunday').',' : '' }} {{ $scheduleClass->monday == 1 ? __('Monday').',' : '' }} {{ $scheduleClass->tuesday == 1 ? __('Tuesday').',' : '' }} {{ $scheduleClass->wednesday == 1 ? __('Wednesday').',' : '' }} {{ $scheduleClass->thursday == 1 ? __('Thursday').',' : '' }} {{ $scheduleClass->friday == 1 ? __('Friday').',' : '' }} {{ $scheduleClass->saturday == 1 ? __('Saturday').',' : '' }} " data-value="{{ $class->id }}">
                                     @endforeach

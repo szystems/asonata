@@ -723,8 +723,8 @@
                                                             $facilityName = \App\Models\Facility::find($scheduleClass->facility_id);
                                                             $start_dateClass = date("d-m-Y", strtotime($class->start_date));
                                                             $end_dateClass = date("d-m-Y", strtotime($class->end_date));
-                                                            $start_timeClass = date('h:i A', strtotime($scheduleClass->start_time));
-                                                            $end_timeClass = date('h:i A', strtotime($scheduleClass->end_time));
+                                                            $start_timeClass = date('H:i A', strtotime($scheduleClass->start_time));
+                                                            $end_timeClass = date('H:i A', strtotime($scheduleClass->end_time));
                                                         @endphp
                                                         <td>
                                                             <div class="d-flex px-2 py-1">

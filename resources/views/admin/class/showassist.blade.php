@@ -47,8 +47,8 @@
                         <div class="col-md-12 mb-3">
                             @php
                                 $facilityName = \App\Models\Facility::find($schedule->facility_id);
-                                $start_timeClass = date('h:i A', strtotime($schedule->start_time));
-                                $end_timeClass = date('h:i A', strtotime($schedule->end_time));
+                                $start_timeClass = date('H:i A', strtotime($schedule->start_time));
+                                $end_timeClass = date('H:i A', strtotime($schedule->end_time));
                             @endphp
                             <label for="">{{ __('Schedule') }}</label>
                             <p><i class="far fa-clock"></i> {{ $facilityName->name }} / {{ $start_timeClass }} - {{ $end_timeClass }} / {{ $schedule->sunday == 1 ? __('Sunday').',' : '' }} {{ $schedule->monday == 1 ? __('Monday').',' : '' }} {{ $schedule->tuesday == 1 ? __('Tuesday').',' : '' }} {{ $schedule->wednesday == 1 ? __('Wednesday').',' : '' }} {{ $schedule->thursday == 1 ? __('Thursday').',' : '' }} {{ $schedule->friday == 1 ? __('Friday').',' : '' }} {{ $schedule->saturday == 1 ? __('Saturday').',' : '' }}</p>

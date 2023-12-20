@@ -95,8 +95,8 @@
                                         <tr>
                                             @php
                                                 $facility = \App\Models\Facility::find($schedule->facility_id);
-                                                $start_time = date('h:i A', strtotime($schedule->start_time));
-                                                $end_time = date('h:i A', strtotime($schedule->end_time));
+                                                $start_time = date('H:i A', strtotime($schedule->start_time));
+                                                $end_time = date('H:i A', strtotime($schedule->end_time));
 
                                                 $inscritos=DB::table('inscriptions as i')
                                                 ->join('class as c','i.class_id','=','c.id')

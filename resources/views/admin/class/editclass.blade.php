@@ -111,8 +111,8 @@
 
                                         $facilityName = \App\Models\Facility::find($scheduleClass->facility_id);
 
-                                        $start_timeClass = date('h:i A', strtotime($scheduleClass->start_time));
-                                        $end_timeClass = date('h:i A', strtotime($scheduleClass->end_time));
+                                        $start_timeClass = date('H:i A', strtotime($scheduleClass->start_time));
+                                        $end_timeClass = date('H:i A', strtotime($scheduleClass->end_time));
                                     @endphp
                                     <label for="">{{ __('Schedule') }}</label>
                                     <select class="form-select px-2" aria-label="Default select example" name="schedule_id">
@@ -121,8 +121,8 @@
                                         @php
                                             $facilitySchedule = \App\Models\Facility::find($schedule->facility_id);
 
-                                            $start_time = date('h:i A', strtotime($schedule->start_time));
-                                            $end_time = date('h:i A', strtotime($schedule->end_time));
+                                            $start_time = date('H:i A', strtotime($schedule->start_time));
+                                            $end_time = date('H:i A', strtotime($schedule->end_time));
                                         @endphp
                                             <option value="{{ $schedule->id }}">{{ $facilitySchedule->name }} / {{ $start_time }} - {{ $end_time }} / {{ $schedule->sunday == 1 ? __('Sunday').',' : '' }} {{ $schedule->monday == 1 ? __('Monday').',' : '' }} {{ $schedule->tuesday == 1 ? __('Tuesday').',' : '' }} {{ $schedule->wednesday == 1 ? __('Wednesday').',' : '' }} {{ $schedule->thursday == 1 ? __('Thursday').',' : '' }} {{ $schedule->friday == 1 ? __('Friday').',' : '' }} {{ $schedule->saturday == 1 ? __('Saturday').',' : '' }}</option>
                                         @endforeach

@@ -105,8 +105,8 @@
                                     <tbody>
                                         <tr>
                                             @php
-                                                $start_time = date('h:i A', strtotime($class->Sstart_time));
-                                                $end_time = date('h:i A', strtotime($class->Send_time));
+                                                $start_time = date('H:i A', strtotime($class->Sstart_time));
+                                                $end_time = date('H:i A', strtotime($class->Send_time));
 
                                                 $start_date = date('d-m-Y', strtotime($class->CLstart_date));
                                                 $end_date = date('d-m-Y', strtotime($class->CLend_date));
@@ -151,8 +151,8 @@
 
                                                         $facilityName = \App\Models\Facility::find($scheduleClass->facility_id);
 
-                                                        $start_timeClass = date('h:i A', strtotime($scheduleClass->start_time));
-                                                        $end_timeClass = date('h:i A', strtotime($scheduleClass->end_time));
+                                                        $start_timeClass = date('H:i A', strtotime($scheduleClass->start_time));
+                                                        $end_timeClass = date('H:i A', strtotime($scheduleClass->end_time));
 
                                                         //obtener cupos ocupados
                                                         $cuposOcupados=DB::table('inscriptions as i')

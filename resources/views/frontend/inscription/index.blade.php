@@ -49,8 +49,8 @@
 
                                     @foreach ($classes as $class)
                                         @php
-                                            $start_time = date('h:i A', strtotime($class->Sstart_time));
-                                            $end_time = date('h:i A', strtotime($class->Send_time));
+                                            $start_time = date('H:i A', strtotime($class->Sstart_time));
+                                            $end_time = date('H:i A', strtotime($class->Send_time));
 
                                             $start_date = date('d-m-Y', strtotime($class->CLstart_date));
                                             $end_date = date('d-m-Y', strtotime($class->CLend_date));
@@ -59,8 +59,8 @@
                                             $start_date_status = date("Y-m-d", strtotime($class->CLstart_date));
                                             $end_date_status = date("Y-m-d", strtotime($class->CLend_date));
 
-                                            $start_time = date('h:i A', strtotime($class->Sstart_time));
-                                            $end_time = date('h:i A', strtotime($class->Send_time));
+                                            $start_time = date('H:i A', strtotime($class->Sstart_time));
+                                            $end_time = date('H:i A', strtotime($class->Send_time));
 
                                             //obtener cupos ocupados
                                             $cuposOcupados=DB::table('inscriptions as i')

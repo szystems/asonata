@@ -35,8 +35,8 @@
                             <div class="col-md-4 mb-3">
                                 @php
                                     $facility = \App\Models\Facility::find($schedule->facility_id);
-                                    $start_time = date('h:i', strtotime($schedule->start_time));
-                                    $end_time = date('h:i', strtotime($schedule->end_time));
+                                    $start_time = date('H:i', strtotime($schedule->start_time));
+                                    $end_time = date('H:i', strtotime($schedule->end_time));
                                 @endphp
                                 <label for="">{{ __('Facility') }}</label>
                                 <select class="form-select px-2" aria-label="Default select example" name="facility_id">

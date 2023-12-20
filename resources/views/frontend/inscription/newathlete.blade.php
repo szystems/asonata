@@ -23,8 +23,8 @@
                 <div class="col-lg-12">
 
                     @php
-                        $start_time = date('h:i A', strtotime($class->Sstart_time));
-                        $end_time = date('h:i A', strtotime($class->Send_time));
+                        $start_time = date('H:i A', strtotime($class->Sstart_time));
+                        $end_time = date('H:i A', strtotime($class->Send_time));
 
                         $start_date = date('d-m-Y', strtotime($class->CLstart_date));
                         $end_date = date('d-m-Y', strtotime($class->CLend_date));
