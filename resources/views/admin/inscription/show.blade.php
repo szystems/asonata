@@ -23,8 +23,16 @@
                             <input type="hidden" name="ratleta" value="{{ $atleta->id }}">
                             <input type="hidden" name="ridclass" value="{{ $class->id }}">
                             <input type="hidden" name="ridinscription" value="{{ $inscription->id }}">
-                            <button type="submit" class="btn btn-danger float-end">
-                                <i class="material-icons opacity-10">picture_as_pdf</i> PDF
+                            <button type="submit" class="btn btn-danger float-end m-2">
+                                <i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Inscription') }}
+                            </button>
+                        </form>
+                    </div>
+                    <div>
+                        <form action="{{ url('pdf-inscription-payments') }}" method="GET" target="_blank">
+                            <input type="hidden" name="inscription_number" value="{{ $inscription->inscription_number }}">
+                            <button type="submit" class="btn btn-danger float-end m-2">
+                                <i class="material-icons opacity-10">picture_as_pdf</i> {{ __('Check Payments and Assists') }}
                             </button>
                         </form>
                         <a href="{{ url('edit-inscription/'.$inscription->id) }}" type="button" class="btn btn-warning"><i class="material-icons">edit</i></a>
