@@ -198,7 +198,11 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $talla = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                                        $talla = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                                        //21 = XL
+                                        //20 = L
+                                        //19 = M
+                                        //18 = S
                                     @endphp
                                     @foreach ($inscritos as $inscrito)
                                     @php
@@ -209,6 +213,20 @@
                                             {
                                                 $talla[$i]++;
                                             }
+
+                                        }
+                                        if ($atleta->tshirt_size == "XL") {
+                                                $talla[20]++;
+                                        }
+                                        if ($atleta->tshirt_size == "L") {
+                                            $talla[19]++;
+                                        }
+
+                                        if ($atleta->tshirt_size == "M") {
+                                            $talla[18]++;
+                                        }
+                                        if ($atleta->tshirt_size == "S") {
+                                            $talla[17]++;
                                         }
                                     @endphp
                                     <tr>
@@ -278,11 +296,25 @@
                                 <h6 class=" text-capitalize">Total de Tallas:</h6>
                                 <div class="d-flex px-2 py-1">
                                     <div class="d-flex flex-column justify-content-center">
-                                        @for ($i = 0; $i <= 16; $i++)
+                                        @if ($talla[17] != 0)
+                                            <p class="text-xs text-secondary mb-0"><b>Talla S:</b>&nbsp;&nbsp;{{$talla[17]}}</p>
+                                        @endif
+                                        @if ($talla[18] != 0)
+                                            <p class="text-xs text-secondary mb-0"><b>Talla M:</b>&nbsp;&nbsp;{{$talla[18]}}</p>
+                                        @endif
+                                        @if ($talla[19] != 0)
+                                            <p class="text-xs text-secondary mb-0"><b>Talla L:</b>&nbsp;&nbsp;{{$talla[19]}}</p>
+                                        @endif
+                                        @if ($talla[20] != 0)
+                                            <p class="text-xs text-secondary mb-0"><b>Talla XL:</b>&nbsp;&nbsp;{{$talla[20]}}</p>
+                                        @endif
+                                        @for ($i = 1; $i <= 16; $i++)
                                             @if ($talla[$i] != 0)
                                                 <p class="text-xs text-secondary mb-0"><b>Talla {{$i}}:</b>&nbsp;&nbsp;{{$talla[$i]}}</p>
                                             @endif
                                         @endfor
+
+
                                     </div>
                                 </div>
 

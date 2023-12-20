@@ -135,7 +135,9 @@
                                         <label>{{ __('Gender') }} </label>
                                         <select class="form-control" name="gender">
                                             @if( old('gender') != null)
-                                                <option value="0">{{ old('gender') == '0' ? __('Male') : __('Female') }}</option>
+                                                <option value="{{ old('gender') == '0' ? '0' : (old('gender') == '1' ? '1' : "") }}">
+                                                    {{ old('gender') == '0' ? _('Male') : (old('gender') == '1' ? __('Female') :  "") }}
+                                                </option>
                                             @endif
                                             <option value="0">{{ __('Male') }}</option>
                                             <option value="1">{{ __('Female') }}</option>
@@ -260,7 +262,13 @@
                                     <div class="col-sm-3">
                                         <label>{{ __('Tshirt Size') }}</label>
                                         <select class="form-control" name="tshirt_size">
-                                            <option value="{{ old('tshirt_size') }}">{{ old('tshirt_size') }}</option>
+                                            @if (old('tshirt_size'))
+                                                <option value="{{ old('tshirt_size') }}">{{ old('tshirt_size') }}</option>
+                                            @endif
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>

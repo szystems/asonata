@@ -48,7 +48,9 @@
                             <div class="col-md-3 mb-3">
                                 <label for="">{{ __('Gender') }}</label>
                                 <select class="form-select px-2" aria-label="Default select example" name="gender">
-                                    <option selected value="{{ $atleta->gender }}">{{ $atleta->gender == '0' ? __('Male')  :  __('Female') }}</option>
+                                    <option value="{{ $atleta->gender == '0' ? '0' : ($atleta->gender == '1' ? '1' : "") }}">
+                                        {{ $atleta->gender == '0' ? _('Male') : ($atleta->gender == '1' ? __('Female') :  "") }}
+                                    </option>
                                     <option value="0">{{ __('Male') }}</option>
                                     <option value="1">{{ __('Female') }}</option>
                                 </select>
@@ -124,6 +126,10 @@
                                 <label for="">{{ __('Tshirt Size') }}</label>
                                 <select class="form-select px-2" aria-label="Default select example" name="tshirt_size">
                                     <option value="{{ $atleta->tshirt_size }}">{{ $atleta->tshirt_size }}</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>

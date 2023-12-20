@@ -53,7 +53,9 @@
                                 <label for="">{{ __('Gender') }}</label>
                                 <select class="form-select px-2" aria-label="Default select example" name="gender">
                                     @if( old('gender') != null)
-                                        <option value="0">{{ old('gender') == '0' ? __('Male') : __('Female') }}</option>
+                                        <option value="{{ old('gender') == '0' ? '0' : (old('gender') == '1' ? '1' : "") }}">
+                                            {{ old('gender') == '0' ? _('Male') : (old('gender') == '1' ? __('Female') :  "") }}
+                                        </option>
                                     @endif
                                     <option value="0">{{ __('Male') }}</option>
                                     <option value="1">{{ __('Female') }}</option>
@@ -84,6 +86,9 @@
                             <div class="col-md-3 mb-3">
                                 <label for="">{{ __('Ethnic Group') }}</label>
                                 <select class="form-select px-2" aria-label="Default select example" name="ethnic_group">
+                                    @if (old('ethnic_group'))
+                                        <option value="{{ old('ethnic_group') }}">{{ old('ethnic_group') }}</option>
+                                    @endif
                                     <option value="Maya">Maya</option>
                                     <option value="Garífuna">Garífuna</option>
                                     <option value="Xinca">Xinca</option>
@@ -95,6 +100,9 @@
                             <div class="col-md-3 mb-3">
                                 <label for="">{{ __('Covid19 Doses Number') }}</label>
                                 <select class="form-select px-2" aria-label="Default select example" name="doses_number">
+                                    @if (old('doses_number'))
+                                        <option value="{{ old('doses_number') }}">{{ old('doses_number') }}</option>
+                                    @endif
                                     <option value="Ninguna">Ninguna</option>
                                     <option value="1ra. Dosis">1ra. Dosis</option>
                                     <option value="2da. Dosis">2da. Dosis</option>
@@ -105,6 +113,9 @@
                             <div class="col-md-3 mb-3">
                                 <label for="">{{ __('Education Obtained') }}</label>
                                 <select class="form-select px-2" aria-label="Default select example" name="education_obtained">
+                                    @if (old('education_obtained'))
+                                        <option value="{{ old('education_obtained') }}">{{ old('education_obtained') }}</option>
+                                    @endif
                                     <option value="Ninguna">Ninguna</option>
                                     <option value="Kinder">Kinder</option>
                                     <option value="Parvulos">Parvulos</option>
@@ -119,6 +130,13 @@
                             <div class="col-md-3 mb-3">
                                 <label for="">{{ __('Tshirt Size') }}</label>
                                 <select class="form-select px-2" aria-label="Default select example" name="tshirt_size">
+                                    @if (old('tshirt_size'))
+                                        <option value="{{ old('tshirt_size') }}">{{ old('tshirt_size') }}</option>
+                                    @endif
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -184,7 +202,9 @@
                             <div class="col-md-4 mb-3">
                                 <label for="">{{ __('State') }}</label>
                                 <select class="form-select px-2" aria-label="Default select example" name="state" id="departamentos" onchange="cargarMunicipios()">
-                                    <option selected value="{{ old('state') }}">{{ old('state') }}</option>
+                                    @if (old('state'))
+                                        <option selected value="{{ old('state') }}">{{ old('state') }}</option>
+                                    @endif
                                     <option value="">Selecciona un departamento</option>
                                     <option value="Alta Verapaz">Alta Verapaz</option>
                                     <option value="Baja Verapaz">Baja Verapaz</option>
@@ -220,7 +240,9 @@
                             <div class="col-md-4 mb-3">
                                 <label for="">{{ __('City') }}</label>
                                 <select name="city" type="text" class="form-select px-2" aria-label="Default select example" id="municipios">
-                                    <option selected value="{{ old('city') }}">{{ old('city') }}</option>
+                                    @if (old('city'))
+                                        <option selected value="{{ old('city') }}">{{ old('city') }}</option>
+                                    @endif
                                     <option value="">Selecciona un municipio</option>
                                 </select>
                                 @if ($errors->has('city'))
@@ -351,6 +373,9 @@
                             <div class="col-md-6 mb-3">
                                 <label for="">{{ __('Kinship') }}</label>
                                 <select class="form-select px-2" aria-label="Default select example" name="kinship">
+                                    @if (old('kinship'))
+                                        <option selected value="{{ old('kinship') }}">{{ old('kinship') }}</option>
+                                    @endif
                                     <option value="Madre">Madre</option>
                                     <option value="Padre">Padre</option>
                                     <option value="Abuelo">Abuelo</option>
@@ -369,6 +394,9 @@
                             <div class="col-md-6 mb-3">
                                 <label for="">{{ __('Responsible Covid19 Doses Number') }}</label>
                                 <select class="form-select px-2" aria-label="Default select example" name="responsible_doses_number">
+                                    @if (old('responsible_doses_number'))
+                                        <option selected value="{{ old('responsible_doses_number') }}">{{ old('responsible_doses_number') }}</option>
+                                    @endif
                                     <option value="Ninguna">Ninguna</option>
                                     <option value="1ra. Dosis">1ra. Dosis</option>
                                     <option value="2da. Dosis">2da. Dosis</option>
