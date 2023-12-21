@@ -76,7 +76,8 @@
                                     $categoryinfo = \App\Models\Category::find($classinfo->category_id);
                                     $userinfo = \App\Models\User::find($payment->user_id);
                                 @endphp
-                                <p class="text-xs text-secondary mb-0">{{ $categoryinfo->name }} ({{ $categoryinfo->group->name }})</p>
+                                <p class="text-xs text-secondary mb-0">Grupo:{{ $categoryinfo->group->name }}</p>
+                                <p class="text-xs text-secondary mb-0">Categoria: {{ $categoryinfo->name }}</p>
                               </div>
                             </div>
                         </div>

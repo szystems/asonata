@@ -91,6 +91,8 @@
                                     </h2><!-- End .entry-title -->
 
                                     <div class="entry-cats">
+                                        <b>{{ __('Cycle') }}:</b> <font color="black"><b>{{ $class->CYid }}</font><br>
+                                        {{ __('Group') }}: <font color="black"><b>{{ $class->Gname }}</font><br>
                                         {{ __('Days') }}: <b>@if($class->sunday == 1) {{ __('Sunday') }},  @endif @if($class->monday == 1) {{ __('Monday') }},  @endif @if($class->tuesday == 1) {{ __('Tuesday') }},  @endif @if($class->wednesday == 1) {{ __('Wednesday') }},  @endif @if($class->thursday == 1) {{ __('Thursday') }},  @endif @if($class->friday == 1) {{ __('Friday') }},  @endif @if($class->saturday == 1) {{ __('Saturday') }}  @endif</b>
                                         <font color="limegreen">{{ $start_time }}</font> - <font color="red">{{ $end_time }}</font>
                                     </div><!-- End .entry-cats -->

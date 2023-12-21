@@ -135,7 +135,11 @@
             @endphp
             <tr>
                 <td colspan="4">
-                    <font size="1"><b>{{ $class->Cname }} </b> {{ $start_date }} / {{ $end_date }} ({{ $class->age_from }} - {{ $class->age_to }}) {{ __('Years') }} {{ $class->Fname }}, @if($class->sunday == 1) {{ __('Sunday') }},  @endif @if($class->monday == 1) {{ __('Monday') }},  @endif @if($class->tuesday == 1) {{ __('Tuesday') }},  @endif @if($class->wednesday == 1) {{ __('Wednesday') }},  @endif @if($class->thursday == 1) {{ __('Thursday') }},  @endif @if($class->friday == 1) {{ __('Friday') }},  @endif @if($class->saturday == 1) {{ __('Saturday') }}  @endif {{ $start_time }} - {{ $end_time }}</font>
+                    <font size="1">
+                        <b>{{ $class->Cname }} </b> {{ $start_date }} / {{ $end_date }} ({{ $class->age_from }} - {{ $class->age_to }}) {{ __('Years') }} {{ $class->Fname }}, @if($class->sunday == 1) {{ __('Sunday') }},  @endif @if($class->monday == 1) {{ __('Monday') }},  @endif @if($class->tuesday == 1) {{ __('Tuesday') }},  @endif @if($class->wednesday == 1) {{ __('Wednesday') }},  @endif @if($class->thursday == 1) {{ __('Thursday') }},  @endif @if($class->friday == 1) {{ __('Friday') }},  @endif @if($class->saturday == 1) {{ __('Saturday') }}  @endif {{ $start_time }} - {{ $end_time }} <br> Ciclo: {{ $inscription->cycle->name }}
+                        <p>Ciclo: {{ $class->CYid }}</p>
+                        <p>Grupo: {{ $class->Gname }}</p>
+                    </font>
                 </td>
             </tr>
             <tr>

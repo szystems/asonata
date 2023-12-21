@@ -52,8 +52,8 @@
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Payment') }} #</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Date') }}</th>
                                             <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Athlete') }}</th>
-                                            <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Inscription Number') }}</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Payment Type') }}</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Inscription Number') }}</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 col-4">{{ __('Payment Type') }}</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Paid') }}</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('User') }}</th>
 
@@ -88,21 +88,23 @@
                                                   </div>
                                                 </div>
                                             </td>
-                                            <td class="align-middle text-center text-sm">
+                                            <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="mb-0 text-xs"><a href="{{ url('show-inscription/'.$payment->inscription_id) }}">{{ $payment->inscription->inscription_number }} </a></h6>
-                                                        <p class="text-xs text-secondary mb-0">{{ $payment->inscription->cycle->name }}</p>
+                                                        <p class="text-xs text-secondary mb-0">Ciclo: {{ $payment->inscription->cycle->name }}</p>
                                                         @php
                                                             $classinfo = \App\Models\Classs::find($payment->inscription->class_id);
                                                             $categoryinfo = \App\Models\Category::find($classinfo->category_id);
                                                             $userinfo = \App\Models\User::find($payment->user_id);
                                                         @endphp
-                                                        <p class="text-xs text-secondary mb-0">{{ $categoryinfo->name }} ({{ $categoryinfo->group->name }})</p>
+                                                        <p class="text-xs text-secondary mb-0">Grupo: {{ $categoryinfo->group->name }}</p>
+                                                        <p class="text-xs text-secondary mb-0">Categoría: {{ $categoryinfo->name }}</p>
+
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="align-middle text-center text-sm"><strong>
+                                            <td class="col-4"><strong>
                                                 {{ $payment->type == '0' ? __('Inscription')
                                                     : ($payment->type == '1' ? __('Badge')
                                                     : ($payment->type == '2' ? __('Monthly')
@@ -111,7 +113,7 @@
                                                 }}
                                                 @if ($payment->note != null)
                                                     <br>
-                                                    ({{ $payment->note }})
+                                                    <p class="text-xs text-secondary mb-0">({{ $payment->note }})</p>
                                                 @endif
                                             </strong></td>
                                             <td class="align-middle text-center text-sm"><strong>{{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}</strong></td>

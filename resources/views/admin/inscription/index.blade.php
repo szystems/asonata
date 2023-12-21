@@ -33,7 +33,7 @@
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Date') }}</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Inscription Number') }}</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Athlete') }}</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Class') }} ({{ __('Cycle') }})</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Class') }} </th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Inscription') }} / {{ __('Badge') }} / {{ __('Monthly') }}</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Assists') }}</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Status') }}</th>
@@ -79,7 +79,8 @@
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 <strong>{{ $category->name }}</strong> <br>
-                                                ({{ $cycle->name }})
+                                                Ciclo: {{ $cycle->name }} <br>
+                                                Grupo: {{ $category->group->name }}
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 @php

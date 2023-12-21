@@ -117,7 +117,24 @@ class InscriptionAdminController extends Controller
 
         $config = Config::first();
 
-        return view('admin.inscription.show', compact('atleta','class','config','inscription','payments','exonerations','total','subtotal','assists'));
+        $today = date("Y-m-d");
+        $classesavailable=DB::table('class as cl')
+        ->join('cycles as c','cl.cycle_id','=','c.id')
+        ->join('categories as cat','cl.category_id','=','cat.id')
+        ->join('groups as g','cat.group_id','=','g.id')
+        ->join('schedule as s','cl.schedule_id','=','s.id')
+        ->join('facilities as f','s.facility_id','=','f.id')
+        ->join('users as i','cl.instructor_id','=','i.id')
+        ->select('cl.id','cl.cycle_id as CLcycle_id','cl.category_id as CLcategory_id','cl.schedule_id as CLschedule_id','cl.instructor_id as CLinstructor_id','cl.start_date as CLstart_date','cl.end_date as CLend_date','cl.notes as CLnotes','cl.monthly_payment as CLmonthly_payment','cl.inscription_payment as CLinscription_payment','cl.badge as CLbadge','c.name as CYid','c.start_date as CYstart_date','c.end_date as CYend_date','c.description as CYdescription','c.status as CYstatus','g.name as Gname','g.description as Gdescription','g.image as Gimage','g.status as Gstatus','cat.name as Cname','cat.age_from','cat.age_to','cat.description as Cdescription','cat.image as Cimage','cat.status as Cstatus','cat.requirements as Crequirements','cat.implements as Cimplements','s.facility_id','s.start_time as Sstart_time','s.end_time as Send_time','s.sunday','s.monday','s.tuesday','s.wednesday','s.thursday','s.friday','s.saturday','s.quota','f.name as Fname','f.description as Fdescription','f.location','f.image as Fimage','f.status as Fstatus','i.name as Iname','i.email','i.phone','i.whatsapp')
+        ->where('cl.end_date','>',$today)
+        ->where('cl.status',1)
+        ->orderBy('cl.start_date')
+        ->orderBy('age_from','asc')
+        ->orderBy('cat.name')
+        ->orderBy(DB::raw('HOUR(s.start_time)'))
+        ->get();
+
+        return view('admin.inscription.show', compact('atleta','class','config','inscription','payments','exonerations','total','subtotal','assists','classesavailable'));
     }
 
     public function addinscription()
@@ -576,6 +593,19 @@ class InscriptionAdminController extends Controller
         $inscription->inscription_status = '2';
         $inscription->update();
         return redirect('inscriptions')->with('status',__('Inscription Deleted Successfully'));
+    }
+
+    public function updateclassinscription(Request $request)
+    {
+        $class = Classs::find($request->input('class_id'));
+        $idcycle = $class->cycle_id;
+
+        $inscription = Inscription::find($request->input('inscription_id'));
+        $inscription->class_id = $request->input('class_id');
+        $inscription->cycle_id = $idcycle;
+        $inscription->update();
+
+        return redirect('inscriptions')->with('status', __('Inscription Updated Successfully'));
     }
 
 

@@ -154,6 +154,12 @@
                                 {{-- <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#deleteClassModal-{{ $class->id }}">
                                     <i class="material-icons">delete</i>
                                 </button> --}}
+                                @if ($inscription->inscription_status == 0)
+                                <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#editModalClass">
+                                    <i class="material-icons">sync</i> Cambiar Clase
+                                </button>
+                                @endif
+
                         </div>
                         @if (count($errors)>0)
                             <div class="alert alert-danger text-white" role="alert">
@@ -171,11 +177,13 @@
                                 @php
                                     $categoryClass = \App\Models\Category::find($class->CLcategory_id);
                                 @endphp
-                                <label for="">{{ __('Category') }}</label>
-                                <p>{{ $categoryClass->name }} ({{ $categoryClass->age_from }}-{{ $categoryClass->age_to }} {{ __('Years') }} / {{ $class->CYid }})</p>
-                            </div>
+                                <label for="">
+                                    {{ __('Category') }}
 
-                            <div class="col-md-5 mb-3">
+                                </label>
+                                <p>{{ $categoryClass->name }} ({{ $categoryClass->age_from }}-{{ $categoryClass->age_to }} {{ __('Years') }} / {{ $class->CYid }})</p>
+                                <p class="text-xs text-secondary mb-0">{{ __('Cycle') }}: {{ $inscription->cycle->name }}</p>
+                                <p class="text-xs text-secondary mb-0">Grupo: {{ $categoryClass->group->name }}</p>
                                 @php
                                     $scheduleClass = \App\Models\Schedule::find($class->CLschedule_id);
 
@@ -184,6 +192,11 @@
                                     $start_timeClass = date('H:i A', strtotime($scheduleClass->start_time));
                                     $end_timeClass = date('H:i A', strtotime($scheduleClass->end_time));
                                 @endphp
+                                @include('admin.inscription.editmodalclass')
+                            </div>
+
+                            <div class="col-md-5 mb-3">
+
                                 <label for="">{{ __('Schedule') }}</label>
                                 <p><i class="far fa-clock"></i> {{ $facilityName->name }} / {{ $start_timeClass }} - {{ $end_timeClass }} / {{ $scheduleClass->sunday == 1 ? __('Sunday').',' : '' }} {{ $scheduleClass->monday == 1 ? __('Monday').',' : '' }} {{ $scheduleClass->tuesday == 1 ? __('Tuesday').',' : '' }} {{ $scheduleClass->wednesday == 1 ? __('Wednesday').',' : '' }} {{ $scheduleClass->thursday == 1 ? __('Thursday').',' : '' }} {{ $scheduleClass->friday == 1 ? __('Friday').',' : '' }} {{ $scheduleClass->saturday == 1 ? __('Saturday').',' : '' }}</p>
                             </div>

@@ -90,7 +90,9 @@
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                         <h6 class="mb-0 text-xs"><a href="{{ url('show-class/'.$attendance->assist->class_id) }}">{{ $categoryinfo->name }} ({{ $categoryinfo->group->name }})</a></h6>
-                                                        <p class="text-xs text-secondary mb-0">{{ $cycleinfo->name }}</p>
+                                                        <p class="text-xs text-secondary mb-0">Categoría: {{ $categoryinfo->name }}</p>
+                                                        <p class="text-xs text-secondary mb-0">Grupo: {{ $categoryinfo->group->name }}</p>
+                                                        <p class="text-xs text-secondary mb-0">Ciclo: {{ $cycleinfo->name }}</p>
                                                 </div>
                                             </td>
                                             <td class="align-middle text-center text-sm">

@@ -224,13 +224,13 @@ class PaymentController extends Controller
             if ( $verpdf == "Download" )
             {
                 $pdf = PDF::loadView('admin.payment.pdf', compact('imagen','queryDesde','queryHasta','queryType','queryIN','queryCui','queryCycle','queryCategory','queryGroup','queryUser','payments','cyclesFilter','categoriesFilter','groupFilter','usersFilter','desde','hasta','config','total'));
-
+                $pdf->setPaper('A4', 'landscape');
                 return $pdf->download ('Reporte Pagos: '.$nompdf.'.pdf');
             }
             if ( $verpdf == "Browser" )
             {
                 $pdf = PDF::loadView('admin.payment.pdf', compact('imagen','queryDesde','queryHasta','queryType','queryIN','queryCui','queryCycle','queryCategory','queryGroup','queryUser','payments','cyclesFilter','categoriesFilter','groupFilter','usersFilter','desde','hasta','config','total'));
-
+                $pdf->setPaper('A4', 'landscape');
                 return $pdf->stream ('Reporte Pagos: '.$nompdf.'.pdf');
             }
         }
@@ -292,13 +292,13 @@ class PaymentController extends Controller
             if ( $verpdf == "Download" )
             {
                 $pdf = PDF::loadView('admin.payment.pdfpayment', compact('imagen','payment','config'));
-
+                $pdf->setPaper('A4', 'landscape');
                 return $pdf->download ('Reporte Pago: '.$nompdf.'.pdf');
             }
             if ( $verpdf == "Browser" )
             {
                 $pdf = PDF::loadView('admin.payment.pdfpayment', compact('imagen','payment','config'));
-
+                $pdf->setPaper('A4', 'landscape');
                 return $pdf->stream ('Reporte Pago: '.$nompdf.'.pdf');
             }
         }

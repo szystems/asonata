@@ -187,13 +187,15 @@
                     <td align="center">
                         <font size="1" color="blue">
                             <b>{{ $payment->inscription->inscription_number }}</b><br>
-                            {{ $payment->inscription->cycle->name }}
+                            Categoría: {{ $categoryinfo->name }} <br>
                             @php
                                 $classinfo = \App\Models\Classs::find($payment->inscription->class_id);
                                 $categoryinfo = \App\Models\Category::find($classinfo->category_id);
                                 $userinfo = \App\Models\User::find($payment->user_id);
                             @endphp
-                            {{ $categoryinfo->name }} ({{ $categoryinfo->group->name }})
+                            Ciclo: {{ $payment->inscription->cycle->name }} <br>
+                            Grupo: {{ $categoryinfo->group->name }}
+
                         </font>
                     </td>
                     <td align="center">

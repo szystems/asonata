@@ -16,6 +16,18 @@
 </head>
 
 <body>
+    <table class="table" border="1">
+        <tr>
+            @for ($t = 1; $t <= 31; $t++)
+            @if ($t < 10)
+                <td>&nbsp;{{ $t }}</td>
+            @else
+                <td>{{ $t }}</td>
+            @endif
+            @endfor
+        </tr>
+
+    </table>
     <center>
         <img align="center" src="{{ $imagen }}" alt="" height="100">
     </center>
@@ -134,7 +146,11 @@
             @endphp
             <tr>
                 <td colspan="4">
-                    <font size="1"><b>{{ $class->Cname }} </b> {{ $start_date }} / {{ $end_date }} ({{ $class->age_from }} - {{ $class->age_to }}) {{ __('Years') }} {{ $class->Fname }}, @if($class->sunday == 1) {{ __('Sunday') }},  @endif @if($class->monday == 1) {{ __('Monday') }},  @endif @if($class->tuesday == 1) {{ __('Tuesday') }},  @endif @if($class->wednesday == 1) {{ __('Wednesday') }},  @endif @if($class->thursday == 1) {{ __('Thursday') }},  @endif @if($class->friday == 1) {{ __('Friday') }},  @endif @if($class->saturday == 1) {{ __('Saturday') }}  @endif {{ $start_time }} - {{ $end_time }}</font>
+                    <font size="1">
+                        <b>Categoria: {{ $class->Cname }} </b> {{ $start_date }} / {{ $end_date }} ({{ $class->age_from }} - {{ $class->age_to }}) {{ __('Years') }} {{ $class->Fname }}, @if($class->sunday == 1) {{ __('Sunday') }},  @endif @if($class->monday == 1) {{ __('Monday') }},  @endif @if($class->tuesday == 1) {{ __('Tuesday') }},  @endif @if($class->wednesday == 1) {{ __('Wednesday') }},  @endif @if($class->thursday == 1) {{ __('Thursday') }},  @endif @if($class->friday == 1) {{ __('Friday') }},  @endif @if($class->saturday == 1) {{ __('Saturday') }}  @endif {{ $start_time }} - {{ $end_time }}
+                        <p>Ciclo: {{ $class->CYid }}</p>
+                        <p>Grupo: {{ $class->Gname }}</p>
+                    </font>
                 </td>
             </tr>
             <tr>
