@@ -114,7 +114,7 @@
                                             <label for="">{{ __('Registration Waiver Note') }}</label>
                                             <div class="input-group input-group-dynamic mb-4">
 
-                                                <textarea class="form-control border px-2 " name="note_inscription" cols="30" rows="3" required></textarea>
+                                                <textarea class="form-control border px-2 " name="note_inscription" cols="30" rows="3" ></textarea>
                                             </div>
                                         </div>
                                     @endif
@@ -151,7 +151,7 @@
                                             <label for="">{{ __('Badge Waiver Note') }}</label>
                                             <div class="input-group input-group-dynamic mb-4">
 
-                                                <textarea class="form-control border px-2 " name="note_badge" cols="30" rows="3" required></textarea>
+                                                <textarea class="form-control border px-2 " name="note_badge" cols="30" rows="3"></textarea>
                                             </div>
                                         </div>
                                     @endif

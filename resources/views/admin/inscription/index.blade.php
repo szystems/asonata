@@ -86,7 +86,7 @@
                                                 @php
                                                     $inscriptionPayments=DB::table('payments')
                                                     ->where('inscription_id',$inscription->id)
-                                                    ->where('type','>=',2)
+                                                    ->whereBetween('type', [2,3])
                                                     ->get();
                                                 @endphp
                                                 @if($inscription->inscription_payment == 0)<span class="badge bg-warning text-dark">{{ $inscription->inscription_payment == 0 ? __('Pending') : '' }}</span>@endif @if($inscription->inscription_payment == 1)<span class="badge bg-success text-dark">{{ $inscription->inscription_payment == 1 ? __('Paid') : '' }}</span>@endif /

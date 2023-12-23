@@ -66,7 +66,7 @@
                                         @endphp
                                         @foreach ($payments as $payment)
                                         @php
-                                            if($payment->type == '3'){
+                                            if($payment->type >= '3' && $payment->type <=6){
                                                 $exonerations = $exonerations + $payment->paid;
                                             }
                                         @endphp
@@ -108,8 +108,11 @@
                                                 {{ $payment->type == '0' ? __('Inscription')
                                                     : ($payment->type == '1' ? __('Badge')
                                                     : ($payment->type == '2' ? __('Monthly')
-                                                    : ($payment->type == '3' ? __('Exoneration')
-                                                    : "")))
+                                                    : ($payment->type == '3' ? __('Monthly Exoneration')
+                                                    : ($payment->type == '4' ? __('Monthly Exoneration')
+                                                    : ($payment->type == '5' ? __('Inscription Total Exoneration')
+                                                    : ($payment->type == '6' ? __('Badge Exoneration')
+                                                    : ""))))))
                                                 }}
                                                 @if ($payment->note != null)
                                                     <br>

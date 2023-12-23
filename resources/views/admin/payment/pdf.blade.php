@@ -106,10 +106,11 @@
         <font size="1">{{ __('Payment Type') }}: </font>
         <font size="1" color="blue">
             @if ($queryType != null)
-                {{ $queryType == '0' ? __('Inscription')
-                    : ($queryType == '1' ? __('Badge')
-                    : ($queryType == '2' ? __('Monthly')
-                    : ""))
+                {{ $queryType == '0,0' ? __('Inscription')
+                    : ($queryType == '1,1' ? __('Badge')
+                    : ($queryType == '2,2' ? __('Monthly')
+                    : ($queryType == '3,6' ? __('Exoneration')
+                    : "")))
                 }}
             @else
                 {{ __('All') }}
@@ -163,7 +164,7 @@
             @endphp
             @foreach ($payments as $payment)
             @php
-                if($payment->type == '3'){
+                if($payment->type >= '3' && $payment->type <=6){
                     $exonerations = $exonerations + $payment->paid;
                 }
             @endphp
@@ -187,12 +188,13 @@
                     <td align="center">
                         <font size="1" color="blue">
                             <b>{{ $payment->inscription->inscription_number }}</b><br>
-                            Categoría: {{ $categoryinfo->name }} <br>
                             @php
                                 $classinfo = \App\Models\Classs::find($payment->inscription->class_id);
                                 $categoryinfo = \App\Models\Category::find($classinfo->category_id);
                                 $userinfo = \App\Models\User::find($payment->user_id);
                             @endphp
+                            Categoría: {{ $categoryinfo->name }} <br>
+
                             Ciclo: {{ $payment->inscription->cycle->name }} <br>
                             Grupo: {{ $categoryinfo->group->name }}
 
@@ -203,8 +205,11 @@
                             {{ $payment->type == '0' ? __('Inscription')
                                 : ($payment->type == '1' ? __('Badge')
                                 : ($payment->type == '2' ? __('Monthly')
-                                : ($payment->type == '3' ? __('Exoneration')
-                                : "")))
+                                : ($payment->type == '3' ? __('Monthly Exoneration')
+                                : ($payment->type == '4' ? __('Monthly Exoneration')
+                                : ($payment->type == '5' ? __('Inscription Total Exoneration')
+                                : ($payment->type == '6' ? __('Badge Exoneration')
+                                : ""))))))
                             }}
                             @if ($payment->note != null)
                                 <br>
@@ -234,6 +239,7 @@
             <tr align="right">
                 <td></td>
                 <td></td>
+                <td></td>
                 <td><h6><b>{{ __('Payments') }}:</b></h6></td>
                 <td><h6><b><font color="limegreen">{{ $config->currency_simbol }}{{ number_format($total-$exonerations,2, '.', ',') }}</font></b></h6></td>
                 <td></td>
@@ -242,12 +248,14 @@
             <tr align="right">
                 <td></td>
                 <td></td>
+                <td></td>
                 <td><h6><b>{{ __('Exonerations') }}:</b></h6></td>
                 <td><h6><b><font color="orange">{{ $config->currency_simbol }}{{ number_format($exonerations,2, '.', ',') }}</font></b></h6></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr align="right">
+                <td></td>
                 <td></td>
                 <td></td>
                 <td><h4><b>Total:</b></h4></td>

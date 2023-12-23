@@ -171,7 +171,7 @@
                                         @php
                                             $inscriptionPayments=DB::table('payments')
                                             ->where('inscription_id',$inscription->id)
-                                            ->where('type','>=',2)
+                                            ->whereBetween('type', [2,3])
                                             ->get();
                                         @endphp
                                         <p>{{ $config->currency_simbol }}{{ number_format($class->CLmonthly_payment,2, '.', ',') }} <b>({{ $inscriptionPayments->count() }}/{{ $inscription->payments }})</b></p>

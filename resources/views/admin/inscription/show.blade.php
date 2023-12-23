@@ -110,7 +110,7 @@
                             @php
                                 $inscriptionPayments=DB::table('payments')
                                 ->where('inscription_id',$inscription->id)
-                                ->where('type','>=',2)
+                                ->whereBetween('type', [2,3])
                                 ->get();
                             @endphp
                             <p>{{ $config->currency_simbol }}{{ number_format($class->CLmonthly_payment,2, '.', ',') }} @if ($inscription->payments != null) <b>({{ $inscriptionPayments->count() }}/{{ $inscription->payments }})</b>@endif</p>
@@ -440,8 +440,11 @@
                                             {{ $payment->type == '0' ? __('Inscription')
                                                 : ($payment->type == '1' ? __('Badge')
                                                 : ($payment->type == '2' ? __('Monthly')
-                                                : ($payment->type == '3' ? __('Exoneration')
-                                                : "")))
+                                                : ($payment->type == '3' ? __('Monthly Exoneration')
+                                                : ($payment->type == '4' ? __('Monthly Exoneration')
+                                                : ($payment->type == '5' ? __('Inscription Exoneration')
+                                                : ($payment->type == '6' ? __('Badge Exoneration')
+                                                : ""))))))
                                             }}
 
                                             </strong>
@@ -460,14 +463,17 @@
 
                                         <td class="align-middle  text-sm">
                                             <a href="{{ url('show-payment/'.$payment->id) }}" type="button" class="btn btn-info"><i class="material-icons">visibility</i></a>
-                                            {{-- <a href="{{ url('edit-athlete/'.$payment->id) }}" type="button" class="btn btn-warning"><i class="material-icons">edit</i></a>
-                                            <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $payment->id }}">
-                                                <i class="material-icons">delete</i>
-                                            </button> --}}
+                                            {{-- <a href="{{ url('edit-athlete/'.$payment->id) }}" type="button" class="btn btn-warning"><i class="material-icons">edit</i></a> --}}
+                                            @if (Auth::user()->role_as == 1)
+                                                <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#deleteModalPayment-{{ $payment->id }}">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
+                                            @endif
+
 
                                         </td>
                                     </tr>
-                                    {{-- @include('admin.atleta.deletemodal') --}}
+                                    @include('admin.payment.deletemodal')
                                     @endforeach
                                 </tbody>
                                 <tfoot>

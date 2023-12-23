@@ -19,17 +19,29 @@
                         <div class="input-daterange input-group" >
                             <div class="input-group input-group-dynamic mb-4">
                                 {{ $config->currency_simbol }}
-                                @if (Auth::user()->role_as == 1)
-                                <input type="number" class="form-control" id="inscription_payment" aria-label="Amount (to the nearest dollar)" name="paid" value="{{ number_format($class->CLmonthly_payment,2, '.', ',') }}" >
-                                @else
-                                    <input readonly type="number" class="form-control" id="inscription_payment" aria-label="Amount (to the nearest dollar)" name="paid" value="{{ number_format($class->CLmonthly_payment,2, '.', ',') }}" >
-                                @endif
-
+                                <input readonly type="number" class="form-control" id="monthly_payment" aria-label="Amount (to the nearest dollar)" name="monthly_payment" value="{{ number_format($class->CLmonthly_payment,2, '.', ',') }}" >
                             </div>
 
                         </div>
                     </div>
+                    @if (Auth::user()->role_as == 1)
                     <div class="col-md-5 mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="exonarate_monthly">
+                            <p class="text-warning">{{ __('Exoneration') }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <label for=""><b><u>{{ __('Amount to be exonerated') }}</u></b></label>
+                        <div class="input-daterange input-group" >
+                            <div class="input-group input-group-dynamic mb-4">
+                                {{ $config->currency_simbol }}
+                                <input type="number" class="form-control" id="amount_exonerated" aria-label="Amount (to the nearest dollar)" name="amount_exonerated" value="{{ number_format($class->CLmonthly_payment,2, '.', ',') }}" required>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    {{-- <div class="col-md-5 mb-3">
                         <label for=""><b><u>{{ __('Payment Type') }}</u></b></label>
                         <div class="input-daterange input-group" >
                             <select class="form-select px-2" aria-label="Default select example" name="type">
@@ -41,7 +53,7 @@
                                 @endif
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-md-12 mb-3">
                         <label for=""><b><u>{{ __('Note') }}</u></b></label>
                         <div class="input-group input-group-dynamic mb-4">

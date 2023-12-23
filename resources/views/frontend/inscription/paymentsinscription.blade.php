@@ -214,7 +214,7 @@
                                         @php
                                             $inscriptionPayments=DB::table('payments')
                                             ->where('inscription_id',$inscription->id)
-                                            ->where('type','>=',2)
+                                            ->whereBetween('type', [2,3])
                                             ->get();
                                         @endphp
                                         <p>{{ $config->currency_simbol }}{{ number_format($class->CLmonthly_payment,2, '.', ',') }} <b>({{ $inscriptionPayments->count() }}/{{ $inscription->payments }})</b></p>
@@ -299,11 +299,11 @@
                                         $exonerations = 0;
                                     @endphp
                                     @foreach ($payments as $payment)
-                                        @php
-                                            if($payment->type == '3'){
-                                                $exonerations = $exonerations + $payment->paid;
-                                            }
-                                        @endphp
+                                    @php
+                                        if($payment->type >= '3' && $payment->type <=6){
+                                            $exonerations = $exonerations + $payment->paid;
+                                        }
+                                    @endphp
                                         <tr>
                                             <td class="price-col">{{ $payment->id }}</td>
                                             <td class="price-col">{{ $payment->created_at->format('d-m-Y') }}</td>
@@ -311,8 +311,11 @@
                                                 {{ $payment->type == '0' ? __('Inscription')
                                                     : ($payment->type == '1' ? __('Badge')
                                                     : ($payment->type == '2' ? __('Monthly')
-                                                    : ($payment->type == '3' ? __('Exoneration')
-                                                    : "")))
+                                                    : ($payment->type == '3' ? __('Monthly Exoneration')
+                                                    : ($payment->type == '4' ? __('Monthly Exoneration')
+                                                    : ($payment->type == '5' ? __('Inscription Total Exoneration')
+                                                    : ($payment->type == '6' ? __('Badge Exoneration')
+                                                    : ""))))))
                                                 }}
                                             </td>
                                             <td class="price-col">
@@ -323,7 +326,10 @@
                                                 : ($payment->type == '1' ? 'limegreen'
                                                 : ($payment->type == '2' ? 'limegreen'
                                                 : ($payment->type == '3' ? 'orange'
-                                                : "")))
+                                                : ($payment->type == '4' ? 'orange'
+                                                : ($payment->type == '5' ? 'orange'
+                                                : ($payment->type == '6' ? 'orange'
+                                                : ""))))))
                                             }}">
                                             {{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}</font></td>
 

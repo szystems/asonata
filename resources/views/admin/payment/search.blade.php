@@ -93,23 +93,24 @@
                             {{-- </select> --}}
                         </div>
                         <div class="col-md-2 mb-3">
-                            <label for="">{{ __('Payment Type') }}</label>
+                            <label for="">{{ __('Payment Type') }} {{ $queryType }}</label>
                             <select class="form-select px-2" aria-label="Default select example" name="ftype">
                                     @if ($queryType != null)
                                         <option selected value="{{ $queryType }}">
-                                        {{ $queryType == '0' ? __('Inscription')
-                                            : ($queryType == '1' ? __('Badge')
-                                            : ($queryType == '2' ? __('Monthly')
-                                            : ($queryType == '3' ? __('Exoneration')
-                                            : "")))
+                                        {{ $queryType == '0,0' ? __('Inscription')
+                                            : ($queryType == '0,6' ? __('All')
+                                            : ($queryType == '1,1' ? __('Badge')
+                                            : ($queryType == '2,2' ? __('Monthly')
+                                            : ($queryType == '3,6' ? __('Exoneration')
+                                            : ""))))
                                         }}
                                         </option>
                                     @endif
-                                    <option value="">{{ __('All') }}</option>
-                                    <option value="0">{{ __('Inscription') }}</option>
-                                    <option value="1">{{ __('Badge') }}</option>
-                                    <option value="2">{{ __('Monthly') }}</option>
-                                    <option value="3">{{ __('Exoneration') }}</option>
+                                    <option value="0,6">{{ __('All') }}</option>
+                                    <option value="0,0">{{ __('Inscription') }}</option>
+                                    <option value="1,1">{{ __('Badge') }}</option>
+                                    <option value="2,2">{{ __('Monthly') }}</option>
+                                    <option value="3,6">{{ __('Exoneration') }}</option>
                             </select>
                             {{-- </select> --}}
                         </div>

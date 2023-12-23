@@ -25,8 +25,6 @@ class PaymentFormRequest extends FormRequest
     {
         return [
             'inscription_id'=>'required',
-            'type'=>'string|required',
-            'paid'=>'required'
         ];
     }
 }

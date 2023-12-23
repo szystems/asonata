@@ -89,7 +89,7 @@
                         @php
                             $inscriptionPayments=DB::table('payments')
                             ->where('inscription_id',$inscription->id)
-                            ->where('type','>=',2)
+                            ->whereBetween('type', [2,3])
                             ->get();
                         @endphp
                         <font size="1">{{ $config->currency_simbol }}{{ number_format($class->CLmonthly_payment,2, '.', ',') }} <b>({{ $inscriptionPayments->count() }}/{{ $inscription->payments }})</b></font>
@@ -276,8 +276,11 @@
                             {{ $payment->type == '0' ? __('Inscription')
                                 : ($payment->type == '1' ? __('Badge')
                                 : ($payment->type == '2' ? __('Monthly')
-                                : ($payment->type == '3' ? __('Exoneration')
-                                : "")))
+                                : ($payment->type == '3' ? __('Monthly Exoneration')
+                                : ($payment->type == '4' ? __('Monthly Exoneration')
+                                : ($payment->type == '5' ? __('Inscription Total Exoneration')
+                                : ($payment->type == '6' ? __('Badge Exoneration')
+                                : ""))))))
                             }}
                             @if ($payment->note != null)
                             <br>
@@ -300,6 +303,22 @@
 
         </tbody>
         <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td align="right"><font size="3"><b>{{ __('Payments') }}:</b></font></td>
+                <td align="center"><h5><b><font size="3" color="limegreen">{{ $config->currency_simbol }}{{ number_format($subtotal,2, '.', ',') }}</font></b></h5></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td align="right"><font size="3"><b>{{ __('Exonerations') }}:</b></font></td>
+                <td align="center"><h5><b><font size="3" color="orange">{{ $config->currency_simbol }}{{ number_format($exonerations,2, '.', ',') }}</font></b></h5></td>
+                <td></td>
+            </tr>
             <tr>
                 <td></td>
                 <td></td>

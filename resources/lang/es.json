@@ -517,10 +517,12 @@
     "Payment Added Successfully": "Pago agregado correctamente",
     "Payment Updated Successfully": "Pago editado correctamente",
     "Payment Deleted Successfully": "Pago eliminado correctamente",
+    "Payment and exoneration added successfully": "Pago y exoneración agregado correctamente",
+    "Exoneration added successfully": "Exoneración agregado correctamente",
     "Add Payment": "Añadir Pago",
     "Edit Payment": "Editar Pago",
     "Payment Information": "Información de Pago",
-    "Are you sure to remove this payment?": "¿Está seguro de eliminar esta pago?",
+    "Are you sure to remove this payment?": "¿Está seguro de eliminar este pago?",
     "No payments added or found!": "No se han añadido o encontrado pagos!",
     "Type": "Tipo",
     "Payment Type": "Tipo de Pago",
@@ -581,6 +583,9 @@
     "Pending Inscriptions": "Inscripciones Pendientes",
     "Exoneration": "Exoneración",
     "Exonerations": "Exoneraciones",
+    "Monthly Exoneration": "Exoneración de Mensualidad",
+    "Badge Exoneration": "Exoneración de Gafete",
+    "Inscription Exoneration": "Exoneración de Inscripción",
     "Admin": "Administrador",
     "Signed Contract": "Contrato Firmado",
     "Change PDF Contract": "Cambiar Contrato PDF",
@@ -595,6 +600,7 @@
     "Amount to be exonerated": "Cantidad a exonerar",
     "Registered": "Inscritos",
     "Badge Waiver Note": "Nota de exoneración de gafete",
-    "Registration Waiver Note": "Nota de exoneración de Inscripción"
+    "Registration Waiver Note": "Nota de exoneración de Inscripción",
+    "The payment could not be made, the exonerated amount must be less than the monthly payment or greater than 0.": "El Pago no se pudo realizar la cantidad exonerada debe ser menor a la mensualidad o mayor a 0."
 
 }

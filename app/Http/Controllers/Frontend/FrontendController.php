@@ -171,6 +171,43 @@ class FrontendController extends Controller
                 // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
                 ->get('payments.*','atleta.*','cycles.*','class.*','categories.*','groups.*');
 
+                $paymentssubtotal = Payment::join('inscriptions', 'inscriptions.id', '=', 'payments.inscription_id')
+                ->join('atleta', 'atleta.id', '=', 'inscriptions.atleta_id')
+                ->join('cycles', 'cycles.id', '=', 'inscriptions.cycle_id')
+                ->join('class', 'class.id', '=', 'inscriptions.class_id')
+                ->join('categories', 'categories.id', '=', 'class.category_id')
+                ->join('groups', 'groups.id', '=', 'categories.group_id')
+                ->where('payments.inscription_id',$inscription->id)
+                ->whereNotBetween('payments.type', [3,6])
+                ->orderBy('payments.created_at','desc')
+                // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
+                ->get('payments.*','atleta.*','cycles.*','class.*','categories.*','groups.*');
+
+                $paymentsexonerations = Payment::join('inscriptions', 'inscriptions.id', '=', 'payments.inscription_id')
+                ->join('atleta', 'atleta.id', '=', 'inscriptions.atleta_id')
+                ->join('cycles', 'cycles.id', '=', 'inscriptions.cycle_id')
+                ->join('class', 'class.id', '=', 'inscriptions.class_id')
+                ->join('categories', 'categories.id', '=', 'class.category_id')
+                ->join('groups', 'groups.id', '=', 'categories.group_id')
+                ->where('payments.inscription_id',$inscription->id)
+                ->whereBetween('payments.type', [3,6])
+                ->orderBy('payments.created_at','desc')
+                // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
+                ->get('payments.*','atleta.*','cycles.*','class.*','categories.*','groups.*');
+
+                $subtotal = 0;
+                $exonerations = 0;
+                $total = 0;
+                foreach ($payments as $sumaPagos) {
+                    $total = $total + $sumaPagos->paid;
+                }
+                foreach ($paymentssubtotal as $sumaPagos) {
+                    $subtotal = $subtotal + $sumaPagos->paid;
+                }
+                foreach ($paymentsexonerations as $sumaPagos) {
+                    $exonerations = $exonerations + $sumaPagos->paid;
+                }
+
                 $total = 0;
                 foreach ($payments as $sumaPagos) {
                     $total = $total + $sumaPagos->paid;
@@ -202,13 +239,13 @@ class FrontendController extends Controller
 
                 if ( $verpdf == "Download" )
                 {
-                    $pdf = PDF::loadView('frontend.queries.pdfpayments',['atleta'=>$atleta,'idclass'=>$idclass,'inscription'=>$inscription,'class'=>$class,'payments'=>$payments,'assists'=>$assists,'total'=>$total,'path'=>$path,'config'=>$config,'imagen'=>$imagen,'currency'=>$currency]);
+                    $pdf = PDF::loadView('frontend.queries.pdfpayments',['atleta'=>$atleta,'idclass'=>$idclass,'inscription'=>$inscription,'class'=>$class,'payments'=>$payments,'exonerations'=>$exonerations,'assists'=>$assists,'total'=>$total,'subtotal'=>$subtotal,'path'=>$path,'config'=>$config,'imagen'=>$imagen,'currency'=>$currency]);
 
                     return $pdf->download ($inscription->inscription_number.$nompdf.'.pdf');
                 }
                 if ( $verpdf == "Browser" )
                 {
-                    $pdf = PDF::loadView('frontend.queries.pdfpayments',['atleta'=>$atleta,'idclass'=>$idclass,'inscription'=>$inscription,'class'=>$class,'payments'=>$payments,'assists'=>$assists,'total'=>$total,'path'=>$path,'config'=>$config,'imagen'=>$imagen,'currency'=>$currency]);
+                    $pdf = PDF::loadView('frontend.queries.pdfpayments',['atleta'=>$atleta,'idclass'=>$idclass,'inscription'=>$inscription,'class'=>$class,'payments'=>$payments,'exonerations'=>$exonerations,'assists'=>$assists,'total'=>$total,'subtotal'=>$subtotal,'path'=>$path,'config'=>$config,'imagen'=>$imagen,'currency'=>$currency]);
 
                     return $pdf->stream ($inscription->inscription_number.$nompdf.'.pdf');
                 }

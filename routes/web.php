@@ -184,6 +184,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('pdf-payments', 'Admin\PaymentController@pdf');
     Route::post('add-payment', 'Admin\PaymentController@addpayment');
     Route::get('pdf-payment', 'Admin\PaymentController@pdfpayment');
+    Route::put('delete-payment/{id}', [PaymentController::class, 'destroy']);
 
     //Instructor Classes
     Route::get('my-classes', [InstructorClassesController::class, 'index']);

@@ -83,7 +83,7 @@ class InscriptionAdminController extends Controller
         ->join('categories', 'categories.id', '=', 'class.category_id')
         ->join('groups', 'groups.id', '=', 'categories.group_id')
         ->where('payments.inscription_id',$id)
-        ->where('payments.type','!=',3)
+        ->whereNotBetween('payments.type', [3,6])
         ->orderBy('payments.created_at','desc')
         // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
         ->get('payments.*','atleta.*','cycles.*','class.*','categories.*','groups.*');
@@ -95,7 +95,7 @@ class InscriptionAdminController extends Controller
         ->join('categories', 'categories.id', '=', 'class.category_id')
         ->join('groups', 'groups.id', '=', 'categories.group_id')
         ->where('payments.inscription_id',$id)
-        ->where('payments.type','=',3)
+        ->whereBetween('payments.type', [3,6])
         ->orderBy('payments.created_at','desc')
         // ->get('payments.id','payments.inscription_id','payments.type','payments.paid','payments.created_at','payments.updated_at','inscriptions.class_id','inscriptions.cycle_id','inscriptions.atleta_id','inscriptions.inscription_number','atleta.cui_dpi','atleta.image','atleta.birth','atleta.gender','atleta.phone','atleta.whatsapp','atleta.email','cycles.name','cycles.start_date','cycles.end_date','class.cycle_id','class.category_id','class.schedule_id','class.instructor_id','cycle.start_date','cycle.end_date','cycle.inscription_payment','cycle.monthly_payment','cycle.badge','categories.group_id','categories.name','categories.age_from','categories.age_to','groups.name');
         ->get('payments.*','atleta.*','cycles.*','class.*','categories.*','groups.*');
@@ -271,8 +271,8 @@ class InscriptionAdminController extends Controller
                 $payment->inscription_id = $inscription->id;
 
                 if ($exonarate_inscription == 1) {
-                    $payment->type = 3;
-                    $payment->note = "Exoneracion de Incripción: ".$request->input('note_inscription');
+                    $payment->type = 5;
+                    $payment->note = $request->input('note_inscription');
                     $payment->paid = $exonerate_inscription_qty;
                 }else {
                     $payment->type = 0;
@@ -309,8 +309,8 @@ class InscriptionAdminController extends Controller
                 $payment->inscription_id = $inscription->id;
 
                 if ($exonarate_badge == 1) {
-                    $payment->type = 3;
-                    $payment->note = "Exoneracion de Gafete: ".$request->input('note_badge');
+                    $payment->type = 6;
+                    $payment->note = $request->input('note_badge');
                     $payment->paid = $exonerate_badge_qty;
                 }else {
                     $payment->type = 1;

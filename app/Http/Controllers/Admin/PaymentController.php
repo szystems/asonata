@@ -42,6 +42,14 @@ class PaymentController extends Controller
             $queryCycle=$request->input('fcycle');
             $queryGroup=$request->input('fgroup');
             $queryUser=$request->input('fuser');
+
+            if ($queryType == null) {
+                $queryType = "0,6";
+            }
+
+            $paymentType = str_split($queryType);
+            $typeFrom = $paymentType[0];
+            $typeTo = $paymentType[2];
             // $payments=Payment::all();
 
             if ($queryDesde != "" or $queryHasta != "") {
@@ -68,7 +76,7 @@ class PaymentController extends Controller
             ->join('groups', 'groups.id', '=', 'categories.group_id')
             ->join('users', 'users.id', '=', 'payments.user_id')
             ->whereBetween('payments.created_at', [$queryDesde, $queryHasta])
-            ->where('payments.type','LIKE',$queryType)
+            ->whereBetween('payments.type',[$typeFrom,$typeTo])
             ->where('inscriptions.inscription_number','LIKE',$queryIN)
             ->where('atleta.cui_dpi','LIKE',$queryCui)
             ->where('categories.id','LIKE',$queryCategory)
@@ -140,6 +148,14 @@ class PaymentController extends Controller
             $queryUser=$request->input('fuser');
             // $payments=Payment::all();
 
+            if ($queryType == null) {
+                $queryType = "0,6";
+            }
+
+            $paymentType = str_split($queryType);
+            $typeFrom = $paymentType[0];
+            $typeTo = $paymentType[2];
+
             if ($queryDesde != "" or $queryHasta != "") {
 
 
@@ -163,7 +179,7 @@ class PaymentController extends Controller
             ->join('groups', 'groups.id', '=', 'categories.group_id')
             ->join('users', 'users.id', '=', 'payments.user_id')
             ->whereBetween('payments.created_at', [$queryDesde, $queryHasta])
-            ->where('payments.type','LIKE',$queryType)
+            ->whereBetween('payments.type',[$typeFrom,$typeTo])
             ->where('inscriptions.inscription_number','LIKE',$queryIN)
             ->where('atleta.cui_dpi','LIKE',$queryCui)
             ->where('categories.id','LIKE',$queryCategory)
@@ -238,22 +254,85 @@ class PaymentController extends Controller
 
     public function addpayment(PaymentFormRequest $request)
     {
-        $payment = new Payment();
-        $payment->inscription_id =$request->input('inscription_id');
-        $payment->type = $request->input('type');
-        $payment->paid = $request->input('paid');
-        $payment->note = $request->input('note');
-        $payment->user_id = $request->input('user_id');
-        $payment->save();
+        $monthly_payment = $request->input('monthly_payment');
+        $exonarate_monthly = $request->input('exonarate_monthly') == TRUE ? '1':'0';
+        $amount_exonerated = $request->input('amount_exonerated');
 
-        $inscription = Inscription::find($request->input('inscription_id'));
-        $atleta = Atleta::find($inscription->atleta_id);
-        $idclass = $inscription->class_id;
+        if ($exonarate_monthly == 1) {
+            if ($amount_exonerated > 0 && $amount_exonerated <= $monthly_payment) {
+                if ($amount_exonerated == $monthly_payment) {
 
-        Mail::to($atleta->email)->send(new PaymentMail($inscription));
-        Mail::to($atleta->responsible_email)->send(new PaymentMail($inscription));
+                    $payment = new Payment();
+                    $payment->inscription_id =$request->input('inscription_id');
+                    $payment->type = 3;
+                    $payment->paid = $amount_exonerated;
+                    $payment->note = $request->input('note');
+                    $payment->user_id = $request->input('user_id');
+                    $payment->save();
 
-        return redirect('inscriptions')->with('status', __('Payment Added Successfully'));
+                    $inscription = Inscription::find($request->input('inscription_id'));
+                    $atleta = Atleta::find($inscription->atleta_id);
+                    $idclass = $inscription->class_id;
+
+                    Mail::to($atleta->email)->send(new PaymentMail($inscription));
+                    Mail::to($atleta->responsible_email)->send(new PaymentMail($inscription));
+
+                    return redirect('show-inscription/'.$inscription->id)->with('status', __('Exoneration added successfully'));
+
+                } else {
+
+                    $payment = new Payment();
+                    $payment->inscription_id =$request->input('inscription_id');
+                    $payment->type = 4;
+                    $payment->paid = $amount_exonerated;
+                    $payment->note = $request->input('note');
+                    $payment->user_id = $request->input('user_id');
+                    $payment->save();
+
+                    $payment_cash = $monthly_payment - $amount_exonerated;
+
+                    $payment = new Payment();
+                    $payment->inscription_id =$request->input('inscription_id');
+                    $payment->type = 2;
+                    $payment->paid = $payment_cash;
+                    $payment->note = $request->input('note');
+                    $payment->user_id = $request->input('user_id');
+                    $payment->save();
+
+                    $inscription = Inscription::find($request->input('inscription_id'));
+                    $atleta = Atleta::find($inscription->atleta_id);
+                    $idclass = $inscription->class_id;
+
+                    Mail::to($atleta->email)->send(new PaymentMail($inscription));
+                    Mail::to($atleta->responsible_email)->send(new PaymentMail($inscription));
+
+                    return redirect('show-inscription/'.$inscription->id)->with('status', __('Payment and exoneration added successfully'));
+                }
+            }else
+            {
+                return redirect('show-inscription/'.$inscription->id)->with('status', __('The payment could not be made, the exonerated amount must be less than the monthly payment or greater than 0.'));
+            }
+        }
+
+        if ($exonarate_monthly == 0) {
+
+            $payment = new Payment();
+            $payment->inscription_id =$request->input('inscription_id');
+            $payment->type = 2;
+            $payment->paid = $monthly_payment;
+            $payment->note = $request->input('note');
+            $payment->user_id = $request->input('user_id');
+            $payment->save();
+
+            $inscription = Inscription::find($request->input('inscription_id'));
+            $atleta = Atleta::find($inscription->atleta_id);
+            $idclass = $inscription->class_id;
+
+            Mail::to($atleta->email)->send(new PaymentMail($inscription));
+            Mail::to($atleta->responsible_email)->send(new PaymentMail($inscription));
+
+            return redirect('show-inscription/'.$inscription->id)->with('status', __('Payment Added Successfully'));
+        }
     }
 
     public function pdfpayment(Request $request)
@@ -302,5 +381,134 @@ class PaymentController extends Controller
                 return $pdf->stream ('Reporte Pago: '.$nompdf.'.pdf');
             }
         }
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $payment = Payment::find($id);
+        $inscription = Inscription::find($request->input('inscription_id'));
+        $paymentType = $payment->type;
+        // eliminar pagos de inscripcion
+        if ($paymentType == 0 || $paymentType == 5) {
+            if ($paymentType == 0) {
+                $previusPayment = Payment::where('id', '<', $payment->id)->orderBy('id', 'desc')->first();
+                if ($previusPayment) {
+                    if ($previusPayment->type == 5 and $inscription->id == $previusPayment->inscription_id) {
+                        $previusPayment->delete();
+                        $payment->delete();
+                        $inscription->inscription_payment = 0;
+                        $inscription->update();
+
+                    }else{
+                        $payment->delete();
+                        $inscription->inscription_payment = 0;
+                        $inscription->update();
+                    }
+                }else{
+                    $payment->delete();
+                    $inscription->inscription_payment = 0;
+                    $inscription->update();
+                }
+            }
+            if ($paymentType == 5) {
+                $nextPayment = Payment::where('id', '>', $payment->id)->orderBy('id', 'asc')->first();
+                if ($nextPayment) {
+                    if ($nextPayment->type == 0 and $inscription->id == $nextPayment->inscription_id) {
+                        $nextPayment->delete();
+                        $payment->delete();
+                        $inscription->inscription_payment = 0;
+                        $inscription->update();
+
+                    }else{
+                        $payment->delete();
+                        $inscription->inscription_payment = 0;
+                        $inscription->update();
+                    }
+                }else{
+                    $payment->delete();
+                    $inscription->inscription_payment = 0;
+                    $inscription->update();
+                }
+
+            }
+        }
+        //eliminar pagos de gafete
+        if ($paymentType == 1 || $paymentType == 6) {
+            if ($paymentType == 1) {
+                $previusPayment = Payment::where('id', '<', $payment->id)->orderBy('id', 'desc')->first();
+                if ($previusPayment) {
+                    if ($previusPayment->type == 6 and $inscription->id == $previusPayment->inscription_id) {
+                        $previusPayment->delete();
+                        $payment->delete();
+                        $inscription->badge_payment = 0;
+                        $inscription->update();
+
+                    }else{
+                        $payment->delete();
+                        $inscription->badge_payment = 0;
+                        $inscription->update();
+                    }
+                }else{
+                    $payment->delete();
+                    $inscription->badge_payment = 0;
+                    $inscription->update();
+                }
+            }
+            if ($paymentType == 6) {
+                $nextPayment = Payment::where('id', '>', $payment->id)->orderBy('id', 'asc')->first();
+                if ($nextPayment) {
+                    if ($nextPayment->type == 1 and $inscription->id == $nextPayment->inscription_id) {
+                        $nextPayment->delete();
+                        $payment->delete();
+                        $inscription->badge_payment = 0;
+                        $inscription->update();
+
+                    }else{
+                        $payment->delete();
+                        $inscription->badge_payment = 0;
+                        $inscription->update();
+                    }
+                }else{
+                    $payment->delete();
+                    $inscription->badge_payment = 0;
+                    $inscription->update();
+                }
+            }
+        }
+        //eliminar pagos de mensualidad
+        if ($paymentType == 2 || $paymentType == 3 || $paymentType == 4) {
+            if ($paymentType == 3) {
+                $payment->delete();
+            }
+            if ($paymentType == 2) {
+                $previusPayment = Payment::where('id', '<', $payment->id)->orderBy('id', 'desc')->first();
+                if ($previusPayment)
+                {
+                    if ($previusPayment->type == 4) {
+                        $previusPayment->delete();
+                        $payment->delete();
+                    }else{
+                        $payment->delete();
+                    }
+                }else{
+                    $payment->delete();
+                }
+            }
+
+            if ($paymentType == 4) {
+                $nextPayment = Payment::where('id', '>', $payment->id)->orderBy('id', 'asc')->first();
+                if ($nextPayment) {
+                    if ($nextPayment->type == 2) {
+                        $nextPayment->delete();
+                        $payment->delete();
+                    }else{
+                        $payment->delete();
+                    }
+                } else {
+                    $payment->delete();
+                }
+            }
+        }
+        return redirect('show-inscription/'.$inscription->id)->with('status',__('Payment Deleted Successfully'));
     }
 }
