@@ -49,7 +49,7 @@
                                 <table class="table table-sm align-products-center mb-0 table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Payment') }} #</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">#{{ __('Payment') }} / #Recibo</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Date') }}</th>
                                             <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Athlete') }}</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Inscription Number') }}</th>
@@ -71,7 +71,7 @@
                                             }
                                         @endphp
                                         <tr>
-                                            <td class="align-middle text-center text-sm"><strong>{{ $payment->id }}</strong></td>
+                                            <td class="align-middle text-center text-sm"><strong>{{ $payment->id }} @if ($payment->no_recibo != null) /  {{ $payment->no_recibo }} @endif</strong></td>
                                             <td class="align-middle text-center text-sm"><strong>{{ $payment->created_at->format('d-m-Y') }}</strong></td>
                                             <td>
                                                 <div class="d-flex px-2 py-1">

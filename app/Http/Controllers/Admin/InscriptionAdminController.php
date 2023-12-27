@@ -244,6 +244,11 @@ class InscriptionAdminController extends Controller
 
         $atleta = Atleta::find($inscription->atleta_id);
 
+        $noReciboInscription = $request->input('no_recibo_inscription');
+        $noReciboInscriptionExoneration = $request->input('no_recibo_inscription_exoneration');
+        $noReciboBadge = $request->input('no_recibo_badge');
+        $noReciboBadgeExoneration = $request->input('no_recibo_badge_exoneration');
+
         //obtener los datos de la clase
         $class=DB::table('class as cl')
         ->join('cycles as c','cl.cycle_id','=','c.id')
@@ -271,10 +276,12 @@ class InscriptionAdminController extends Controller
                 $payment->inscription_id = $inscription->id;
 
                 if ($exonarate_inscription == 1) {
+                    $payment->no_recibo = $noReciboInscriptionExoneration;
                     $payment->type = 5;
                     $payment->note = $request->input('note_inscription');
                     $payment->paid = $exonerate_inscription_qty;
                 }else {
+                    $payment->no_recibo = $noReciboInscription;
                     $payment->type = 0;
                     $payment->paid = $class->CLinscription_payment;
                 }
@@ -287,6 +294,7 @@ class InscriptionAdminController extends Controller
                         $resto_inscripcion = $class->CLinscription_payment - $exonerate_inscription_qty;
 
                         $payment = new Payment();
+                        $payment->no_recibo = $noReciboInscriptionExoneration;
                         $payment->inscription_id = $inscription->id;
                         $payment->type = 0;
                         $payment->paid = $resto_inscripcion;
@@ -306,13 +314,16 @@ class InscriptionAdminController extends Controller
                 $exonerate_badge_qty = $request->input('exoneration_badge_qty');
 
                 $payment = new Payment();
+
                 $payment->inscription_id = $inscription->id;
 
                 if ($exonarate_badge == 1) {
+                    $payment->no_recibo = $noReciboBadgeExoneration;
                     $payment->type = 6;
                     $payment->note = $request->input('note_badge');
                     $payment->paid = $exonerate_badge_qty;
                 }else {
+                    $payment->no_recibo = $noReciboBadge;
                     $payment->type = 1;
                     $payment->paid = $class->CLbadge;
                 }
@@ -325,6 +336,7 @@ class InscriptionAdminController extends Controller
                         $resto_gafete = $class->CLbadge - $exonerate_badge_qty;
 
                         $payment = new Payment();
+                        $payment->no_recibo = $noReciboBadgeExoneration;
                         $payment->inscription_id = $inscription->id;
                         $payment->type = 1;
                         $payment->paid = $resto_gafete;

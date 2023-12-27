@@ -285,7 +285,7 @@
                             <table class="table table-cart table-mobile">
                                 <thead>
                                     <tr>
-                                        <th>{{ __('Payment') }} #</th>
+                                        <th>#{{ __('Payment') }} / #Recibo</th>
                                         <th>{{ __('Date') }}</th>
                                         <th>{{ __('Payment Type') }}</th>
                                         <th>{{ __('Note') }}</th>
@@ -305,7 +305,7 @@
                                         }
                                     @endphp
                                         <tr>
-                                            <td class="price-col">{{ $payment->id }}</td>
+                                            <td class="price-col">{{ $payment->id }} @if ($payment->no_recibo != null) /  {{ $payment->no_recibo }} @endif</td>
                                             <td class="price-col">{{ $payment->created_at->format('d-m-Y') }}</td>
                                             <td class="price-col">
                                                 {{ $payment->type == '0' ? __('Inscription')

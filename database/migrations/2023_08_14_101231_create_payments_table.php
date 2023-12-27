@@ -15,6 +15,7 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->string('no_recibo');
             $table->integer('inscription_id');
             $table->tinyInteger('type');
             $table->decimal('paid', $precision = 11, $scale = 2);

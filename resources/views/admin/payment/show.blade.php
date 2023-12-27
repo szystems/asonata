@@ -35,8 +35,8 @@
                     <div class="row">
 
                         <div class="col-md-2 mb-3">
-                            <label for=""><strong>{{ __('Payment') }} #</strong></label>
-                            <p>{{ $payment->id }}</p>
+                            <label for=""><strong>#{{ __('Payment') }} / #Recibo</strong></label>
+                            <p>{{ $payment->id }} @if ($payment->no_recibo != null) /  {{ $payment->no_recibo }} @endif</p>
                         </div>
 
                         <div class="col-md-2 mb-3">

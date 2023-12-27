@@ -24,6 +24,10 @@
 
                         </div>
                     </div>
+                    <div class="col-md-5 mb-3">
+                        <label for=""><b><u>{{ __('No. Recibo') }}</u></b></label>
+                        <input type="text" class="form-control border px-2" name="no_recibo">
+                    </div>
                     @if (Auth::user()->role_as == 1)
                     <div class="col-md-5 mb-3">
                         <div class="form-check form-switch">
@@ -39,6 +43,10 @@
                                 <input type="number" class="form-control" id="amount_exonerated" aria-label="Amount (to the nearest dollar)" name="amount_exonerated" value="{{ number_format($class->CLmonthly_payment,2, '.', ',') }}" required>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <label for=""><b><u>{{ __('No. Recibo') }}</u></b></label>
+                        <input type="text" class="form-control border px-2" name="no_recibo_exoneration">
                     </div>
                     @endif
                     {{-- <div class="col-md-5 mb-3">

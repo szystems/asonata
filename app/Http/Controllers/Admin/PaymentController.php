@@ -257,12 +257,15 @@ class PaymentController extends Controller
         $monthly_payment = $request->input('monthly_payment');
         $exonarate_monthly = $request->input('exonarate_monthly') == TRUE ? '1':'0';
         $amount_exonerated = $request->input('amount_exonerated');
+        $noRecibo = $request->input('no_recibo');
+        $noReciboExoneration = $request->input('no_recibo_exoneration');
 
         if ($exonarate_monthly == 1) {
             if ($amount_exonerated > 0 && $amount_exonerated <= $monthly_payment) {
                 if ($amount_exonerated == $monthly_payment) {
 
                     $payment = new Payment();
+                    $payment->no_recibo = $noReciboExoneration;
                     $payment->inscription_id =$request->input('inscription_id');
                     $payment->type = 3;
                     $payment->paid = $amount_exonerated;
@@ -282,6 +285,7 @@ class PaymentController extends Controller
                 } else {
 
                     $payment = new Payment();
+                    $payment->no_recibo = $noReciboExoneration;
                     $payment->inscription_id =$request->input('inscription_id');
                     $payment->type = 4;
                     $payment->paid = $amount_exonerated;
@@ -292,6 +296,7 @@ class PaymentController extends Controller
                     $payment_cash = $monthly_payment - $amount_exonerated;
 
                     $payment = new Payment();
+                    $payment->no_recibo = $noRecibo;
                     $payment->inscription_id =$request->input('inscription_id');
                     $payment->type = 2;
                     $payment->paid = $payment_cash;
@@ -317,6 +322,7 @@ class PaymentController extends Controller
         if ($exonarate_monthly == 0) {
 
             $payment = new Payment();
+            $payment->no_recibo = $noRecibo;
             $payment->inscription_id =$request->input('inscription_id');
             $payment->type = 2;
             $payment->paid = $monthly_payment;

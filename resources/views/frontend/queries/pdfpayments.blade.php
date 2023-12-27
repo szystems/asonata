@@ -230,7 +230,7 @@
             </tr>
             <tr>
                 <th>
-                    <font size="1">{{ __('Payment') }} #</font>
+                    <font size="1">#{{ __('Payment') }} / #Recibo</font>
                 </th>
                 <th>
                     <font size="1">{{ __('Date') }}</font>
@@ -255,7 +255,7 @@
                 <tr>
                     <td align="center">
                         <font size="1">
-                            <b>{{ $payment->id }}</b>
+                            <b>{{ $payment->id }} @if ($payment->no_recibo != null) /  {{ $payment->no_recibo }} @endif</b>
                         </font>
                     </td>
                     <td align="center">

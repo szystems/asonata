@@ -17,6 +17,7 @@ class Payment extends Model
     public $timestamps=true;
 
     protected $fillable = [
+        'no_recibo',
         'name',
         'inscription_id',
         'type',

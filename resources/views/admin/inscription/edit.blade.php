@@ -92,6 +92,9 @@
                                         <option value="1">{{ __('Paid') }}</option>
                                     @endif
                                 </select>
+                                <br>
+                                <label for="">No. Recibo</label>
+                                <input type="text" class="form-control border px-2" name="no_recibo_inscription">
                                 <input type="hidden" value="{{ $class->id }}">
                                 <input type="hidden" value="{{ $class->CLinscription_payment }}">
                                 @if ($inscription->inscription_status ==1)
@@ -110,6 +113,9 @@
 
                                             </div>
                                         </div>
+                                        <label for="">No. Recibo</label>
+                                        <input type="text" class="form-control border px-2" name="no_recibo_inscription_exoneration">
+                                        <br>
                                         <div class="input-daterange input-group" >
                                             <label for="">{{ __('Registration Waiver Note') }}</label>
                                             <div class="input-group input-group-dynamic mb-4">
@@ -131,6 +137,9 @@
                                         <option value="1">{{ __('Paid') }}</option>
                                     @endif
                                 </select>
+                                <br>
+                                <label for="">No. Recibo</label>
+                                <input type="text" class="form-control border px-2" name="no_recibo_badge">
                                 <input type="hidden" value="{{ $class->CLbadge }}">
                                 @if ($inscription->inscription_status ==1)
                                     <br>
@@ -147,6 +156,9 @@
                                                 <input type="number" step=".01" min="0.01" max="{{ $class->CLbadge }}" class="form-control" id="exoneration_badge_qty" aria-label="Amount (to the nearest dollar)" name="exoneration_badge_qty" value="{{ $class->CLbadge }}" required>
                                             </div>
                                         </div>
+                                        <label for="">No. Recibo</label>
+                                        <input type="text" class="form-control border px-2" name="no_recibo_badge_exoneration">
+                                        <br>
                                         <div class="input-daterange input-group" >
                                             <label for="">{{ __('Badge Waiver Note') }}</label>
                                             <div class="input-group input-group-dynamic mb-4">
