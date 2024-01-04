@@ -537,7 +537,9 @@ class PaymentController extends Controller
         // Crear una instancia de la clase de exportación con el request
         $export = new PaymentsExport($request);
 
+        $dateExport = date('m-d-Y g:ia');
+
         // Descargar el archivo excel con el nombre pagos.xlsx
-        return Excel::download($export, 'pagos.xlsx');
+        return Excel::download($export, 'Reporte_pagos_'.$dateExport.'.xlsx');
     }
 }

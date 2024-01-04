@@ -127,7 +127,6 @@
                         <br>
                         <h2 class="title">PERSONAL ADMINISTRATIVO </h2>
                         <ul>
-                            <li>-Keila Morales </li>
                             <li>-Glenda Tahay   </li>
                             <li>-Paola Baquiax   </li>
                             <li>-Patricia Carranza  </li>
