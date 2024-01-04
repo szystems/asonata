@@ -74,9 +74,17 @@
                 <input type="hidden" name="inscription_id" value="{{ $inscription->id }}">
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal"><i class="material-icons">close</i> {{ __('Cancel') }}</button>
-                <button type="submit" class="btn btn-success"><i class="material-icons">payments</i> {{ __('Make Payment') }}</button>
+                <button type="submit" class="btn btn-success" id="id_del_boton_de_pago"><i class="material-icons">payments</i> {{ __('Make Payment') }}</button>
             </div>
         </form>
       </div>
     </div>
   </div>
+
+  <!-- Agrega el siguiente código a tu vista para cerrar el modal automáticamente -->
+<script>
+  document.getElementById("id_del_boton_de_pago").addEventListener("click", function(){
+    $('#paymentModal-' + '{{ $inscription->id }}').modal('hide');
+    alert("Presione aceptar y espere a que se realice el pago.");
+  });
+</script>
