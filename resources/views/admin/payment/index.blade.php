@@ -27,8 +27,27 @@
                                 <input type="hidden" name="fuser" value="{{ $queryUser  }}">
 
 
-                                <button type="submit" class="btn btn-danger float-end">
+                                <button type="submit" class="btn btn-danger float-end m-1">
                                     <i class="material-icons opacity-10">picture_as_pdf</i> PDF
+                                </button>
+                            </form>
+                        </div>
+                        <div>
+                            <form action="{{ url('export') }}" method="GET" target="_blank">
+
+                                <input type="hidden" name="fdesde" value="{{ $desde }}">
+                                <input type="hidden" name="fhasta" value="{{ $hasta  }}">
+                                <input type="hidden" name="fcui" value="{{ $queryCui  }}">
+                                <input type="hidden" name="fin" value="{{ $queryIN  }}">
+                                <input type="hidden" name="fcycle" value="{{ $queryCycle  }}">
+                                <input type="hidden" name="fcategory" value="{{ $queryCategory  }}">
+                                <input type="hidden" name="fgroup" value="{{ $queryGroup  }}">
+                                <input type="hidden" name="ftype" value="{{ $queryType  }}">
+                                <input type="hidden" name="fuser" value="{{ $queryUser  }}">
+
+
+                                <button type="submit" class="btn btn-success float-end m-1">
+                                    <i class="material-icons opacity-10">description</i> Excel
                                 </button>
                             </form>
                         </div>

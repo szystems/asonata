@@ -139,7 +139,7 @@
                                         <label>{{ __('Gender') }} </label>
                                         <select class="form-control" name="gender">
                                             <option value="{{ $atleta->gender == '0' ? '0' : ($atleta->gender == '1' ? '1' : "") }}">
-                                                {{ $atleta->gender == '0' ? _('Male') : ($atleta->gender == '1' ? __('Female') :  "") }}
+                                                {{ $atleta->gender == '0' ? __('Male') : ($atleta->gender == '1' ? __('Female') :  "") }}
                                             </option>
                                             <option value="0">{{ __('Male') }}</option>
                                             <option value="1">{{ __('Female') }}</option>
@@ -557,6 +557,18 @@
                                             <span class="help-block opacity-7">
                                                     <strong>
                                                         <font color="red">{{ $errors->first('responsible_image') }}</font>
+                                                    </strong>
+                                            </span>
+                                        @endif
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-12">
+                                        <label for="">{{ __('Signed Contract') }}</label>
+                                        <input type="file" name="signed_contract" class="form-control" value="{{ old('signed_contract') }}" required>
+                                        @if ($errors->has('signed_contract'))
+                                            <span class="help-block opacity-7">
+                                                    <strong>
+                                                        <font color="red">{{ $errors->first('signed_contract') }}</font>
                                                     </strong>
                                             </span>
                                         @endif

@@ -22,6 +22,9 @@ use PDF;
 use DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PaymentMail;
+use App\Exports\PaymentsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class PaymentController extends Controller
 {
@@ -516,5 +519,25 @@ class PaymentController extends Controller
             }
         }
         return redirect('show-inscription/'.$inscription->id)->with('status',__('Payment Deleted Successfully'));
+    }
+
+    public function export(Request $request)
+    {
+        // Obtener las fechas del request
+        $fdesde = $request->input('fdesde');
+        $fhasta = $request->input('fhasta');
+        $fin = $request->input('fin');
+        $ftype = $request->input('ftype');
+        $fcui = $request->input('fcui');
+        $fcategory = $request->input('fcategory');
+        $fcycle = $request->input('fcycle');
+        $fgroup = $request->input('fgroup');
+        $fuser = $request->input('fuser');
+
+        // Crear una instancia de la clase de exportación con el request
+        $export = new PaymentsExport($request);
+
+        // Descargar el archivo excel con el nombre pagos.xlsx
+        return Excel::download($export, 'pagos.xlsx');
     }
 }

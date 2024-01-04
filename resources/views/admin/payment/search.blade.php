@@ -93,7 +93,7 @@
                             {{-- </select> --}}
                         </div>
                         <div class="col-md-2 mb-3">
-                            <label for="">{{ __('Payment Type') }} {{ $queryType }}</label>
+                            <label for="">{{ __('Payment Type') }} </label>
                             <select class="form-select px-2" aria-label="Default select example" name="ftype">
                                     @if ($queryType != null)
                                         <option selected value="{{ $queryType }}">

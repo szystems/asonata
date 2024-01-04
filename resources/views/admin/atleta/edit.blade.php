@@ -49,7 +49,7 @@
                                 <label for="">{{ __('Gender') }}</label>
                                 <select class="form-select px-2" aria-label="Default select example" name="gender">
                                     <option value="{{ $atleta->gender == '0' ? '0' : ($atleta->gender == '1' ? '1' : "") }}">
-                                        {{ $atleta->gender == '0' ? _('Male') : ($atleta->gender == '1' ? __('Female') :  "") }}
+                                        {{ $atleta->gender == '0' ? __('Male') : ($atleta->gender == '1' ? __('Female') :  "") }}
                                     </option>
                                     <option value="0">{{ __('Male') }}</option>
                                     <option value="1">{{ __('Female') }}</option>

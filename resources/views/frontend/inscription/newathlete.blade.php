@@ -136,7 +136,7 @@
                                         <select class="form-control" name="gender">
                                             @if( old('gender') != null)
                                                 <option value="{{ old('gender') == '0' ? '0' : (old('gender') == '1' ? '1' : "") }}">
-                                                    {{ old('gender') == '0' ? _('Male') : (old('gender') == '1' ? __('Female') :  "") }}
+                                                    {{ old('gender') == '0' ? __('Male') : (old('gender') == '1' ? __('Female') :  "") }}
                                                 </option>
                                             @endif
                                             <option value="0">{{ __('Male') }}</option>
