@@ -8,7 +8,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ url('add-payment') }}" method="POST">
+        <form action="{{ url('add-payment') }}" method="POST" id="id_del_formulario">
             @csrf
             <div class="modal-body" align="center">
                 {{ __('Inscription') }}: <b>{{ $inscription->inscription_number }}</b>
@@ -84,7 +84,9 @@
   <!-- Agrega el siguiente código a tu vista para cerrar el modal automáticamente -->
 <script>
   document.getElementById("id_del_boton_de_pago").addEventListener("click", function(){
-    $('#paymentModal-' + '{{ $inscription->id }}').modal('hide');
-    alert("Presione aceptar y espere a que se realice el pago.");
-  });
+  $('#paymentModal-' + '{{ $inscription->id }}').modal('hide');
+  alert("Presione aceptar y espere a que se realice el pago.");
+  document.getElementById("id_del_boton_de_pago").setAttribute("disabled", true);
+  document.getElementById("id_del_formulario").submit();
+});
 </script>
