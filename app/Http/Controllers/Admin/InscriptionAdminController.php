@@ -41,7 +41,7 @@ class InscriptionAdminController extends Controller
             ->where('inscription_number','LIKE','%'.$queryInscription.'%')
             ->where('inscription_status','LIKE','%'.$queryStatus.'%')
             ->orderBy('created_at','desc')
-            ->paginate(25);
+            ->paginate(50);
 
             $config = Config::first();
 
