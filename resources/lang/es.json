@@ -601,6 +601,8 @@
     "Registered": "Inscritos",
     "Badge Waiver Note": "Nota de exoneración de gafete",
     "Registration Waiver Note": "Nota de exoneración de Inscripción",
-    "The payment could not be made, the exonerated amount must be less than the monthly payment or greater than 0.": "El Pago no se pudo realizar la cantidad exonerada debe ser menor a la mensualidad o mayor a 0."
+    "The payment could not be made, the exonerated amount must be less than the monthly payment or greater than 0.": "El Pago no se pudo realizar la cantidad exonerada debe ser menor a la mensualidad o mayor a 0.",
+    "Delete old inscriptions": "Borrar inscripciones antiguas",
+    "Old inscriptions deleted": "Inscripciones antiguas borradas"
 
 }

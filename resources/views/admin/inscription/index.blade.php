@@ -25,6 +25,16 @@
 
                         </div>
                         @include('admin.inscription.search')
+                        @if (Auth::user()->role_as == 1)
+                            <div class="col-md-12 mb-3">
+                                <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#deleteOldInscriptionsModal">
+                                    <i class="material-icons">delete</i> {{ __('Delete old inscriptions') }}
+                                </button>
+                            </div>
+                            @include('admin.inscription.deleteoldinscriptionsmodal')
+                        @endif
+
+
                         <div class="row">
                             <div class="table-responsive">
                                 <table class="table table-sm align-products-center mb-0 table-striped table-bordered">

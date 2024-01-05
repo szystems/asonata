@@ -177,6 +177,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('update-inscription/{id}', [InscriptionAdminController::class, 'updateinscription']);
     Route::get('delete-inscription/{id}', [InscriptionAdminController::class, 'destroyinscription']);
     Route::put('update-class_inscription', [InscriptionAdminController::class, 'updateclassinscription']);
+    Route::get('delete-old_inscriptions', [InscriptionAdminController::class, 'deleteoldinscriptions']);
 
     //Admin Payments
     Route::get('index_payments', [PaymentController::class, 'index']);

@@ -25,6 +25,7 @@ use DateTime;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\InscriptionMail;
 use App\Mail\InscriptionUpdateMail;
+use Carbon\Carbon;
 
 class InscriptionAdminController extends Controller
 {
@@ -618,6 +619,20 @@ class InscriptionAdminController extends Controller
         $inscription->update();
 
         return redirect('inscriptions')->with('status', __('Inscription Updated Successfully'));
+    }
+
+    public function deleteoldinscriptions()
+    {
+        DB::table('inscriptions')
+        ->where('inscription_status', 0)
+        ->where('updated_at', '<', Carbon::now()->subDays(10))
+        ->delete();
+
+        DB::table('inscriptions')
+        ->where('inscription_status', 2)
+        ->where('updated_at', '<', Carbon::now()->subDays(10))
+        ->delete();
+        return redirect('inscriptions')->with('status',__('Old inscriptions deleted'));
     }
 
 
