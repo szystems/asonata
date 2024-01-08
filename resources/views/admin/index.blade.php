@@ -301,7 +301,7 @@
             <div class="row mb-12">
 
                 {{-- Payment Alert --}}
-                <div class="col-lg-4 col-md-12 mb-md-0 mb-4">
+                <div class="col-lg-6 col-md-12 mb-md-0 mb-4">
                     <div class="card">
                         <div class="card-header pb-0">
                             <div class="row">
@@ -385,7 +385,7 @@
                 </div>
 
                 {{-- Payment Alert --}}
-                <div class="col-lg-4 col-md-12 mb-md-0 mb-4">
+                <div class="col-lg-6 col-md-12 mb-md-0 mb-4">
                     <div class="card">
                         <div class="card-header pb-0">
                             <div class="row">
@@ -439,7 +439,7 @@
                                                 ->get();
                                                 $cuotasPendientes = $cuotas - $cuotasPagadas->count();
                                             @endphp
-                                            @if ($cuotasPendientes != 0)
+                                            @if ($cuotasPendientes > 0)
                                                 @php
                                                     $hoy = date("Y-m-d", strtotime(now()->toDateString()));
                                                     $created_at = date("Y-m-d", strtotime($inscription->created_at));
@@ -452,7 +452,7 @@
                                                         <td>
                                                             <div class="d-flex px-2 py-1">
                                                                 <div class="d-flex flex-column justify-content-center">
-                                                                    <h6 class="mb-0 text-sm"><a href="{{ url('show-inscription/'.$inscription->id) }}">{{ $inscription->inscription_number }}</a></h6>
+                                                                    <h6 class="mb-0 text-sm"><a href="{{ url('show-inscription/'.$inscription->id) }}">{{ $inscription->inscription_number }}</a> {{ $cuotasPendientes }}</h6>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -515,7 +515,7 @@
                 </div>
 
                 {{-- Cycle Assists Alert --}}
-                <div class="col-lg-4 col-md-12 mb-md-0 mb-4">
+                <div class="col-lg-6 col-md-12 mb-md-0 mb-4">
                     <div class="card">
                         <div class="card-header pb-0">
                             <div class="row">
