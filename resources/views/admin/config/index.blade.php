@@ -35,9 +35,10 @@
                         @endif
                      @endforeach
                     <!-- fin .flash-message -->
-                    <form action="{{ url('update-config')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('update-config') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+                        <input type="hidden" name="_method" value="PUT">
                         <div class="row">
 
                             <div class="col-md-3 mb-3">
@@ -59,6 +60,58 @@
                                     <span class="help-block opacity-7">
                                             <strong>
                                                 <font color="red">{{ $errors->first('email') }}</font>
+                                            </strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="">Facebook Link</label>
+                                <div class="input-group input-group-dynamic mb-4">
+                                    <input type="text" name="fb_link" class="form-control" placeholder="Link de pagina de Facebook" aria-describedby="basic-addon1" value="{{ $config->fb_link }}">
+                                </div>
+                                @if ($errors->has('fb_link'))
+                                    <span class="help-block opacity-7">
+                                            <strong>
+                                                <font color="red">{{ $errors->first('fb_link') }}</font>
+                                            </strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="">Instagram Link</label>
+                                <div class="input-group input-group-dynamic mb-4">
+                                    <input type="text" name="inst_link" class="form-control" placeholder="Link de pagina de Instagram" aria-describedby="basic-addon1" value="{{ $config->inst_link }}">
+                                </div>
+                                @if ($errors->has('inst_link'))
+                                    <span class="help-block opacity-7">
+                                            <strong>
+                                                <font color="red">{{ $errors->first('inst_link') }}</font>
+                                            </strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="">Youtube Link</label>
+                                <div class="input-group input-group-dynamic mb-4">
+                                    <input type="text" name="yt_link" class="form-control" placeholder="Link del canal de Youtube" aria-describedby="basic-addon1" value="{{ $config->yt_link }}">
+                                </div>
+                                @if ($errors->has('yt_link'))
+                                    <span class="help-block opacity-7">
+                                            <strong>
+                                                <font color="red">{{ $errors->first('yt_link') }}</font>
+                                            </strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="">Numero de Whatsapp</label>
+                                <div class="input-group input-group-dynamic mb-4">
+                                    <input type="number" name="wapp_link" min="0" step="1" class="form-control" placeholder="# de Whatsapp" aria-describedby="basic-addon1" value="{{ $config->wapp_link }}" oninput="this.value = this.value.replace(/\\./g, '')">
+                                </div>
+                                @if ($errors->has('wapp_link'))
+                                    <span class="help-block opacity-7">
+                                            <strong>
+                                                <font color="red">{{ $errors->first('wapp_link') }}</font>
                                             </strong>
                                     </span>
                                 @endif

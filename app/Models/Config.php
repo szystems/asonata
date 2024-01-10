@@ -22,6 +22,10 @@ class Config extends Model
         'email',
         'contract',
         'registration_process',
-        'payments_description'
+        'payments_description',
+        'fb_link',
+        'inst_link',
+        'yt_link',
+        'wapp_link',
     ];
 }

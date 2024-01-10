@@ -4,15 +4,19 @@
             <div class="row">
                 <div class="col-sm-6 col-lg-3">
                     <div class="widget widget-about">
-                        <img src="{{ asset('fronttemplate/assets/images/logos/logo.jpg') }}" class="footer-logo" alt="Footer Logo" width="105" height="25">
+                        <img src="{{ asset('assets/uploads/logos/'.$config->logo) }}" class="footer-logo" alt="Footer Logo" width="105" height="25">
                         <p>Asociación Deportiva Departamental de Quetzaltenango de Natación, Clavados, Polo Acuático, Nado Sincronizado y Aguas Abiertas. </p>
 
                         <div class="social-icons">
-                            <a href="https://www.facebook.com/AsonataXela" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                            {{-- <a href="" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a> --}}
-                            <a href="https://www.instagram.com/asonatacionxela/" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                            <a href="https://www.youtube.com/@AsonataXela1950" class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
-                            {{-- <a href="" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a> --}}
+                            @if ($config->fb_link != null)
+                                <a href="{{ $config->fb_link }}" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                            @endif
+                            @if ($config->inst_link != null)
+                                <a href="{{ $config->inst_link }}" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                            @endif
+                            @if ($config->yt_link != null)
+                                <a href="{{ $config->yt_link }}" class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
+                            @endif
                         </div><!-- End .soial-icons -->
                     </div><!-- End .widget about-widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->

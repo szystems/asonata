@@ -72,7 +72,10 @@
                         </button>
 
                         <a href="{{ url('/') }}" class="logo">
-                            <img src="{{ asset('fronttemplate/assets/images/logos/logo.jpg') }}" alt="Asonata Logo" width="105" height="25">
+                            @php
+                                $config = \App\Models\Config::find(1);
+                            @endphp
+                            <img src="{{ asset('assets/uploads/logos/'.$config->logo) }}" alt="Asonata Logo" width="105" height="25">
                         </a>
 
                         <nav class="main-nav">
@@ -224,11 +227,14 @@
         </div>
     </div> --}}
     <!-- Plugins JS File -->
-    <div class="whatsapp-chat">
-        <a href="https://wa.me/50238711264" target="_blank">
-            <img src="{{ asset('assets/imgs/logow.png') }}" alt="whatsapp-chat" height="100px" width="100px">
-        </a>
-    </div>
+    @if ($config->wapp_link != null)
+        <div class="whatsapp-chat">
+            <a href="https://wa.me/502{{ $config->wapp_link }}" target="_blank">
+                <img src="{{ asset('assets/imgs/logow.png') }}" alt="whatsapp-chat" height="100px" width="100px">
+            </a>
+        </div>
+    @endif
+
     <script src="{{ asset('fronttemplate/assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('fronttemplate/assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('fronttemplate/assets/js/jquery.hoverIntent.min.js') }}"></script>

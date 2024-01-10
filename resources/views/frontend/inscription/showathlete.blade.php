@@ -150,7 +150,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <label>{{ __('Nombres y Apellidos') }} </label>
+                                        <label>{{ __('Nombres y Apellidos del atleta') }} </label>
                                         <input type="text" class="form-control" name="name" value="{{ $atleta->name }}" placeholder="José Pérez">
                                         @if ($errors->has('name'))
                                             <span class="help-block opacity-7">
@@ -379,11 +379,15 @@
                                             - {{ __('The files should be no larger than 3MB') }}
                                             <br>
                                             - {{ __('The upload of the files will depend on the internet speed you have, if the transaction takes more than 2 minutes it will fail, make sure that your files take up as little space as possible to avoid failures in the loading of the form') }}
+                                            <br>
+                                            - Favor de ingresar correctamente su dirección de correo electrónico, ya que por ese medio se le enviara su código de inscripción que deberá de presentar al momento de cancelar en efectivo en las oficinas de secretaria en horarios de atención.
+                                            <br>
+                                            - Favor de ingresar correctamente su dirección de correo electrónico, ya que por ese medio se le enviara su código de inscripción que deberá de presentar al momento de cancelar en efectivo en las oficinas de secretaria en horarios de atención.
                                           </div>
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-4">
-                                        <label for="">{{ __('Athlete Image') }}</label>
+                                        <label for="">{{ __('Athlete Image') }} (JPG)</label>
                                         <input type="file" name="image" class="form-control" value="{{ $atleta->image }}" required>
                                         @if ($errors->has('image'))
                                             <span class="help-block opacity-7">

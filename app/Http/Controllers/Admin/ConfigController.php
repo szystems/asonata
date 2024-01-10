@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Config;
+use App\Http\Requests\ConfigFormRequest;
 use Illuminate\Support\Facades\File;
 use DB;
 
@@ -17,7 +18,7 @@ class ConfigController extends Controller
         return view('admin.config.index', \compact('config'));
     }
 
-    public function update(Request $request)
+    public function update(ConfigFormRequest $request)
     {
         $currency = explode(' ',trim($request->input('currency')));
         $currency_simbol = ucwords($currency[1]);
@@ -59,6 +60,10 @@ class ConfigController extends Controller
         $config->paypal = $request->input('paypal') == TRUE ? '1':'0';
         $config->dbt = $request->input('dbt') == TRUE ? '1':'0';
         $config->shipping_description = $request->input('shipping_description');
+        $config->fb_link = $request->input('fb_link');
+        $config->inst_link = $request->input('inst_link');
+        $config->yt_link = $request->input('yt_link');
+        $config->wapp_link = $request->input('wapp_link');
         $config->update();
 
         $request->session()->flash('alert-success', __('Settings updated correctly'));
