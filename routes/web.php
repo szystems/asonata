@@ -102,6 +102,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::put('update-class/{id}', [ClassController::class, 'updateclass']);
     Route::get('show-class/{id}', [ClassController::class, 'showclass']);
     Route::get('delete-class/{id}', [ClassController::class, 'destroyclass']);
+    Route::get('export-class-athlets', [ClassController::class, 'exportclassathlets']);
 
     //Admin Assists
     Route::get('add-assist/{id}', [ClassController::class, 'addassist']);

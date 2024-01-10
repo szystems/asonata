@@ -150,7 +150,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <label>{{ __('Name') }} </label>
+                                        <label>{{ __('Nombres y Apellidos') }} </label>
                                         <input type="text" class="form-control" name="name" value="{{ $atleta->name }}" placeholder="José Pérez">
                                         @if ($errors->has('name'))
                                             <span class="help-block opacity-7">
@@ -395,7 +395,7 @@
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-4">
-                                        <label for="">{{ __('Vaccination Card') }}</label>
+                                        <label for="">{{ __('Vaccination Card') }} (PDF)</label>
                                         <input type="file" name="vaccination_card" class="form-control" value="{{ $atleta->vaccination_card }}" >
                                         @if ($errors->has('vaccination_card'))
                                             <span class="help-block opacity-7">
@@ -407,7 +407,7 @@
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-4">
-                                        <label for="">{{ __('Birth Certificate') }}</label>
+                                        <label for="">{{ __('Birth Certificate') }} (PDF)</label>
                                         <input type="file" name="birth_certificate" class="form-control" value="{{ $atleta->birth_certificate }}" required>
                                         @if ($errors->has('birth_certificate'))
                                             <span class="help-block opacity-7">
@@ -425,7 +425,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <label for="">{{ __('Responsible Name') }}</label>
+                                        <label for="">{{ __('Nombre Completo del Responsable') }}</label>
                                         <input type="text" class="form-control" name="responsible_name" value="{{ $atleta->responsible_name }}" placeholder="Rubén Pérez">
                                         @if ($errors->has('responsible_name'))
                                             <span class="help-block opacity-7">
@@ -551,7 +551,7 @@
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-12">
-                                        <label for="">{{ __('Responsible DPI Image') }}</label>
+                                        <label for="">{{ __('Responsible DPI Image') }} (PDF)</label>
                                         <input type="file" name="responsible_image" class="form-control" value="{{ $atleta->responsible_image }}" required>
                                         @if ($errors->has('responsible_image'))
                                             <span class="help-block opacity-7">
@@ -563,7 +563,7 @@
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-12">
-                                        <label for="">{{ __('Signed Contract') }}</label>
+                                        <label for="">{{ __('Signed Contract') }} (PDF)</label>
                                         <input type="file" name="signed_contract" class="form-control" value="{{ old('signed_contract') }}" required>
                                         @if ($errors->has('signed_contract'))
                                             <span class="help-block opacity-7">
@@ -597,9 +597,9 @@
                                             <div class="col-auto" align="center">
                                                 <input type="hidden" name="idclass" value="{{ $class->id }}">
                                                 {{-- <input type="text"  class="form-control text-center" name="cui_dpi" onkeypress="return validarentero(event,this.value)" placeholder="{{ __('Athlete CUI') }}" required> --}}
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="register-policy" required>
-                                                    <label class="custom-control-label" for="register-policy">{{ __('I agree to the') }} <a href="{{ asset('assets/uploads/contracts/categories/'.$class->Ccontract) }}" target="_blank">{{ __('Contract') }}</a> *</label>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="register-policy" required>
+                                                    &nbsp;<label class="form-check-label" for="register-policy">{{ __('I agree to the') }} <a href="{{ asset('assets/uploads/contracts/categories/'.$class->Ccontract) }}" target="_blank">{{ __('Contract') }}</a> *</label>
                                                 </div><!-- End .custom-checkbox -->
                                                 <button type="submit" class="btn btn-outline-primary-2">
                                                     <span>{{ __('End request') }}</span>

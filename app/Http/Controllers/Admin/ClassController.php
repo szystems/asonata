@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\File;
 use App\Models\Config;
 use DB;
 use Carbon\Carbon;
+use App\Exports\ClassAthletsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClassController extends Controller
 {
@@ -168,13 +170,13 @@ class ClassController extends Controller
         $inscritos = Inscription::join('class', 'class.id', '=', 'inscriptions.class_id')
         ->join('atleta', 'atleta.id', '=', 'inscriptions.atleta_id')
         ->where('inscriptions.class_id',$id)
-        ->where('inscriptions.status',1)
+        ->where('inscriptions.status','1')
         ->where('inscriptions.inscription_status','1')
         ->orderBy('atleta.name','asc')
         ->get('inscriptions.*','class.*');
 
         $assists = Assist::where('class_id',$class->id)
-        ->where('status',1)
+        ->where('status','1')
         ->get();
 
         $config = Config::first();
@@ -331,5 +333,19 @@ class ClassController extends Controller
         } else {
             return redirect('my-classes/'.$classid)->with('status',__('Attendance Deleted Successfully'));
         }
+    }
+
+    public function exportclassathlets(Request $request)
+    {
+        // Obtener las fechas del request
+        $fclass = $request->input('fclass');
+
+        // Crear una instancia de la clase de exportación con el request
+        $export = new ClassAthletsExport($request);
+
+        $dateExport = date('m-d-Y g:ia');
+
+        // Descargar el archivo excel con el nombre pagos.xlsx
+        return Excel::download($export, 'Listado_Atletas'.$dateExport.'.xlsx');
     }
 }

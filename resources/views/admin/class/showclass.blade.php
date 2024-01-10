@@ -185,7 +185,17 @@
                         </div>
                     </div>
                     <div class="card-body p-4 pt-5">
+                        <div>
+                            <form action="{{ url('export-class-athlets') }}" method="GET" target="_blank">
 
+                                <input type="hidden" name="fclass" value="{{ $class->id }}">
+
+
+                                <button type="submit" class="btn btn-success ">
+                                    <i class="material-icons opacity-10">description</i>Exportar a Excel
+                                </button>
+                            </form>
+                        </div>
                         <div class="table-responsive p-4">
                             <table class="table table-sm align-products-center mb-0 table-striped table-bordered">
                                 <thead>

@@ -146,10 +146,10 @@
             	{{-- <div class="container">
             		<h2 class="title mb-3 text-center">Fullwidth Banner</h2><!-- End .text-center -->
             	</div><!-- End .container --> --}}
-            	<div class="video-banner video-banner-bg bg-image text-center" style="background-image: url({{ asset('fronttemplate/assets/images/video/bg-4.jpg') }})">
+            	<div class="video-banner video-banner-bg bg-image text-center" style="background-image: url({{ asset('fronttemplate/assets/images/backgrounds/login-bg.jpg') }})">
 	                <div class="container">
-	                	<h3 class="video-banner-title h1 text-white"><span>Asonata Xela</span><strong>Curso de Matronatación</strong></h3><!-- End .video-banner-title -->
-	                	<a href="https://www.facebook.com/plugins/video.php?height=316&href=https%3A%2F%2Fwww.facebook.com%2FAsonataXela%2Fvideos%2F1469882233865107%2F&show_text=false&width=560&t=0" class="btn-video btn-iframe"><i class="icon-play"></i></a>
+	                	<h3 class="video-banner-title h1 text-white"><span>Asonata Xela</span><strong>Video Tutorial Para Inscripciones</strong></h3><!-- End .video-banner-title -->
+	                	<a href="https://www.facebook.com/plugins/video.php?height=303&href=https%3A%2F%2Fwww.facebook.com%2FAsonataXela%2Fvideos%2F365984019343917%2F&show_text=false&width=560&t=0" class="btn-video btn-iframe"><i class="icon-play"></i></a>
 	                </div><!-- End .container -->
             	</div><!-- End .video-banner bg-image -->
 

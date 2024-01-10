@@ -154,11 +154,9 @@
                                 {{-- <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#deleteClassModal-{{ $class->id }}">
                                     <i class="material-icons">delete</i>
                                 </button> --}}
-                                @if ($inscription->inscription_status == 0)
                                 <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#editModalClass">
                                     <i class="material-icons">sync</i> Cambiar Clase
                                 </button>
-                                @endif
 
                         </div>
                         @if (count($errors)>0)

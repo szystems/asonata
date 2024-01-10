@@ -117,8 +117,8 @@
 
                                                 $atletas = DB::table('inscriptions')
                                                 ->where('class_id',$class->id)
-                                                ->where('status',1)
-                                                ->where('inscription_status',1)
+                                                ->where('status','1')
+                                                ->where('inscription_status','1')
                                                 ->count();
 
                                             @endphp
