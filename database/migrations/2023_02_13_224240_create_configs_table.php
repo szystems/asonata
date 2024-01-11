@@ -23,9 +23,13 @@ class CreateConfigsTable extends Migration
             $table->integer('tax');
             $table->tinyInteger('paypal');
             $table->tinyInteger('dbt');
-            $table->string('shipping_description');
-            $table->string('registration_process');
-            $table->string('payments_description');
+            $table->string('shipping_description')->nullable();
+            $table->string('registration_process')->nullable();
+            $table->string('payments_description')->nullable();
+            $table->string('fb_link')->nullable();
+            $table->string('inst_link')->nullable();
+            $table->string('yt_link')->nullable();
+            $table->string('wapp_link')->nullable();
             $table->timestamps();
         });
     }
