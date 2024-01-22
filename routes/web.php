@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\InscriptionAdminController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\AssistController;
 use App\Http\Controllers\Admin\InstructorClassesController;
+use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\ConfigController;
 
 /*
@@ -179,6 +180,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('delete-inscription/{id}', [InscriptionAdminController::class, 'destroyinscription']);
     Route::put('update-class_inscription', [InscriptionAdminController::class, 'updateclassinscription']);
     Route::get('delete-old_inscriptions', [InscriptionAdminController::class, 'deleteoldinscriptions']);
+    Route::put('update-payments-inscription', [InscriptionAdminController::class, 'updatepaymentsinscription']);
 
     //Admin Payments
     Route::get('index_payments', [PaymentController::class, 'index']);
@@ -192,6 +194,22 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     //Instructor Classes
     Route::get('my-classes', [InstructorClassesController::class, 'index']);
     Route::get('my-classes/{id}', [InstructorClassesController::class, 'showclass']);
+
+    //Sections
+    Route::get('sections', [SectionController::class, 'index']);
+    Route::put('update-section', [SectionController::class, 'update']);
+    //carrousel
+    Route::post('add-carrousel', 'Admin\SectionController@addslide');
+    Route::put('update-carrousel', [SectionController::class, 'updatecarrousel']);
+    Route::get('delete-carrousel/{id}', [SectionController::class, 'destroyslide']);
+    //Teams
+    Route::post('add-team', 'Admin\SectionController@addteam');
+    Route::put('update-team', [SectionController::class, 'updateteam']);
+    Route::get('delete-team/{id}', [SectionController::class, 'destroyteam']);
+    //Member
+    Route::post('add-member', 'Admin\SectionController@addmember');
+    Route::put('update-member', [SectionController::class, 'updatemember']);
+    Route::get('delete-member/{id}', [SectionController::class, 'destroymember']);
 
     //config
     Route::get('config', [ConfigController::class, 'index']);

@@ -215,6 +215,24 @@
                             </div>
                             <div class="col-md-2 col-6">
                                 <div class="card">
+                                    <a href="{{ url('sections') }}">
+                                        <div class="card-header mx-4 p-3 text-center">
+                                            <div
+                                                class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
+                                                <i class="material-icons opacity-10">language</i>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0 p-3 text-center">
+                                            {{-- <h6 class="text-center mb-0">Paypal</h6>
+                                            <span class="text-xs">Freelance Payment</span> --}}
+                                            <hr class="horizontal dark my-3">
+                                            <h5 class="mb-0">{{ __('Secciones') }}</h5>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {{-- <div class="col-md-2 col-6">
+                                <div class="card">
                                     <a href="{{ url('config') }}">
                                         <div class="card-header mx-4 p-3 text-center">
                                             <div
@@ -223,14 +241,12 @@
                                             </div>
                                         </div>
                                         <div class="card-body pt-0 p-3 text-center">
-                                            {{-- <h6 class="text-center mb-0">Paypal</h6>
-                                            <span class="text-xs">Freelance Payment</span> --}}
                                             <hr class="horizontal dark my-3">
                                             <h5 class="mb-0">{{ __('Settings') }}</h5>
                                         </div>
                                     </a>
                                 </div>
-                            </div>
+                            </div> --}}
                         @endif
                     @else
                         <div class="col-md-2 col-6">
@@ -301,7 +317,7 @@
             <div class="row mb-12">
 
                 {{-- Payment Alert --}}
-                <div class="col-lg-6 col-md-12 mb-md-0 mb-4">
+                <div class="col-lg-4 col-md-12 mb-md-0 mb-4">
                     <div class="card">
                         <div class="card-header pb-0">
                             <div class="row">
@@ -333,11 +349,12 @@
                                         <tr>
                                             <th
                                                 class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                {{ __('Inscription') }}</th>
-                                            <th
+                                                {{ __('Inscription') }} / {{ __('Athlete') }} / {{ __('Date') }}
+                                            </th>
+                                            {{-- <th
                                                 class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 {{ __('Athlete') }}
-                                            </th>
+                                            </th> --}}
                                             <th
                                                 class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 {{ __('Date') }}
@@ -353,16 +370,10 @@
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center">
                                                             <h6 class="mb-0 text-sm"><a href="{{ url('show-inscription/'.$inscription->id) }}">{{ $inscription->inscription_number }}</a></h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                @php
-                                                    $atleta = \App\Models\Atleta::find($inscription->atleta_id);
-                                                @endphp
-                                                <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm"><a href="{{ url('show-athlete/'.$inscription->atleta_id) }}">{{ $atleta->name }}</a></h6>
+                                                            @php
+                                                                $atleta = \App\Models\Atleta::find($inscription->atleta_id);
+                                                            @endphp
+                                                            <span class="text-xs font-weight"> <a href="{{ url('show-athlete/'.$inscription->atleta_id) }}">{{ $atleta->name }}</a> </span>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -385,7 +396,7 @@
                 </div>
 
                 {{-- Payment Alert --}}
-                <div class="col-lg-6 col-md-12 mb-md-0 mb-4">
+                <div class="col-lg-4 col-md-12 mb-md-0 mb-4">
                     <div class="card">
                         <div class="card-header pb-0">
                             <div class="row">
@@ -417,15 +428,7 @@
                                         <tr>
                                             <th
                                                 class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                {{ __('Inscription') }}
-                                            </th>
-                                            <th
-                                                class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                {{ __('Athlete') }}
-                                            </th>
-                                            <th
-                                                class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                {{ __('Status') }}
+                                                {{ __('Inscription') }} / {{ __('Athlete') }}
                                             </th>
                                         </tr>
                                     </thead>
@@ -451,43 +454,26 @@
 
                                                         <td>
                                                             <div class="d-flex px-2 py-1">
-                                                                <div class="d-flex flex-column justify-content-center">
-                                                                    <h6 class="mb-0 text-sm"><a href="{{ url('show-inscription/'.$inscription->id) }}">{{ $inscription->inscription_number }}</a> {{ $cuotasPendientes }}</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        @php
-                                                            $atleta = \App\Models\Atleta::find($inscription->atleta_id);
-                                                        @endphp
-                                                        <td>
-                                                            <div class="d-flex px-2 py-1">
-                                                                <div class="d-flex flex-column justify-content-center">
-                                                                    <h6 class="mb-0 text-sm"><a href="{{ url('show-athlete/'.$inscription->atleta_id) }}">{{ $atleta->name }}</a></h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        @php
-                                                            $hoy = DateTime::createFromFormat('Y-m-d', $hoy);
-                                                            $mesesDePago = DateTime::createFromFormat('Y-m-d', $sumarMeses);
-
-                                                            $difference = $mesesDePago->diff($hoy);
-                                                            // ECHO "diferencia: ".$difference->y." Años ".$difference->m." Meses ".$difference->d." Dias";
-
-                                                            $meses = 0;
-                                                            if ($difference->y > 0) {
-                                                                $meses = ($meses + ($difference->y * 12));
-                                                            }
-                                                            if ($difference->m > 0) {
-                                                                $meses = $meses + $difference->m;
-                                                            }
-                                                            if ($difference->d > 0) {
-                                                                $meses = $meses + 1;
-                                                            }
-                                                        @endphp
-                                                        <td class="text-sm">
-                                                            <div class="d-flex px-2 py-1">
-                                                                <div class="d-flex flex-column">
+                                                                <div>
                                                                     <h6 class="mb-0 text-sm"><a href="{{ url('show-inscription/'.$inscription->id) }}">
+                                                                        @php
+                                                                            $hoy = DateTime::createFromFormat('Y-m-d', $hoy);
+                                                                            $mesesDePago = DateTime::createFromFormat('Y-m-d', $sumarMeses);
+
+                                                                            $difference = $mesesDePago->diff($hoy);
+                                                                            // ECHO "diferencia: ".$difference->y." Años ".$difference->m." Meses ".$difference->d." Dias";
+
+                                                                            $meses = 0;
+                                                                            if ($difference->y > 0) {
+                                                                                $meses = ($meses + ($difference->y * 12));
+                                                                            }
+                                                                            if ($difference->m > 0) {
+                                                                                $meses = $meses + $difference->m;
+                                                                            }
+                                                                            if ($difference->d > 0) {
+                                                                                $meses = $meses + 1;
+                                                                            }
+                                                                        @endphp
                                                                         @if ($meses == 1)
                                                                             <p class="text-sm mb-0">
                                                                                 <i class="fas fa-exclamation-circle text-warning" aria-hidden="true"></i>
@@ -501,8 +487,16 @@
                                                                         @endif
                                                                     </a></h6>
                                                                 </div>
+                                                                <div class="d-flex flex-column justify-content-center">
+                                                                    <h6 class="mb-0 text-sm"><a href="{{ url('show-inscription/'.$inscription->id) }}">{{ $inscription->inscription_number }}</a></h6>
+                                                                    @php
+                                                                        $atleta = \App\Models\Atleta::find($inscription->atleta_id);
+                                                                    @endphp
+                                                                    <span class="text-xs font-weight"> <a href="{{ url('show-athlete/'.$inscription->atleta_id) }}">{{ $atleta->name }}</a> </span>
+                                                                </div>
                                                             </div>
                                                         </td>
+
                                                     </tr>
                                                 @endif
                                             @endif
@@ -515,7 +509,7 @@
                 </div>
 
                 {{-- Cycle Assists Alert --}}
-                <div class="col-lg-6 col-md-12 mb-md-0 mb-4">
+                <div class="col-lg-4 col-md-12 mb-md-0 mb-4">
                     <div class="card">
                         <div class="card-header pb-0">
                             <div class="row">
@@ -547,15 +541,7 @@
                                         <tr>
                                             <th
                                                 class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                {{ __('Inscription') }}
-                                            </th>
-                                            <th
-                                                class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                {{ __('Athlete') }}
-                                            </th>
-                                            <th
-                                                class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                {{ __('Status') }}
+                                                {{ __('Inscription') }} / {{ __('Athlete') }}
                                             </th>
                                         </tr>
                                     </thead>
@@ -579,27 +565,9 @@
                                             @if ($ausencias >= 3)
                                                 @if ($asistencias != $totalAsistencias)
                                                     <tr>
-
                                                         <td>
                                                             <div class="d-flex px-2 py-1">
-                                                                <div class="d-flex flex-column justify-content-center">
-                                                                    <h6 class="mb-0 text-sm"><a href="{{ url('show-inscription/'.$inscription->id) }}">{{ $inscription->inscription_number }}</a></h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        @php
-                                                            $atleta = \App\Models\Atleta::find($inscription->atleta_id);
-                                                        @endphp
-                                                        <td>
-                                                            <div class="d-flex px-2 py-1">
-                                                                <div class="d-flex flex-column justify-content-center">
-                                                                    <h6 class="mb-0 text-sm"><a href="{{ url('show-athlete/'.$inscription->atleta_id) }}">{{ $atleta->name }}</a></h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="text-sm">
-                                                            <div class="d-flex px-2 py-1">
-                                                                <div class="d-flex flex-column">
+                                                                <div>
                                                                     <h6 class="mb-0 text-sm">
                                                                         <a href="{{ url('show-inscription/'.$inscription->id) }}">
                                                                             @if ($ausencias >= 3 and $ausencias <= 5)
@@ -618,8 +586,16 @@
                                                                         </a>
                                                                     </h6>
                                                                 </div>
+                                                                <div class="d-flex flex-column justify-content-center">
+                                                                    <h6 class="mb-0 text-sm"><a href="{{ url('show-inscription/'.$inscription->id) }}">{{ $inscription->inscription_number }}</a></h6>
+                                                                    @php
+                                                                        $atleta = \App\Models\Atleta::find($inscription->atleta_id);
+                                                                    @endphp
+                                                                    <span class="text-xs font-weight"> <a href="{{ url('show-athlete/'.$inscription->atleta_id) }}">{{ $atleta->name }}</a> </span>
+                                                                </div>
                                                             </div>
                                                         </td>
+
                                                     </tr>
                                                 @endif
                                             @endif

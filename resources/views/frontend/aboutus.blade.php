@@ -15,26 +15,16 @@
         </div><!-- End .container -->
     </nav><!-- End .breadcrumb-nav -->
 
-    <div class="container">
-        <div class="page-header page-header-big text-center" style="background-image: url('{{ asset('fronttemplate/assets/images/slider/slide-5.jpg') }}')">
-            {{-- <h1 class="page-title text-white">About us<span class="text-white">Who we are</span></h1> --}}
-        </div><!-- End .page-header -->
-    </div><!-- End .container -->
+    @if ($sections->nosotros_imagen != null)
+        <div class="container">
+            <div class="page-header page-header-big text-center" style="background-image: url('{{ asset('assets/uploads/nosotros/'.$sections->nosotros_imagen) }}')">
+            </div><!-- End .page-header -->
+        </div><!-- End .container -->
+    @endif
+
 
     <div class="page-content pb-0">
         <div class="container">
-            {{-- <div class="row">
-                <div class="col-lg-6 mb-3 mb-lg-0">
-                    <h2 class="title">Vision</h2><!-- End .title -->
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. </p>
-                </div><!-- End .col-lg-6 -->
-
-                <div class="col-lg-6">
-                    <h2 class="title">Mision</h2><!-- End .title -->
-                    <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. <br>Praesent elementum hendrerit tortor. Sed semper lorem at felis. </p>
-                </div><!-- End .col-lg-6 -->
-            </div><!-- End .row --> --}}
-
             <div class="mb-5"></div><!-- End .mb-4 -->
         </div><!-- End .container -->
 
@@ -42,102 +32,27 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mb-3 mb-lg-0">
-                        <h2 class="title">¿Quiénes somos?</h2><!-- End .title -->
-                        <p class="lead text-primary mb-3">Asociación Deportiva Departamental de Quetzaltenango de Natación, Clavados, Polo Acuático, Nado Sincronizado y Aguas Abiertas.</p><!-- End .lead text-primary -->
-                        <p class="mb-2">Afiliada A: Federación Nacional De Natación Y Confederación Deportiva Autónoma De Guatemala</p>
+                        @if ($sections->nosotros_titulo != null) <h2 class="title">{{ $sections->nosotros_titulo }}</h2> @endif
+                        @if ($sections->nosotros_descripcion != null)  <p class="lead text-primary mb-3">{{ $sections->nosotros_descripcion }}</p> @endif
+                        @if ($sections->nosotros_descripcion2 != null)  <p class="mb-2">{{ $sections->nosotros_descripcion2 }}</p> @endif
                         <br>
-                        <h2 class="title">COMITÉ EJECUTIVO</h2>
-                        <ul>
-                            <li>-<strong>Presidente:</strong>  Lic. Vinicio Méndez Barrios</li>
-                            <li>-<strong>Secretario:</strong>  Sr. Geovani José Sapón Lucas</li>
-                            <li>-<strong>Tesorero:</strong>  Dr. Bayron Ines de León de León</li>
-                        </ul>
-                        <br>
-                        <h2 class="title">ÓRGANO DISCIPLINARIO</h2>
-                        <ul>
-                            <li>-<strong>Presidente:</strong>  Lic Felix Marcotulio Archila Salazar</li>
-                            <li>-<strong>Secretaria:</strong>  Profa. Samara Jeannette Elías Ventura</li>
-                            <li>-<strong>Vocal I:</strong>  Lic. Marcel Lorena Sac Morales</li>
-                        </ul>
-                        <br>
-                        <h2 class="title">CUERPO TÉCNICO</h2>
-                        <ul>
-                            <li>-<strong>Coordinador General:</strong>  Msc. Carlos Eduardo Méndez Pérez</li>
-                            <li>-<strong>Coordinador de enseñanza y preequipos:</strong>  Prof. Freddy David Gutiérrez Taracena</li>
-                            <li>-<strong>Coordinadora de matronatación:</strong>  Profa. Cindy Yoselin Marín Velásquez</li>
-                            <li>-<strong>Jefe de entrenadores:</strong>  Prof. Mauricio Colop</li>
-                        </ul>
-                        <br>
-                        <h2 class="title">ENTRENADORES</h2>
-                        <ul>
-                            <li>-Carlos Méndez</li>
-                            <li>-Mauricio Colop</li>
-                            <li>-Selvyn Chuc</li>
-                            <li>-Freddy Gutierrez</li>
-                            <li>-Heidi Perez</li>
-                            <li>-Jesus Perez </li>
-                        </ul>
-                        <br>
-                        <h2 class="title">PERSONAL DE MATRONATACIÓN</h2>
-                        <ul>
-                            <li>-Iris de León</li>
-                            <li>-Cristy Pérez</li>
-                            <li>-María Joj </li>
-                            <li>-Yesica Cop</li>
-                            <li>-Yesica Tzum</li>
-                            <li>-Galinda Chamorro </li>
-                            <li>-Sucely Tzun</li>
-                            <li>-Carmen Cotoc </li>
-                        </ul>
-                        <br>
-                        <h2 class="title">ENSEÑANZA</h2>
-                        <ul>
-                            <li>-Sucely Tzun</li>
-                            <li>-Miguelangel López</li>
-                            <li>-Levi Salanic  </li>
-                            <li>-Rebeca Gómez </li>
-                            <li>-Carmen Cotoc </li>
-                            <li>-Evelyn López  </li>
-                            <li>-Birman Martínez</li>
-                        </ul>
-                        <br>
-                        <h2 class="title">MASTER</h2>
-                        <ul>
-                            <li>-Selvyn Chuc</li>
-                            <li>-Jimmy Poz  </li>
-                            <li>-Andrea Álvarez Moran  </li>
-                            <li>-Jhony Pérez </li>
-                            <li>-Jesús Pérez  </li>
-                            <li>-Heidi Pérez   </li>
-                        </ul>
-                        <br>
-                        <h2 class="title">PREPARADORES FISICOS</h2>
-                        <ul>
-                            <li>-Oscar Chuc</li>
-                            <li>-Selvyn Chuc   </li>
-                        </ul>
-                        <br>
-                        <h2 class="title">EQUIPO MULTIDISCIPLINARIO</h2>
-                        <ul>
-                            <li>-Andrea de León</li>
-                            <li>-Alicia Arroyave   </li>
-                            <li>-Wendy Villagran   </li>
-                            <li>-Alejandro De León  </li>
-                        </ul>
-                        <br>
-                        <h2 class="title">PERSONAL ADMINISTRATIVO </h2>
-                        <ul>
-                            <li>-Glenda Tahay   </li>
-                            <li>-Paola Baquiax   </li>
-                            <li>-Patricia Carranza  </li>
-                        </ul>
-                        <br>
-                        <h2 class="title">PERSONAL OPERATIVO</h2>
-                        <ul>
-                            <li>-Olga Alejandro Ixcot </li>
-                            <li>-Estuardo Machic    </li>
-                            <li>-Mario García    </li>
-                        </ul>
+                        @foreach ($teams as $team)
+                            <h2 class="title">{{ $team->nombre }}</h2>
+                            <p>{{ $team->descripcion }}</p>
+                            @php
+                                $members = \App\Models\TeamMember::where('team_id',$team->id)->get();
+                            @endphp
+                            @if ($members->count() > 0)
+                                <ul>
+                                    @foreach ($members as $member)
+                                        <li>-@if($member->cargo != null)<strong>{{ $member->cargo }}:</strong>@endif  {{ $member->nombre }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                            <br>
+                        @endforeach
+
+
                         {{-- <a href="blog.html" class="btn btn-sm btn-minwidth btn-outline-primary-2">
                             <span>VIEW OUR NEWS</span>
                             <i class="icon-long-arrow-right"></i>

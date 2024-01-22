@@ -132,6 +132,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link text-white {{ Request::is('sections') ? 'active bg-gradient-primary':''  }}" href="{{ url('sections') }}">
+                            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="material-icons opacity-10">language</i>
+                            </div>
+                            <span class="nav-link-text ms-1">{{ __('Secciones') }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-white {{ Request::is('config') ? 'active bg-gradient-primary':''  }}" href="{{ url('config') }}">
                             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="material-icons opacity-10">settings</i>

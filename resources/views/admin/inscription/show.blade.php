@@ -113,7 +113,15 @@
                                 ->whereBetween('type', [2,3])
                                 ->get();
                             @endphp
-                            <p>{{ $config->currency_simbol }}{{ number_format($class->CLmonthly_payment,2, '.', ',') }} @if ($inscription->payments != null) <b>({{ $inscriptionPayments->count() }}/{{ $inscription->payments }})</b>@endif</p>
+                            <p>{{ $config->currency_simbol }}{{ number_format($class->CLmonthly_payment,2, '.', ',') }}
+                                @if ($inscription->payments != null and $inscription->inscription_status == 1 and Auth::user()->role_as == 1)
+                                    <b>({{ $inscriptionPayments->count() }}/{{ $inscription->payments }})</b>
+                                    <button type="button" class="btn bg-gradient-info" data-bs-toggle="modal" data-bs-target="#editPaymentsModalClass">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                    @include('admin.inscription.editpaymentsmodal')
+                                @endif
+                            </p>
                             @if ($inscription->payments != null)
                                 @if (($inscriptionPayments->count() < $inscription->payments))
                                     <button type="button" class="btn bg-gradient-success" data-bs-toggle="modal" data-bs-target="#paymentModal-{{ $inscription->id }}">
@@ -148,15 +156,15 @@
                         </div>
                     </div>
                     <div class="card-body p-4 pt-5">
-                            <div class="col-md-12 mb-3">
-                                <a href="{{ url('show-class/'.$class->id) }}" type="button" class="btn btn-info"><i class="material-icons">visibility</i></a>
-                                <a href="{{ url('edit-class/' . $class->id) }}" type="button" class="btn btn-warning"><i class="material-icons">edit</i></a>
-                                {{-- <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#deleteClassModal-{{ $class->id }}">
-                                    <i class="material-icons">delete</i>
-                                </button> --}}
-                                <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#editModalClass">
-                                    <i class="material-icons">sync</i> Cambiar Clase
-                                </button>
+                        <div class="col-md-12 mb-3">
+                            <a href="{{ url('show-class/'.$class->id) }}" type="button" class="btn btn-info"><i class="material-icons">visibility</i></a>
+                            <a href="{{ url('edit-class/' . $class->id) }}" type="button" class="btn btn-warning"><i class="material-icons">edit</i></a>
+                            {{-- <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#deleteClassModal-{{ $class->id }}">
+                                <i class="material-icons">delete</i>
+                            </button> --}}
+                            <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#editModalClass">
+                                <i class="material-icons">sync</i> Cambiar Clase
+                            </button>
 
                         </div>
                         @if (count($errors)>0)

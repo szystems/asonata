@@ -14,6 +14,10 @@ use App\Models\Assist;
 use App\Models\Attendance;
 use App\Models\Inscription;
 use App\Models\Payment;
+use App\Models\Secction;
+use App\Models\Slide;
+use App\Models\Team;
+use App\Models\TeamMember;
 use PDF;
 use DB;
 use Illuminate\Support\Facades\Mail;
@@ -24,19 +28,25 @@ class FrontendController extends Controller
     public function index()
     {
         $config = Config::first();
-        return view('frontend.index', compact('config'));
+        $sections = Secction::first();
+        $slides = Slide::all();
+        // dd($sections, $slides);
+        return view('frontend.index', compact('config','sections','slides'));
     }
 
     public function aboutus()
     {
         $config = Config::first();
-        return view('frontend.aboutus', compact('config'));
+        $sections = Secction::first();
+        $teams = Team::all();
+        return view('frontend.aboutus', compact('config','sections','teams'));
     }
 
     public function contact()
     {
         $config = Config::first();
-        return view('frontend.contact', compact('config'));
+        $sections = Secction::first();
+        return view('frontend.contact', compact('config','sections'));
     }
 
     public function sendcontactemail(Request $request)

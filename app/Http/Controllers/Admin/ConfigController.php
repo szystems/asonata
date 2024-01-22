@@ -34,7 +34,7 @@ class ConfigController extends Controller
             $file = $request->file('logo');
             $ext = $file->getClientOriginalExtension();
             $filename = time().'.'.$ext;
-            $file->move('assets/uploads/logos',$filename);
+            $file->move('assets/uploads/logos/',$filename);
             $config->logo = $filename;
         }
         if($request->hasFile('contract'))
@@ -47,7 +47,7 @@ class ConfigController extends Controller
             $file1 = $request->file('contract');
             $ext1 = $file1->getClientOriginalExtension();
             $filename1 = time().'.'.$ext1;
-            $file1->move('assets/uploads/contract',$filename1);
+            $file1->move('assets/uploads/contract/',$filename1);
             $config->contract = $filename1;
         }
         $config->payments_description = $request->input('payments_description');

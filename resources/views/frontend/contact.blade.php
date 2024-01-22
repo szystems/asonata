@@ -19,30 +19,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mb-2 mb-lg-0">
-                    <h2 class="title mb-1">{{ __('Contact Information') }}</h2><!-- End .title mb-2 -->
-                    <p class="mb-3">Asociación Deportiva Departamental de Quetzaltenango de Natación, Clavados, Polo Acuático, Nado Sincronizado y Aguas Abiertas. </p>
+                    @if ($sections->contacto_titulo != null) <h2 class="title mb-1">{{ $sections->contacto_titulo }}</h2> @endif
+                    @if ($sections->contacto_descricion != null) <p class="mb-3">{{ $sections->contacto_descricion }}</p> @endif
                     <div class="row">
                         <div class="col-sm-7">
                             <div class="contact-info">
                                 <h3>Contácto</h3>
 
                                 <ul class="contact-list">
-                                    <li>
-                                        <i class="icon-map-marker"></i>
-                                        4ta calle y 25 avenida Interior Complejo deportivo de Quetzaltenango
-                                    </li>
-                                    <li>
-                                        <i class="icon-phone"></i>
-                                        <a href="tel:77674287">7767 4287</a>
-                                    </li>
-                                    <li>
-                                        <i class="icon-phone"></i>
-                                        <a href="tel:3871 1264">3871 1264</a>
-                                    </li>
-                                    <li>
-                                        <i class="icon-envelope"></i>
-                                        <a href="mailto:asoincripciones2023@gmail.com">asoincripciones2023@gmail.com</a>
-                                    </li>
+                                    @if ($sections->contacto_direccion != null)
+                                        <li>
+                                            <i class="icon-map-marker"></i>
+                                            {{ $sections->contacto_direccion }}
+                                        </li>
+                                    @endif
+                                    @if ($sections->contacto_telefono != null)
+                                        <li>
+                                            <i class="icon-phone"></i>
+                                            <a href="{{ $sections->contacto_telefono }}">{{ $sections->contacto_telefono }}</a>
+                                        </li>
+                                    @endif
+                                    @if ($sections->contacto_telefono2 != null)
+                                        <li>
+                                            <i class="icon-phone"></i>
+                                            <a href="{{ $sections->contacto_telefono2 }}">{{ $sections->contacto_telefono2 }}</a>
+                                        </li>
+                                    @endif
+                                    @if ($sections->contacto_email != null)
+                                        <li>
+                                            <i class="icon-envelope"></i>
+                                            <a href="{{ $sections->contacto_email }}">{{ $sections->contacto_email }}</a>
+                                        </li>
+                                    @endif
                                 </ul><!-- End .contact-list -->
                             </div><!-- End .contact-info -->
                         </div><!-- End .col-sm-7 -->
@@ -52,22 +60,26 @@
                                 <h3>Oficínas</h3>
 
                                 <ul class="contact-list">
+                                    @if ($sections->contacto_lunes_viernes != null or $sections->contacto_lunes_viernes2 != null)
                                     <li>
                                         <i class="icon-clock-o"></i>
-                                        <span class="text-dark">Lunes - Viernes</span> <br>7am-1pm<br>2pm-7pm
+                                        <span class="text-dark">Lunes - Viernes</span> <br>{{ $sections->contacto_lunes_viernes }}<br>{{ $sections->contacto_lunes_viernes2}}
                                     </li>
+                                    @endif
+                                    @if ($sections->contacto_domingo != null)
                                     <li>
                                         <i class="icon-calendar"></i>
-                                        <span class="text-dark">Sabado</span> <br>8am-12pm
+                                        <span class="text-dark">Sabado</span> <br>{{  $sections->contacto_domingo }}
                                     </li>
+                                    @endif
                                 </ul><!-- End .contact-list -->
                             </div><!-- End .contact-info -->
                         </div><!-- End .col-sm-5 -->
                     </div><!-- End .row -->
                 </div><!-- End .col-lg-6 -->
                 <div class="col-lg-6">
-                    <h2 class="title mb-1">¿Tienes alguna pregunta?</h2><!-- End .title mb-2 -->
-                    <p class="mb-2">Llena el siguiente formulario con los datos que se te piden</p>
+                    @if ($sections->contacto_titulo2 != null) <h2 class="title mb-1">{{ $sections->contacto_titulo2 }}</h2> @endif<!-- End .title mb-2 -->
+                    @if ($sections->contacto_descripcion2 != null) <p class="mb-2">{{ $sections->contacto_descripcion2 }}</p> @endif
 
                     <!--Mensaje flash-->
                     <div class="flash-message">
@@ -118,64 +130,6 @@
             </div><!-- End .row -->
 
             <hr class="mt-4 mb-5">
-
-            {{-- <div class="stores mb-4 mb-lg-5">
-                <h2 class="title text-center mb-3">Our Stores</h2><!-- End .title text-center mb-2 -->
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="store">
-                            <div class="row">
-                                <div class="col-sm-5 col-xl-6">
-                                    <figure class="store-media mb-2 mb-lg-0">
-                                        <img src="assets/images/stores/img-1.jpg" alt="image">
-                                    </figure><!-- End .store-media -->
-                                </div><!-- End .col-xl-6 -->
-                                <div class="col-sm-7 col-xl-6">
-                                    <div class="store-content">
-                                        <h3 class="store-title">Wall Street Plaza</h3><!-- End .store-title -->
-                                        <address>88 Pine St, New York, NY 10005, USA</address>
-                                        <div><a href="tel:#">+1 987-876-6543</a></div>
-
-                                        <h4 class="store-subtitle">Store Hours:</h4><!-- End .store-subtitle -->
-                                        <div>Monday - Saturday 11am to 7pm</div>
-                                        <div>Sunday 11am to 6pm</div>
-
-                                        <a href="#" class="btn btn-link" target="_blank"><span>View Map</span><i class="icon-long-arrow-right"></i></a>
-                                    </div><!-- End .store-content -->
-                                </div><!-- End .col-xl-6 -->
-                            </div><!-- End .row -->
-                        </div><!-- End .store -->
-                    </div><!-- End .col-lg-6 -->
-
-                    <div class="col-lg-6">
-                        <div class="store">
-                            <div class="row">
-                                <div class="col-sm-5 col-xl-6">
-                                    <figure class="store-media mb-2 mb-lg-0">
-                                        <img src="assets/images/stores/img-2.jpg" alt="image">
-                                    </figure><!-- End .store-media -->
-                                </div><!-- End .col-xl-6 -->
-
-                                <div class="col-sm-7 col-xl-6">
-                                    <div class="store-content">
-                                        <h3 class="store-title">One New York Plaza</h3><!-- End .store-title -->
-                                        <address>88 Pine St, New York, NY 10005, USA</address>
-                                        <div><a href="tel:#">+1 987-876-6543</a></div>
-
-                                        <h4 class="store-subtitle">Store Hours:</h4><!-- End .store-subtitle -->
-                                        <div>Monday - Friday 9am to 8pm</div>
-                                        <div>Saturday - 9am to 2pm</div>
-                                        <div>Sunday - Closed</div>
-
-                                        <a href="#" class="btn btn-link" target="_blank"><span>View Map</span><i class="icon-long-arrow-right"></i></a>
-                                    </div><!-- End .store-content -->
-                                </div><!-- End .col-xl-6 -->
-                            </div><!-- End .row -->
-                        </div><!-- End .store -->
-                    </div><!-- End .col-lg-6 -->
-                </div><!-- End .row -->
-            </div><!-- End .stores --> --}}
         </div><!-- End .container -->
         <div id="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.6207439197983!2d-91.53340792365343!3d14.84652848566952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858e994722384e65%3A0xf5faa8221a1f6b1!2sAsonata-Xela!5e0!3m2!1ses-419!2sgt!4v1694471032879!5m2!1ses-419!2sgt" width="100%" height="100%" style="border:0;" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><!-- End #map -->
     </div><!-- End .page-content -->

@@ -447,7 +447,7 @@ class InscriptionAdminController extends Controller
                         //si la fecha esta entre la fecha inicial y final ver cuantos meses quedan
                         $difference = $today->diff($end_date);
                         // ECHO "diferencia: ".$difference->y." Años ".$difference->m." Meses ".$difference->d." Dias";
-
+                        // dd($difference, $today, $start_date, $end_date);
                         $meses = 0;
                         if ($class->CLmonthly_payment != "0.00") {
                             if ($difference->y > 0) {
@@ -633,6 +633,14 @@ class InscriptionAdminController extends Controller
         ->where('updated_at', '<', Carbon::now()->subDays(10))
         ->delete();
         return redirect('inscriptions')->with('status',__('Old inscriptions deleted'));
+    }
+
+    public function updatepaymentsinscription(Request $request)
+    {
+        $payments = Inscription::find($request->input('inscription_id'));
+        $payments->payments = $request->input('payments');
+        $payments->update();
+        return redirect('show-inscription/'.$request->input('inscription_id'))->with('status', __('Numero de pagos actualizado.'));
     }
 
 
