@@ -44,6 +44,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="{{asset('datePicker/locales/bootstrap-datepicker.es.min.js')}}"></script>
     {{-- Datepicker end --}}
+    <!-- CKEditor -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
+    {{-- <script src="{{ asset('assets/vendor/ckeditor51/build/ckeditor.js') }}"></script> --}}
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -67,6 +70,7 @@
     <script src="{{ asset('dashtemplate/assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('dashtemplate/assets/js/plugins/chartjs.min.js') }}"></script>
     {{-- <script src="{{ asset('dashtemplate//assets/js/plugins/flatpickr.min.js') }}"></script> --}}
+
     <script>
         var ctx = document.getElementById("chart-bars").getContext("2d");
 

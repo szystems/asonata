@@ -231,6 +231,24 @@
                                     </a>
                                 </div>
                             </div>
+                            <div class="col-md-2 col-6">
+                                <div class="card">
+                                    <a href="{{ url('index_noticias') }}">
+                                        <div class="card-header mx-4 p-3 text-center">
+                                            <div
+                                                class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
+                                                <i class="material-icons opacity-10">newspaper</i>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0 p-3 text-center">
+                                            {{-- <h6 class="text-center mb-0">Paypal</h6>
+                                            <span class="text-xs">Freelance Payment</span> --}}
+                                            <hr class="horizontal dark my-3">
+                                            <h5 class="mb-0">{{ __('Noticias') }}</h5>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
                             {{-- <div class="col-md-2 col-6">
                                 <div class="card">
                                     <a href="{{ url('config') }}">
@@ -268,7 +286,7 @@
                             </div>
                         </div>
                     @endif
-                    @if (Auth::user()->role_as != "3")
+                    {{-- @if (Auth::user()->role_as != "3")
                         <div class="col-md-2 col-6">
                             <div class="card">
                                 <a href="{{ url('show-user/'.Auth::id()) }}">
@@ -279,15 +297,15 @@
                                         </div>
                                     </div>
                                     <div class="card-body pt-0 p-3 text-center">
-                                        {{-- <h6 class="text-center mb-0">Salary</h6>
-                                        <span class="text-xs">Belong Interactive</span> --}}
+                                        <h6 class="text-center mb-0">Salary</h6>
+                                        <span class="text-xs">Belong Interactive</span>
                                         <hr class="horizontal dark my-3">
                                         <h5 class="mb-0">{{ __('My Profile') }}</h5>
                                     </div>
                                 </a>
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
                     @if (Auth::user()->role_as == "3")
                         <div class="col-md-2 col-6">
                             <div class="card">
@@ -299,8 +317,8 @@
                                         </div>
                                     </div>
                                     <div class="card-body pt-0 p-3 text-center">
-                                        {{-- <h6 class="text-center mb-0">Salary</h6>
-                                        <span class="text-xs">Belong Interactive</span> --}}
+                                        <h6 class="text-center mb-0">Salary</h6>
+                                        <span class="text-xs">Belong Interactive</span>
                                         <hr class="horizontal dark my-3">
                                         <h5 class="mb-0">{{ __('My Profile') }}</h5>
                                     </div>

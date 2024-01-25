@@ -87,6 +87,9 @@
                                     <a href="{{ url('about-us') }}">{{ __('About') }}</a>
                                 </li>
                                 <li class="">
+                                    <a href="{{ url('noticias') }}">{{ __('Noticias') }}</a>
+                                </li>
+                                <li class="">
                                     <a href="{{ url('inscriptions-cycles') }}">{{ __('Inscriptions') }}</a>
                                 </li>
                                 <li class="">

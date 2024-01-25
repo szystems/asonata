@@ -15,6 +15,7 @@ use App\Models\Attendance;
 use App\Models\Inscription;
 use App\Models\Payment;
 use App\Models\Secction;
+use App\Models\Noticia;
 use App\Models\Slide;
 use App\Models\Team;
 use App\Models\TeamMember;
@@ -261,5 +262,20 @@ class FrontendController extends Controller
                 }
             }
         }
+    }
+
+    public function noticias()
+    {
+        $config = Config::first();
+        $noticias = Noticia::orderby('updated_at','desc')->paginate(10);
+        return view('frontend.noticias', compact('config','noticias'));
+    }
+
+    public function noticia($id)
+    {
+        $config = Config::first();
+        $noticia= Noticia::find($id);
+        $noticias = Noticia::orderby('updated_at','desc')->paginate(10);
+        return view('frontend.noticia', compact('config','noticia','noticias'));
     }
 }

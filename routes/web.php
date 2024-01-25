@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\AssistController;
 use App\Http\Controllers\Admin\InstructorClassesController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Admin\NoticiaController;
 use App\Http\Controllers\Admin\ConfigController;
 
 /*
@@ -39,6 +40,8 @@ use App\Http\Controllers\Admin\ConfigController;
 //Web Page Views
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('about-us', [FrontendController::class, 'aboutus']);
+Route::get('noticias', [FrontendController::class, 'noticias']);
+Route::get('noticias/{id}', [FrontendController::class, 'noticia']);
 Route::get('contact', [FrontendController::class, 'contact']);
 Route::get('send-contact-email', [FrontendController::class, 'sendcontactemail']);
 
@@ -210,6 +213,16 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('add-member', 'Admin\SectionController@addmember');
     Route::put('update-member', [SectionController::class, 'updatemember']);
     Route::get('delete-member/{id}', [SectionController::class, 'destroymember']);
+
+    //Noticias
+    Route::get('index_noticias', [NoticiaController::class, 'index']);
+    Route::get('show-noticia/{id}', [NoticiaController::class, 'show']);
+    Route::get('add-noticia', 'Admin\NoticiaController@add');
+    Route::post('insert-noticia','Admin\NoticiaController@insert');
+    Route::get('edit-noticia/{id}',[NoticiaController::class,'edit']);
+    Route::put('update-noticia/{id}', [NoticiaController::class, 'update']);
+    Route::get('delete-noticia/{id}', [NoticiaController::class, 'destroy']);
+    Route::post('upload_imagen', [NoticiaController::class, 'uploadimagen']);
 
     //config
     Route::get('config', [ConfigController::class, 'index']);
