@@ -45,8 +45,8 @@
     <script src="{{asset('datePicker/locales/bootstrap-datepicker.es.min.js')}}"></script>
     {{-- Datepicker end --}}
     <!-- CKEditor -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
-    {{-- <script src="{{ asset('assets/vendor/ckeditor51/build/ckeditor.js') }}"></script> --}}
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script> --}}
+    <script src="{{ asset('assets/ckeditor5/ckeditor.js') }}"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
