@@ -123,7 +123,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="col-4"><strong>
+                                            <td class="col-4 max-width-100"><strong>
                                                 {{ $payment->type == '0' ? __('Inscription')
                                                     : ($payment->type == '1' ? __('Badge')
                                                     : ($payment->type == '2' ? __('Monthly')
@@ -135,7 +135,7 @@
                                                 }}
                                                 @if ($payment->note != null)
                                                     <br>
-                                                    <p class="text-xs text-secondary mb-0">({{ $payment->note }})</p>
+                                                    <p class="text-xs max-width-100 text-truncate" text-secondary mb-0">({{ $payment->note }})</p>
                                                 @endif
                                             </strong></td>
                                             <td class="align-middle text-center text-sm"><strong>{{ $config->currency_simbol }}{{ number_format($payment->paid,2, '.', ',') }}</strong></td>
