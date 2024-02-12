@@ -29,6 +29,7 @@
                             <li><a href="{{ url('/') }}">{{ __('Home') }}</a></li>
                             <li><a href="{{ url('about-us') }}">{{ __('About') }}</a></li>
                             <li><a href="{{ url('inscriptions-cycles') }}">{{ __('Inscriptions') }}</a></li>
+                            <li><a href="{{ url('noticias') }}">{{ __('Noticias') }}</a></li>
                             <li><a href="{{ url('queries') }}">{{ __('Queries') }}</a></li>
                             @if (Auth::guest())
                             <li><a href="{{ url('login') }}">{{ __('Login') }}</a></li>
