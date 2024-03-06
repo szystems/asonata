@@ -344,6 +344,53 @@ class PaymentController extends Controller
         }
     }
 
+    public function addpaymentother(PaymentFormRequest $request)
+    {
+        $amount = $request->input('amount');
+        $noRecibo = $request->input('no_recibo');
+        $note = $request->input('note');
+
+
+
+        if ($amount == null or  $amount == "0" or $note == "")
+        {
+            $inscription = Inscription::find($request->input('inscription_id'));
+            return redirect('show-inscription/'.$inscription->id)->with('status', __('Pago no realizado vuelva a intentarlo, revise que los campos: Cantidad a Pagar y Nota no esten vacios.'));
+        }else{
+            $payment = new Payment();
+            $payment->no_recibo = $noRecibo;
+            $payment->inscription_id =$request->input('inscription_id');
+            $payment->type = 7;
+            $payment->paid = $amount;
+            $payment->note = $note;
+            $payment->user_id = $request->input('user_id');
+            $payment->save();
+
+            $inscription = Inscription::find($request->input('inscription_id'));
+            $atleta = Atleta::find($inscription->atleta_id);
+            $idclass = $inscription->class_id;
+
+            Mail::to($atleta->email)->send(new PaymentMail($inscription));
+            Mail::to($atleta->responsible_email)->send(new PaymentMail($inscription));
+
+            return redirect('show-inscription/'.$inscription->id)->with('status', __('Pago de varios realizado exitosamente!'));
+        }
+    }
+
+    public function editpayment(Request $request)
+    {
+        $payment = Payment::find($request->input('payment_id'));
+        $payment->no_recibo = $request->input('no_recibo');
+        $payment->note = $request->input('note');
+        $payment->update();
+
+        $inscription = Inscription::find($request->input('inscription_id'));
+        $atleta = Atleta::find($inscription->atleta_id);
+        $idclass = $inscription->class_id;
+
+        return redirect('show-inscription/'.$inscription->id)->with('status', __('Pago actualizado exitosamente!'));
+    }
+
     public function pdfpayment(Request $request)
     {
         if ($request)
@@ -517,6 +564,9 @@ class PaymentController extends Controller
                     $payment->delete();
                 }
             }
+        }
+        if ($paymentType == 7) {
+            $payment->delete();
         }
         return redirect('show-inscription/'.$inscription->id)->with('status',__('Payment Deleted Successfully'));
     }

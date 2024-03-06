@@ -190,6 +190,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('show-payment/{id}', [PaymentController::class, 'show']);
     Route::get('pdf-payments', 'Admin\PaymentController@pdf');
     Route::post('add-payment', 'Admin\PaymentController@addpayment');
+    Route::post('add-payment-other', 'Admin\PaymentController@addpaymentother');
+    Route::put('edit-payment', [PaymentController::class, 'editpayment']);
     Route::get('pdf-payment', 'Admin\PaymentController@pdfpayment');
     Route::get('export', [PaymentController::class, 'export']);
     Route::put('delete-payment/{id}', [PaymentController::class, 'destroy']);

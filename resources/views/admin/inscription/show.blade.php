@@ -390,7 +390,9 @@
                         </div>
                     </div>
                     <div class="card-body p-4 pt-5">
-
+                        <button type="button" class="btn bg-gradient-success" data-bs-toggle="modal" data-bs-target="#paymentOtherModal-{{ $inscription->id }}">
+                            <i class="material-icons">payments</i> {{ __('Realizar Pago Varios') }}
+                        </button>
                         <div class="table-responsive">
                             <table class="table table-sm align-products-center mb-0 table-striped table-bordered">
                                 <thead>
@@ -450,7 +452,8 @@
                                                 : ($payment->type == '4' ? __('Monthly Exoneration')
                                                 : ($payment->type == '5' ? __('Inscription Exoneration')
                                                 : ($payment->type == '6' ? __('Badge Exoneration')
-                                                : ""))))))
+                                                : ($payment->type == '7' ? __('Varios')
+                                                : "")))))))
                                             }}
 
                                             </strong>
@@ -474,12 +477,16 @@
                                                 <button type="button" class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#deleteModalPayment-{{ $payment->id }}">
                                                     <i class="material-icons">delete</i>
                                                 </button>
+                                                <button type="button" class="btn bg-gradient-warning" data-bs-toggle="modal" data-bs-target="#paymentEditModal-{{ $payment->id }}">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
                                             @endif
 
 
                                         </td>
                                     </tr>
                                     @include('admin.payment.deletemodal')
+                                    @include('admin.payment.paymenteditmodal')
                                     @endforeach
                                 </tbody>
                                 <tfoot>
@@ -694,5 +701,7 @@
 
         @include('admin.class.deletemodalclass')
         @include('admin.payment.paymentmodal')
+        @include('admin.payment.paymentothermodal')
+
     </div>
     @endsection

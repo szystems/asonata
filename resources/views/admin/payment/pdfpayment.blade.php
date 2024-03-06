@@ -100,7 +100,8 @@
                                                 : ($payment->type == '4' ? __('Monthly Exoneration')
                                                 : ($payment->type == '5' ? __('Inscription Total Exoneration')
                                                 : ($payment->type == '6' ? __('Badge Exoneration')
-                                                : ""))))))
+                                                : ($payment->type == '7' ? __('Varios')
+                                                : "")))))))
                                             }}
                         </font>
                         <font size="1">
