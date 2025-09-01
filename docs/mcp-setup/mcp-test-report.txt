@@ -1,0 +1,32 @@
+REPORTE DE CONFIGURACION MCP - lu.,  1 de sep. de 2025 11:36:57
+=================================================================
+
+CONFIGURACION:
+- Project Path: /c/Users/szott/Dropbox/Desarrollo/asonata
+- Claude Config: /c/Users/szott/AppData/Roaming/Claude/claude_desktop_config.json  
+- Node Version: v20.19.2
+- Python Version: Python 3.13.3
+
+ARCHIVOS CRITICOS ENCONTRADOS:
+-rw-r--r-- 1 szott 197612  6980 sep.  1 11:27 /c/Users/szott/Dropbox/Desarrollo/asonata/ARCHITECTURE.md
+-rw-r--r-- 1 szott 197612  9824 sep.  1 11:35 /c/Users/szott/Dropbox/Desarrollo/asonata/CLAUDE-MCP-SETUP.md
+-rw-r--r-- 1 szott 197612 12528 sep.  1 11:35 /c/Users/szott/Dropbox/Desarrollo/asonata/CLAUDE-PROMPTS.md
+-rw-r--r-- 1 szott 197612  6324 sep.  1 11:27 /c/Users/szott/Dropbox/Desarrollo/asonata/ESTADO_ACTUAL.md
+-rw-r--r-- 1 szott 197612  8218 sep.  1 11:27 /c/Users/szott/Dropbox/Desarrollo/asonata/mcp-setup-guide.md
+-rw-r--r-- 1 szott 197612  8424 sep.  1 11:27 /c/Users/szott/Dropbox/Desarrollo/asonata/MODELS.md
+-rw-r--r-- 1 szott 197612 11985 sep.  1 11:27 /c/Users/szott/Dropbox/Desarrollo/asonata/PRD.md
+-rw-r--r-- 1 szott 197612  5032 sep.  1 11:27 /c/Users/szott/Dropbox/Desarrollo/asonata/README.md
+
+ESTRUCTURA LARAVEL:
+- app/: ✅ Existe
+- config/: ✅ Existe 
+- database/: ✅ Existe
+- resources/: ✅ Existe
+
+DOCUMENTACION IA:
+- ARCHITECTURE.md: ✅
+- ESTADO_ACTUAL.md: ✅
+- MODELS.md: ✅
+- PRD.md: ✅
+- CLAUDE-MCP-SETUP.md: ✅
+- CLAUDE-PROMPTS.md: ✅
