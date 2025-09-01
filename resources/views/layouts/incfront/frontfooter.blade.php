@@ -4,17 +4,20 @@
             <div class="row">
                 <div class="col-sm-6 col-lg-3">
                     <div class="widget widget-about">
-                        <img src="{{ asset('assets/uploads/logos/'.$config->logo) }}" class="footer-logo" alt="Footer Logo" width="105" height="25">
+                        @if (optional($config)->logo)
+                            <img src="{{ asset('assets/uploads/logos/'.$config->logo) }}" class="footer-logo" alt="Footer Logo" width="105" height="25">
+                        @endif
+
                         <p>Asociación Deportiva Departamental de Quetzaltenango de Natación, Clavados, Polo Acuático, Nado Sincronizado y Aguas Abiertas. </p>
 
                         <div class="social-icons">
-                            @if ($config->fb_link != null)
+                            @if (optional($config)->fb_link != null)
                                 <a href="{{ $config->fb_link }}" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
                             @endif
-                            @if ($config->inst_link != null)
+                            @if (optional($config)->inst_link != null)
                                 <a href="{{ $config->inst_link }}" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
                             @endif
-                            @if ($config->yt_link != null)
+                            @if (optional($config)->yt_link != null)
                                 <a href="{{ $config->yt_link }}" class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
                             @endif
                         </div><!-- End .soial-icons -->

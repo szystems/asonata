@@ -156,7 +156,11 @@
                         <h2><font color="red"><i class="icon-arrow-down"></i></font><font color="blue"><a class="border-radius-md w-25" href="{{ asset('assets/uploads/contracts/'.$class->Gcontract) }}" target="_blank">{{ __('Download Contract') }}</a></font></h2>
                     @endif --}}
                     @if ($class->Ccontract != null)
-                        <h2><font color="red"><i class="icon-arrow-down"></i></font><font color="blue"><a class="border-radius-md w-25" href="{{ asset('assets/uploads/contracts/categories/'.$class->Ccontract) }}" target="_blank">{{ __('Download Contract') }}</a></font></h2>
+                        {{-- <h2><font color="red"><i class="icon-arrow-down"></i></font><font color="blue"><a class="border-radius-md w-25" href="{{ asset('assets/uploads/contracts/categories/'.$class->Ccontract) }}" target="_blank">{{ __('Download Contract') }}</a></font></h2> --}}
+                        <div class="btn-wrap">
+                            {{-- <span>Round Style</span> --}}
+                            <h2><a href="{{ asset('assets/uploads/contracts/categories/'.$class->Ccontract) }}" class="btn btn-primary btn-round"><span>{{ __('Download Contract') }}</span><i class="icon-arrow-down"></i></a></h2>
+                        </div><!-- End .btn-wrap -->
                     @endif
 
 
@@ -174,7 +178,7 @@
                 <div class="col-md-10 col-lg-9 col-xl-8">
                     <div class="row no-gutters flex-column flex-sm-row align-items-sm-center">
                         <div class="col">
-                            <h3 class="cta-title text-white"><font color="ad060e">{{ __('Join') }}</font></h3><!-- End .cta-title -->
+                            <h3 class="cta-title text-white"><font color="ad060e">Inscribirse Aqui <i class="icon-long-arrow-right"></i></font></h3><!-- End .cta-title -->
                             <p class="cta-desc text-white"><font color="black">{{ __('Enter your CUI number and press next') }}</font></p><!-- End .cta-desc -->
                         </div><!-- End .col -->
 

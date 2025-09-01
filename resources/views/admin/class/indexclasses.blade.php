@@ -96,6 +96,7 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{ __('Schedule') }}</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{ __('Instructor') }}</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{ __('Status') }}</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{ __('Mostrando') }}</th>
                                         <th class="text-secondary opacity-7"><i class="material-icons">format_list_bulleted</i></th>
                                     </tr>
 
@@ -184,6 +185,18 @@
                                                 @elseif ($end_date_status < $hoy)
                                                     <span class="badge badge-sm bg-gradient-danger">{{ __('Finalized') }}</span>
                                                 @endif
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                    <strong>
+                                                        <span class="badge badge-sm bg-gradient-{{
+                                                            $class->mostrar == '0' ? 'danger'
+                                                            : ($class->mostrar == '1' ? 'success' : ""
+                                                            ) }}">
+                                                                {{ $class->mostrar == '0' ? __('No Mostrando')
+                                                                : ($class->mostrar == '1' ? __('Mostrando') : ""
+                                                                ) }}
+                                                        </span>
+                                                    </strong>
                                             </td>
 
                                             <td class="align-middle">

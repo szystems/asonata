@@ -20,6 +20,7 @@ class CreateCyclesTable extends Migration
             $table->date('end_date');
             $table->mediumText('description')->nullable();
             $table->tinyInteger('status');
+            $table->tinyInteger('mostrar')->default(0);
             $table->timestamps();
         });
     }

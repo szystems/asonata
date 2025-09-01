@@ -101,6 +101,7 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg-12">
+                                <h2 class="entry-title"><b><u>Formulario de Inscripción de Atleta Nuevo</u></b></h2><!-- End .entry-title -->
                                 <h2 class="checkout-title">{{ __('Athlete Information') }}</h2><!-- End .checkout-title -->
                                 <div class="row">
                                     <div class="col-sm-3">
@@ -149,7 +150,7 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <label>{{ __('Nombres y Apellidos del Atleta') }} </label>
-                                        <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="José Pérez">
+                                        <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                                         @if ($errors->has('name'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -161,7 +162,7 @@
 
                                     <div class="col-sm-3">
                                         <label>{{ __('Phone') }} </label>
-                                        <input type="text" class="form-control" name="phone" onkeypress="return validarentero(event,this.value)" value="{{ old('phone') }}" placeholder="xxxxxxxx">
+                                        <input type="text" class="form-control" name="phone" onkeypress="return validarentero(event,this.value)" value="{{ old('phone') }}">
                                         @if ($errors->has('phone'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -175,7 +176,7 @@
 
                                     <div class="col-sm-3">
                                         <label>{{ __('Whatsapp') }} </label>
-                                        <input type="text" class="form-control"name="whatsapp" onkeypress="return validarentero(event,this.value)" value="{{ old('whatsapp') }}" placeholder="xxxxxxxx">
+                                        <input type="text" class="form-control"name="whatsapp" onkeypress="return validarentero(event,this.value)" value="{{ old('whatsapp') }}">
                                         @if ($errors->has('cui_dpi'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -187,7 +188,7 @@
 
                                     <div class="col-sm-3">
                                         <label>Email </label>
-                                        <input type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="joseperez@dominio.com">
+                                        <input type="text" class="form-control" name="email" value="{{ old('email') }}">
                                         @if ($errors->has('email'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -363,7 +364,7 @@
                                 </div><!-- End .row -->
 
                                 <label>{{ __('Address') }} </label>
-                                <input type="text" class="form-control" name="address" placeholder="Tu dirección completa" value="{{ old('address') }}">
+                                <input type="text" class="form-control" name="address" value="{{ old('address') }}">
                                 @if ($errors->has('address'))
                                     <span class="help-block opacity-7">
                                             <strong>
@@ -430,7 +431,7 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <label for="">{{ __('Nombre Completo del Responsable') }}</label>
-                                        <input type="text" class="form-control" name="responsible_name" value="{{ old('responsible_name') }}" placeholder="Rubén Pérez">
+                                        <input type="text" class="form-control" name="responsible_name" value="{{ old('responsible_name') }}">
                                         @if ($errors->has('responsible_name'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -442,7 +443,7 @@
 
                                     <div class="col-sm-3">
                                         <label for="">{{ __('Responsible DPI') }}</label>
-                                        <input type="text" class="form-control" name="responsible_dpi" value="{{ old('responsible_dpi') }}" onkeypress="return validarentero(event,this.value)" value="{{ old('responsible_dpi') }}" placeholder="xxxxxxxxxxxxx">
+                                        <input type="text" class="form-control" name="responsible_dpi" value="{{ old('responsible_dpi') }}" onkeypress="return validarentero(event,this.value)" value="{{ old('responsible_dpi') }}">
                                         @if ($errors->has('responsible_dpi'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -454,7 +455,7 @@
 
                                     <div class="col-sm-3">
                                         <label for="">{{ __('Responsible Phone') }}</label>
-                                        <input type="text" class="form-control" name="responsible_phone" onkeypress="return validarentero(event,this.value)" value="{{ old('responsible_phone') }}" value="{{ old('responsible_phone') }}" placeholder="xxxxxxxx">
+                                        <input type="text" class="form-control" name="responsible_phone" onkeypress="return validarentero(event,this.value)" value="{{ old('responsible_phone') }}" value="{{ old('responsible_phone') }}">
                                         @if ($errors->has('responsible_phone'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -466,7 +467,7 @@
 
                                     <div class="col-sm-3">
                                         <label for="">{{ __('Responsible Whatsapp') }}</label>
-                                        <input type="text" class="form-control" name="responsible_whatsapp" value="{{ old('responsible_whatsapp') }}" onkeypress="return validarentero(event,this.value)" value="{{ old('responsible_whatsapp') }}" placeholder="xxxxxxxx">
+                                        <input type="text" class="form-control" name="responsible_whatsapp" value="{{ old('responsible_whatsapp') }}" onkeypress="return validarentero(event,this.value)" value="{{ old('responsible_whatsapp') }}">
                                         @if ($errors->has('responsible_whatsapp'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -478,7 +479,7 @@
 
                                     <div class="col-sm-3">
                                         <label for="">{{ __('Responsible Email') }}</label>
-                                        <input type="text" class="form-control" name="responsible_email" value="{{ old('responsible_email') }}" placeholder="rubenperez@dominio.com">
+                                        <input type="text" class="form-control" name="responsible_email" value="{{ old('responsible_email') }}">
                                         @if ($errors->has('responsible_email'))
                                             <span class="help-block opacity-7">
                                                     <strong>

@@ -331,10 +331,9 @@
             </div>
         </div>
 
-        @if (Auth::user()->role_as != 3)
+        {{-- @if (Auth::user()->role_as != 3)
             <div class="row mb-12">
 
-                {{-- Payment Alert --}}
                 <div class="col-lg-4 col-md-12 mb-md-0 mb-4">
                     <div class="card">
                         <div class="card-header pb-0">
@@ -342,14 +341,7 @@
                                 <div class="col-lg-12 col-7">
                                     <h5>{{ __('Pending Inscriptions') }}</h5>
                                     <hr class="horizontal dark my-3">
-                                    {{-- <p class="text-sm mb-0">
-                                        <i class="fas fa-exclamation-circle text-warning" aria-hidden="true"></i>
-                                        <span class="font-weight-bold ms-1"></span> = {{ __('late payment less than 1 month') }}
-                                    </p>
-                                    <p class="text-sm mb-0">
-                                        <i class="fas fa-exclamation-triangle text-danger" aria-hidden="true"></i>
-                                        <span class="font-weight-bold ms-1"></span> = {{ __('Late payment more than 1 month') }}
-                                    </p> --}}
+
                                 </div>
                                 <div>
                                     <form action="{{ url('inscriptions') }}" method="GET" target="_blank">
@@ -369,10 +361,6 @@
                                                 class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 {{ __('Inscription') }} / {{ __('Athlete') }} / {{ __('Date') }}
                                             </th>
-                                            {{-- <th
-                                                class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                {{ __('Athlete') }}
-                                            </th> --}}
                                             <th
                                                 class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 {{ __('Date') }}
@@ -413,7 +401,6 @@
                     </div>
                 </div>
 
-                {{-- Payment Alert --}}
                 <div class="col-lg-4 col-md-12 mb-md-0 mb-4">
                     <div class="card">
                         <div class="card-header pb-0">
@@ -526,7 +513,6 @@
                     </div>
                 </div>
 
-                {{-- Cycle Assists Alert --}}
                 <div class="col-lg-4 col-md-12 mb-md-0 mb-4">
                     <div class="card">
                         <div class="card-header pb-0">
@@ -631,7 +617,7 @@
         @else
             <div class="row mb-12">
 
-                {{-- Instructor assists alert --}}
+
                 <div class="col-lg-12 col-md-12 mb-md-0 mb-4">
                     <div class="card">
                         <div class="card-header pb-0">
@@ -792,7 +778,7 @@
 
 
             </div>
-        @endif
+        @endif --}}
 
 
     </div>

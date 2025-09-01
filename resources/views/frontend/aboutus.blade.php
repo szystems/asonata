@@ -15,7 +15,7 @@
         </div><!-- End .container -->
     </nav><!-- End .breadcrumb-nav -->
 
-    @if ($sections->nosotros_imagen != null)
+    @if (optional($sections)->nosotros_imagen != null)
         <div class="container">
             <div class="page-header page-header-big text-center" style="background-image: url('{{ asset('assets/uploads/nosotros/'.$sections->nosotros_imagen) }}')">
             </div><!-- End .page-header -->
@@ -32,9 +32,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mb-3 mb-lg-0">
-                        @if ($sections->nosotros_titulo != null) <h2 class="title">{{ $sections->nosotros_titulo }}</h2> @endif
-                        @if ($sections->nosotros_descripcion != null)  <p class="lead text-primary mb-3">{{ $sections->nosotros_descripcion }}</p> @endif
-                        @if ($sections->nosotros_descripcion2 != null)  <p class="mb-2">{{ $sections->nosotros_descripcion2 }}</p> @endif
+                        @if (optional($sections)->nosotros_titulo != null) <h2 class="title">{{ $sections->nosotros_titulo }}</h2> @endif
+                        @if (optional($sections)->nosotros_descripcion != null)  <p class="lead text-primary mb-3">{{ $sections->nosotros_descripcion }}</p> @endif
+                        @if (optional($sections)->nosotros_descripcion2 != null)  <p class="mb-2">{{ $sections->nosotros_descripcion2 }}</p> @endif
                         <br>
                         @foreach ($teams as $team)
                             <h2 class="title">{{ $team->nombre }}</h2>

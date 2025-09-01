@@ -30,7 +30,8 @@ class Classs extends Model
         'inscription_payment',
         'monthly_payment',
         'badge',
-        'status'
+        'status',
+        'mostrar'
     ];
 
     public function inscriptions(): HasMany

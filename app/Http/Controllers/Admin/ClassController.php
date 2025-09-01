@@ -55,7 +55,7 @@ class ClassController extends Controller
             ->join('schedule as s','cl.schedule_id','=','s.id')
             ->join('facilities as f','s.facility_id','=','f.id')
             ->join('users as i','cl.instructor_id','=','i.id')
-            ->select('cl.id','cl.cycle_id as CLcycle_id','cl.category_id as CLcategory_id','cl.schedule_id as CLschedule_id','cl.instructor_id as CLinstructor_id','cl.start_date as CLstart_date','cl.end_date as CLend_date','g.name as Gname','g.description as Gdescription','g.image as Gimage','g.status as Gstatus','cat.name as Cname','cat.age_from','cat.age_to','cat.description as Cdescripcion','cat.image as Cimage','cat.status as Cstatus','s.facility_id','s.start_time as Sstart_time','s.end_time as Send_time','s.sunday','s.monday','s.tuesday','s.wednesday','s.thursday','s.friday','s.saturday','s.quota','f.name as Fname','f.description as Fdescription','f.location','f.image as Fimage','f.status as Fstatus','i.name as Iname','i.email','i.phone','i.whatsapp')
+            ->select('cl.id','cl.mostrar','cl.cycle_id as CLcycle_id','cl.category_id as CLcategory_id','cl.schedule_id as CLschedule_id','cl.instructor_id as CLinstructor_id','cl.start_date as CLstart_date','cl.end_date as CLend_date','g.name as Gname','g.description as Gdescription','g.image as Gimage','g.status as Gstatus','cat.name as Cname','cat.age_from','cat.age_to','cat.description as Cdescripcion','cat.image as Cimage','cat.status as Cstatus','s.facility_id','s.start_time as Sstart_time','s.end_time as Send_time','s.sunday','s.monday','s.tuesday','s.wednesday','s.thursday','s.friday','s.saturday','s.quota','f.name as Fname','f.description as Fdescription','f.location','f.image as Fimage','f.status as Fstatus','i.name as Iname','i.email','i.phone','i.whatsapp')
             ->where('cl.cycle_id',$cycle->id)
             ->where('cl.status',1)
             ->where('cl.category_id','LIKE',$queryCategory)
@@ -111,6 +111,7 @@ class ClassController extends Controller
         $class->start_date = $start_date;
         $class->end_date = $end_date;
         $class->status = 1;
+        $class->mostrar = $request->input('mostrar') == TRUE ? '1':'0';
         $class->save();
 
         return redirect('index_classes/'.$class->cycle_id)->with('status',__('Class Added Successfully'));
@@ -157,6 +158,7 @@ class ClassController extends Controller
         $class->badge = $request->input('badge');
         $class->start_date = $start_date;
         $class->end_date = $end_date;
+        $class->mostrar = $request->input('mostrar') == TRUE ? '1':'0';
         $class->update();
 
         return redirect('index_classes/'.$class->cycle_id)->with('status',__('Class Updated Successfully'));

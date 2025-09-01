@@ -62,6 +62,7 @@ class CycleController extends Controller
         $cycle->start_date = $start_date;
         $cycle->end_date = $end_date;
         $cycle->status = 1;
+        $cycle->mostrar = $request->input('mostrar') == TRUE ? '1':'0';
         $cycle->save();
 
         return redirect('index_cycles')->with('status', __('Cycle Added Successfully'));
@@ -86,6 +87,7 @@ class CycleController extends Controller
         $cycle->description = $request->input('description');
         $cycle->start_date = $start_date;
         $cycle->end_date = $end_date;
+        $cycle->mostrar = $request->input('mostrar') == TRUE ? '1':'0';
         $cycle->update();
 
         return redirect('index_cycles')->with('status',__('Cycle Updated Successfully'));

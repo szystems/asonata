@@ -49,6 +49,24 @@
                             <label for=""><strong>{{ __('Description') }}</strong></label>
                             <p>{{ $cycle->description }}</p>
                         </div>
+                        <div class="col-md-3 mb-3">
+                            <label for=""><strong>{{ __('Mostrar') }}</strong></label>
+                            <p>
+                                <strong>
+                                    <span class="badge badge-sm bg-gradient-{{
+                                        $cycle->mostrar == '0' ? 'danger'
+                                        : ($cycle->mostrar == '1' ? 'success' : ""
+                                        ) }}">
+                                            {{ $cycle->mostrar == '0' ? __('No Mostrando')
+                                            : ($cycle->mostrar == '1' ? __('Mostrando') : ""
+                                            ) }}
+                                    </span>
+                                </strong>
+                            </p>
+                        </div>
+
+
+
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">

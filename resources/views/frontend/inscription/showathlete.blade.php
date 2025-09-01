@@ -3,7 +3,7 @@
 @section('content')
     <div class="page-header text-center" style="background-image: url('{{ asset('fronttemplate/assets/images/page-header-bg.jpg') }}')">
         <div class="container">
-            <h1 class="page-title">{{ __('Inscriptions') }}<span>{{ __('Athlete Information') }}</span></h1>
+            <h1 class="page-title">Reinscripción<span>{{ __('Athlete Information') }}</span></h1>
         </div><!-- End .container -->
     </div><!-- End .page-header -->
     <nav aria-label="breadcrumb" class="breadcrumb-nav">
@@ -102,6 +102,7 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg-12">
+                                <h2 class="entry-title"><b><u>Formulario de Reinscripción de Atleta</u></b></h2><!-- End .entry-title -->
                                 <h2 class="checkout-title">{{ __('Athlete Information') }}</h2><!-- End .checkout-title -->
                                 <div class="row">
                                     <div class="col-sm-3">
@@ -151,7 +152,7 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <label>{{ __('Nombres y Apellidos del atleta') }} </label>
-                                        <input type="text" class="form-control" name="name" value="{{ $atleta->name }}" placeholder="José Pérez">
+                                        <input type="text" class="form-control" name="name" value="{{ $atleta->name }}">
                                         @if ($errors->has('name'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -163,7 +164,7 @@
 
                                     <div class="col-sm-3">
                                         <label>{{ __('Phone') }} </label>
-                                        <input type="text" class="form-control" name="phone" onkeypress="return validarentero(event,this.value)" value="{{ $atleta->phone }}" placeholder="xxxxxxxx">
+                                        <input type="text" class="form-control" name="phone" onkeypress="return validarentero(event,this.value)" value="{{ $atleta->phone }}">
                                         @if ($errors->has('phone'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -177,7 +178,7 @@
 
                                     <div class="col-sm-3">
                                         <label>{{ __('Whatsapp') }} </label>
-                                        <input type="text" class="form-control"name="whatsapp" onkeypress="return validarentero(event,this.value)" value="{{ $atleta->whatsapp }}" placeholder="xxxxxxxx">
+                                        <input type="text" class="form-control"name="whatsapp" onkeypress="return validarentero(event,this.value)" value="{{ $atleta->whatsapp }}">
                                         @if ($errors->has('cui_dpi'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -189,7 +190,7 @@
 
                                     <div class="col-sm-3">
                                         <label>Email </label>
-                                        <input type="text" class="form-control" name="email" value="{{ $atleta->email }}" placeholder="joseperez@dominio.com">
+                                        <input type="text" class="form-control" name="email" value="{{ $atleta->email }}" >
                                         @if ($errors->has('email'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -363,7 +364,7 @@
                                 </div><!-- End .row -->
 
                                 <label>{{ __('Address') }} </label>
-                                <input type="text" class="form-control" name="address" placeholder="Tu dirección completa" value="{{ $atleta->address }}">
+                                <input type="text" class="form-control" name="address" value="{{ $atleta->address }}">
                                 @if ($errors->has('address'))
                                     <span class="help-block opacity-7">
                                             <strong>
@@ -386,9 +387,21 @@
                                           </div>
                                     </div><!-- End .col-sm-6 -->
 
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-warning" role="alert">
+                                            <strong>{{ __('Observación') }}:</strong><br>
+                                            - Si ya ha subido archivos anteriormente, ya no hay necesidad de volverlo a hacer, ahora sino revíselos y actualice los archivos.
+                                          </div>
+                                    </div>
+
                                     <div class="col-sm-4">
-                                        <label for="">{{ __('Athlete Image') }} (JPG)</label>
-                                        <input type="file" name="image" class="form-control" value="{{ $atleta->image }}" required>
+                                        <label for="">Actualizar {{ __('Athlete Image') }} (JPG)</label>
+                                        <input type="file" name="image" class="form-control" value="{{ $atleta->image }}" {{ $atleta->image == null ? 'required' : "" }}>
+                                        @if ($atleta->image != null)
+                                            <a href="{{ asset('assets/uploads/athletes/' . $atleta->image) }}" target="blank__" class="btn btn-outline-primary btn-round"><i class="icon-eye"></i><span>Ver Archivo Anterior</span></a>
+                                        @else
+                                            <p>No existe archivo, Elija uno.</p>
+                                        @endif
                                         @if ($errors->has('image'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -400,7 +413,12 @@
 
                                     <div class="col-sm-4">
                                         <label for="">{{ __('Vaccination Card') }} (PDF)</label>
-                                        <input type="file" name="vaccination_card" class="form-control" value="{{ $atleta->vaccination_card }}" >
+                                        <input type="file" name="vaccination_card" class="form-control" value="{{ $atleta->vaccination_card }}" {{ $atleta->image == null ? 'required' : "" }}>
+                                        @if ($atleta->vaccination_card != null)
+                                            <a href="{{ asset('assets/uploads/vaccination/'.$atleta->vaccination_card) }}" target="blank__" class="btn btn-outline-primary btn-round"><i class="icon-eye"></i><span>Ver Archivo Anterior</span></a>
+                                        @else
+                                            <p>No existe archivo, Elija uno.</p>
+                                        @endif
                                         @if ($errors->has('vaccination_card'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -412,7 +430,12 @@
 
                                     <div class="col-sm-4">
                                         <label for="">{{ __('Birth Certificate') }} (PDF)</label>
-                                        <input type="file" name="birth_certificate" class="form-control" value="{{ $atleta->birth_certificate }}" required>
+                                        <input type="file" name="birth_certificate" class="form-control" value="{{ $atleta->birth_certificate }}" {{ $atleta->image == null ? 'required' : "" }}>
+                                        @if ($atleta->birth_certificate != null)
+                                            <a href="{{ asset('assets/uploads/certificate/'.$atleta->birth_certificate) }}" target="blank__" class="btn btn-outline-primary btn-round"><i class="icon-eye"></i><span>Ver Archivo Anterior</span></a>
+                                        @else
+                                            <p>No existe archivo, Elija uno.</p>
+                                        @endif
                                         @if ($errors->has('birth_certificate'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -430,7 +453,7 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <label for="">{{ __('Nombre Completo del Responsable') }}</label>
-                                        <input type="text" class="form-control" name="responsible_name" value="{{ $atleta->responsible_name }}" placeholder="Rubén Pérez">
+                                        <input type="text" class="form-control" name="responsible_name" value="{{ $atleta->responsible_name }}">
                                         @if ($errors->has('responsible_name'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -442,7 +465,7 @@
 
                                     <div class="col-sm-3">
                                         <label for="">{{ __('Responsible DPI') }}</label>
-                                        <input type="text" class="form-control" name="responsible_dpi" value="{{ $atleta->responsible_dpi }}" onkeypress="return validarentero(event,this.value)" placeholder="xxxxxxxxxxxxx">
+                                        <input type="text" class="form-control" name="responsible_dpi" value="{{ $atleta->responsible_dpi }}" onkeypress="return validarentero(event,this.value)">
                                         @if ($errors->has('responsible_dpi'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -454,7 +477,7 @@
 
                                     <div class="col-sm-3">
                                         <label for="">{{ __('Responsible Phone') }}</label>
-                                        <input type="text" class="form-control" name="responsible_phone" onkeypress="return validarentero(event,this.value)" value="{{ $atleta->responsible_phone }}" placeholder="xxxxxxxx">
+                                        <input type="text" class="form-control" name="responsible_phone" onkeypress="return validarentero(event,this.value)" value="{{ $atleta->responsible_phone }}">
                                         @if ($errors->has('responsible_phone'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -466,7 +489,7 @@
 
                                     <div class="col-sm-3">
                                         <label for="">{{ __('Responsible Whatsapp') }}</label>
-                                        <input type="text" class="form-control" name="responsible_whatsapp" onkeypress="return validarentero(event,this.value)" value="{{ $atleta->responsible_whatsapp }}" placeholder="xxxxxxxx">
+                                        <input type="text" class="form-control" name="responsible_whatsapp" onkeypress="return validarentero(event,this.value)" value="{{ $atleta->responsible_whatsapp }}">
                                         @if ($errors->has('responsible_whatsapp'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -478,7 +501,7 @@
 
                                     <div class="col-sm-3">
                                         <label for="">{{ __('Responsible Email') }}</label>
-                                        <input type="text" class="form-control" name="responsible_email" value="{{ $atleta->responsible_email }}" placeholder="rubenperez@dominio.com">
+                                        <input type="text" class="form-control" name="responsible_email" value="{{ $atleta->responsible_email }}">
                                         @if ($errors->has('responsible_email'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -555,8 +578,20 @@
                                     </div><!-- End .col-sm-6 -->
 
                                     <div class="col-sm-12">
+                                        <div class="alert alert-warning" role="alert">
+                                            <strong>{{ __('Observación') }}:</strong><br>
+                                            - Si ya ha subido archivos anteriormente, ya no hay necesidad de volverlo a hacer, ahora sino revíselos y actualice los archivos.
+                                          </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
                                         <label for="">{{ __('Responsible DPI Image') }} (PDF)</label>
-                                        <input type="file" name="responsible_image" class="form-control" value="{{ $atleta->responsible_image }}" required>
+                                        <input type="file" name="responsible_image" class="form-control" value="{{ $atleta->responsible_image }}" {{ $atleta->responsible_image == null ? 'required' : "" }}>
+                                        @if ($atleta->responsible_image != null)
+                                            <a href="{{ asset('assets/uploads/responsible/'.$atleta->responsible_image) }}" target="blank__" class="btn btn-outline-primary btn-round"><i class="icon-eye"></i><span>Ver Archivo Anterior</span></a>
+                                        @else
+                                            <p>No existe archivo, Elija uno.</p>
+                                        @endif
                                         @if ($errors->has('responsible_image'))
                                             <span class="help-block opacity-7">
                                                     <strong>
@@ -568,7 +603,12 @@
 
                                     <div class="col-sm-12">
                                         <label for="">{{ __('Signed Contract') }} (PDF)</label>
-                                        <input type="file" name="signed_contract" class="form-control" value="{{ old('signed_contract') }}" required>
+                                        <input type="file" name="signed_contract" class="form-control" value="{{ old('signed_contract') }}" {{ $atleta->signed_contract == null ? 'required' : "" }}>
+                                        @if ($atleta->signed_contract != null)
+                                            <a href="{{ asset('assets/uploads/signedcontracts/'.$atleta->signed_contract) }}" target="blank__" class="btn btn-outline-primary btn-round"><i class="icon-eye"></i><span>Ver Archivo Anterior</span></a>
+                                        @else
+                                            <p>No existe archivo, Elija uno.</p>
+                                        @endif
                                         @if ($errors->has('signed_contract'))
                                             <span class="help-block opacity-7">
                                                     <strong>

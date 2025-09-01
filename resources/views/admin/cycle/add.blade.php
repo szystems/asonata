@@ -72,6 +72,14 @@
                                     </span>
                                 @endif
                             </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="mostrar" {{ old('mostrar') == 1 ? 'checked':'' }}>
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">{{ __('Mostrar') }}</label>
+                                    </div>
+                                </label>
+                            </div>
 
                             <div class="col-md-12 mb-3" >
                                 <button type="submit" class="btn btn-success"><i class="material-icons">save</i> {{ __('Save') }}</button>

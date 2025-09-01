@@ -49,6 +49,18 @@
                                                         @endphp
                                                         <p><b><font color="limegreen">{{ $start_date }}</font> - <font color="red">{{ $end_date }}</font></b></p>
                                                         <p>
+                                                            <strong>
+                                                                <span class="badge badge-sm bg-gradient-{{
+                                                                    $cycle->mostrar == '0' ? 'danger'
+                                                                    : ($cycle->mostrar == '1' ? 'success' : ""
+                                                                    ) }}">
+                                                                        {{ $cycle->mostrar == '0' ? __('No Mostrando')
+                                                                        : ($cycle->mostrar == '1' ? __('Mostrando') : ""
+                                                                        ) }}
+                                                                </span>
+                                                            </strong>
+                                                        </p>
+                                                        <p>
                                                             <b>{{ __('Classes') }}:</b> {{ $classes->count() }} <br>
                                                             <b>{{ __('Athletes') }}:</b> {{ $athlets->count() }} <br>
                                                             @if ($athlets->count() != 0)

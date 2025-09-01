@@ -162,6 +162,22 @@
                             </div>
                             @endif
 
+                            <div class="col-md-3 mb-3">
+                                <label for=""><strong>{{ __('Mostrar') }}</strong></label>
+                                <p>
+                                    <strong>
+                                        <span class="badge badge-sm bg-gradient-{{
+                                            $class->mostrar == '0' ? 'danger'
+                                            : ($class->mostrar == '1' ? 'success' : ""
+                                            ) }}">
+                                                {{ $class->mostrar == '0' ? __('No Mostrando')
+                                                : ($class->mostrar == '1' ? __('Mostrando') : ""
+                                                ) }}
+                                        </span>
+                                    </strong>
+                                </p>
+                            </div>
+
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">

@@ -19,33 +19,33 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mb-2 mb-lg-0">
-                    @if ($sections->contacto_titulo != null) <h2 class="title mb-1">{{ $sections->contacto_titulo }}</h2> @endif
-                    @if ($sections->contacto_descricion != null) <p class="mb-3">{{ $sections->contacto_descricion }}</p> @endif
+                    @if (optional($sections)->contacto_titulo != null) <h2 class="title mb-1">{{ $sections->contacto_titulo }}</h2> @endif
+                    @if (optional($sections)->contacto_descricion != null) <p class="mb-3">{{ $sections->contacto_descricion }}</p> @endif
                     <div class="row">
                         <div class="col-sm-7">
                             <div class="contact-info">
                                 <h3>Contácto</h3>
 
                                 <ul class="contact-list">
-                                    @if ($sections->contacto_direccion != null)
+                                    @if (optional($sections)->contacto_direccion != null)
                                         <li>
                                             <i class="icon-map-marker"></i>
                                             {{ $sections->contacto_direccion }}
                                         </li>
                                     @endif
-                                    @if ($sections->contacto_telefono != null)
+                                    @if (optional($sections)->contacto_telefono != null)
                                         <li>
                                             <i class="icon-phone"></i>
                                             <a href="{{ $sections->contacto_telefono }}">{{ $sections->contacto_telefono }}</a>
                                         </li>
                                     @endif
-                                    @if ($sections->contacto_telefono2 != null)
+                                    @if (optional($sections)->contacto_telefono2 != null)
                                         <li>
                                             <i class="icon-phone"></i>
                                             <a href="{{ $sections->contacto_telefono2 }}">{{ $sections->contacto_telefono2 }}</a>
                                         </li>
                                     @endif
-                                    @if ($sections->contacto_email != null)
+                                    @if (optional($sections)->contacto_email != null)
                                         <li>
                                             <i class="icon-envelope"></i>
                                             <a href="{{ $sections->contacto_email }}">{{ $sections->contacto_email }}</a>
@@ -60,13 +60,13 @@
                                 <h3>Oficínas</h3>
 
                                 <ul class="contact-list">
-                                    @if ($sections->contacto_lunes_viernes != null or $sections->contacto_lunes_viernes2 != null)
+                                    @if (optional($sections)->contacto_lunes_viernes != null or optional($sections)->contacto_lunes_viernes2 != null)
                                     <li>
                                         <i class="icon-clock-o"></i>
                                         <span class="text-dark">Lunes - Viernes</span> <br>{{ $sections->contacto_lunes_viernes }}<br>{{ $sections->contacto_lunes_viernes2}}
                                     </li>
                                     @endif
-                                    @if ($sections->contacto_domingo != null)
+                                    @if (optional($sections)->contacto_domingo != null)
                                     <li>
                                         <i class="icon-calendar"></i>
                                         <span class="text-dark">Sabado</span> <br>{{  $sections->contacto_domingo }}
@@ -78,8 +78,8 @@
                     </div><!-- End .row -->
                 </div><!-- End .col-lg-6 -->
                 <div class="col-lg-6">
-                    @if ($sections->contacto_titulo2 != null) <h2 class="title mb-1">{{ $sections->contacto_titulo2 }}</h2> @endif<!-- End .title mb-2 -->
-                    @if ($sections->contacto_descripcion2 != null) <p class="mb-2">{{ $sections->contacto_descripcion2 }}</p> @endif
+                    @if (optional($sections)->contacto_titulo2 != null) <h2 class="title mb-1">{{ $sections->contacto_titulo2 }}</h2> @endif<!-- End .title mb-2 -->
+                    @if (optional($sections)->contacto_descripcion2 != null) <p class="mb-2">{{ $sections->contacto_descripcion2 }}</p> @endif
 
                     <!--Mensaje flash-->
                     <div class="flash-message">

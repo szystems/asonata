@@ -75,7 +75,9 @@
                             @php
                                 $config = \App\Models\Config::find(1);
                             @endphp
-                            <img src="{{ asset('assets/uploads/logos/'.$config->logo) }}" alt="Asonata Logo" width="105" height="25">
+                            @if (optional($config)->logo)
+                                <img src="{{ asset('assets/uploads/logos/'.$config->logo) }}" alt="Asonata Logo" width="105" height="25">
+                            @endif
                         </a>
 
                         <nav class="main-nav">
@@ -230,7 +232,7 @@
         </div>
     </div> --}}
     <!-- Plugins JS File -->
-    @if ($config->wapp_link != null)
+    @if (optional($config)->wapp_link != null)
         <div class="whatsapp-chat">
             <a href="https://wa.me/502{{ $config->wapp_link }}" target="_blank">
                 <img src="{{ asset('assets/imgs/logow.png') }}" alt="whatsapp-chat" height="100px" width="100px">

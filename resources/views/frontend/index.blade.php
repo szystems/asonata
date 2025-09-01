@@ -5,9 +5,9 @@
         <div class="container">
             <div class="row">
                 <div class="container">
-            		@if ($sections->inicio_titulo != null) <h2 class="title mb-3 text-center text-danger">{{ $sections->inicio_titulo }}</h2> @endif
-                    @if ($sections->inicio_descripcion != null) <p class="title mb-3 text-center">{{ $sections->inicio_descripcion }}</p> @endif
-                    @if ($sections->inicio_descripcion_2 != null) <p class="text-center"><b>{{ $sections->inicio_descripcion_2 }}</b></p> @endif
+            		@if (optional($sections)->inicio_titulo) <h2 class="title mb-3 text-center text-danger">{{ optional($sections)->inicio_titulo }}</h2> @endif
+                    @if (optional($sections)->inicio_descripcion) <p class="title mb-3 text-center">{{ optional($sections)->inicio_descripcion }}</p> @endif
+                    @if (optional($sections)->inicio_descripcion_2) <p class="text-center"><b>{{ optional($sections)->inicio_descripcion_2 }}</b></p> @endif
             	</div><!-- End .container -->
                 <div class="col-lg-8">
                     <div class="intro-slider-container slider-container-ratio slider-container-1 mb-2 mb-lg-0">
@@ -89,7 +89,7 @@
                 </div><!-- End .col-lg-4 -->
             </div><!-- End .row -->
 
-            @if ($sections->video_link != null)
+            @if (optional($sections)->video_link != null)
                 <div class="mb-6"></div><!-- End .mb-6 -->
                 <div class="page-content">
                     <div class="video-banner video-banner-bg bg-image text-center" style="background-image: url({{ asset('assets/uploads/video/'.$sections->video_fondo) }})">

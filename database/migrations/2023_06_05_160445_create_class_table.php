@@ -26,6 +26,7 @@ class CreateClassTable extends Migration
             $table->decimal('monthly_payment');
             $table->decimal('badge');
             $table->tinyInteger('status');
+            $table->tinyInteger('mostrar')->default(0);
             $table->timestamps();
         });
     }

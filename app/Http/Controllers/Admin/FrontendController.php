@@ -17,43 +17,47 @@ class FrontendController extends Controller
     {
         $config = Config::first();
 
-        $activeInscriptions = Inscription::where('status',1)
-        ->where('inscription_status',1)
-        ->where('payments','!=',null)
-        ->orderBy('created_at','desc')
-        ->get();
+        // $activeInscriptions = Inscription::where('status',1)
+        // ->where('inscription_status',1)
+        // ->where('payments','!=',null)
+        // ->orderBy('created_at','desc')
+        // // ->take(20)
+        // ->get();
 
         $today = date("Y-m-d");
 
-        $activeInscriptionsCycle = Inscription::join('cycles', 'cycles.id', 'inscriptions.cycle_id')
-        ->where('cycles.start_date','<=',$today)
-        ->where('cycles.end_date','>=',$today)
-        ->where('inscriptions.status',1)
-        ->where('inscriptions.inscription_status',1)
-        ->where('inscriptions.payments','!=',null)
-        ->orderBy('inscriptions.created_at','desc')
-        ->get('inscriptions.*','cycles.*');
+        // $activeInscriptionsCycle = Inscription::join('cycles', 'cycles.id', 'inscriptions.cycle_id')
+        // ->where('cycles.start_date','<=',$today)
+        // ->where('cycles.end_date','>=',$today)
+        // ->where('inscriptions.status',1)
+        // ->where('inscriptions.inscription_status',1)
+        // ->where('inscriptions.payments','!=',null)
+        // ->orderBy('inscriptions.created_at','desc')
+        // // ->take(20)
+        // ->get('inscriptions.*','cycles.*');
 
-        $activeInscriptionsCycleInstructor = Inscription::join('cycles', 'cycles.id', 'inscriptions.cycle_id')
-        ->join('class', 'class.id', 'inscriptions.class_id')
-        ->join('users', 'users.id', 'class.instructor_id')
-        ->where('cycles.start_date','<=',$today)
-        ->where('cycles.end_date','>=',$today)
-        ->where('inscriptions.status',1)
-        ->where('inscriptions.inscription_status',1)
-        ->where('inscriptions.payments','!=',null)
-        ->orderBy('class.id','desc')
-        ->get('inscriptions.*','cycles.*','class.*','users.*');
+        // $activeInscriptionsCycleInstructor = Inscription::join('cycles', 'cycles.id', 'inscriptions.cycle_id')
+        // ->join('class', 'class.id', 'inscriptions.class_id')
+        // ->join('users', 'users.id', 'class.instructor_id')
+        // ->where('cycles.start_date','<=',$today)
+        // ->where('cycles.end_date','>=',$today)
+        // ->where('inscriptions.status',1)
+        // ->where('inscriptions.inscription_status',1)
+        // ->where('inscriptions.payments','!=',null)
+        // ->orderBy('class.id','desc')
+        // ->get('inscriptions.*','cycles.*','class.*','users.*');
 
-        $pendingInscriptions = Inscription::join('cycles', 'cycles.id', 'inscriptions.cycle_id')
-        ->join('class', 'class.id', 'inscriptions.class_id')
-        ->join('users', 'users.id', 'class.instructor_id')
-        ->where('inscriptions.status',1)
-        ->where('inscriptions.inscription_status',0)
-        ->orderBy('class.id','desc')
-        ->get('inscriptions.*','cycles.*','class.*','users.*');
+        // $pendingInscriptions = Inscription::join('cycles', 'cycles.id', 'inscriptions.cycle_id')
+        // ->join('class', 'class.id', 'inscriptions.class_id')
+        // ->join('users', 'users.id', 'class.instructor_id')
+        // ->where('inscriptions.status',1)
+        // ->where('inscriptions.inscription_status',0)
+        // ->orderBy('class.id','desc')
+        // // ->take(20)
+        // ->get('inscriptions.*','cycles.*','class.*','users.*');
 
-        return view('admin.index', compact('config','activeInscriptions','activeInscriptionsCycle','activeInscriptionsCycleInstructor','pendingInscriptions'));
+        // return view('admin.index', compact('config','activeInscriptions','activeInscriptionsCycle','activeInscriptionsCycleInstructor','pendingInscriptions'));
+        return view('admin.index', compact('config'));
     }
 
     public function pdfalertpayments(Request $request)
