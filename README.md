@@ -1,63 +1,218 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# ASONATA - Sistema de Gestión Deportiva
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-8.83.27-red.svg)
+![PHP](https://img.shields.io/badge/PHP-7.4.33-blue.svg)
+![MySQL](https://img.shields.io/badge/MySQL-8.0+-orange.svg)
+![Status](https://img.shields.io/badge/Status-Desarrollo_Activo-green.svg)
+![Environment](https://img.shields.io/badge/Environment-Laragon-purple.svg)
 
-## About Laravel
+**Sistema de Gestión Deportiva para Asociaciones de Atletismo**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Descripción
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+ASONATA es una aplicación web desarrollada en Laravel 8 para la gestión integral de asociaciones deportivas de atletismo. Permite administrar atletas, inscripciones, pagos, equipos, horarios y comunicaciones de manera eficiente y centralizada.
 
-## Learning Laravel
+### 🎯 Funcionalidades Principales
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- 👥 **Gestión de Atletas** - CRUD completo con categorización automática
+- 📝 **Sistema de Inscripciones** - Registro a competencias con notificaciones
+- 💰 **Control Financiero** - Gestión de pagos y reportes
+- 🏃‍♂️ **Gestión de Equipos** - Organización por categorías y niveles
+- 📅 **Control de Asistencia** - Registro y seguimiento de entrenamientos
+- 📧 **Comunicaciones** - Emails automáticos y sistema de noticias
+- 📊 **Reportes** - Exportación a Excel y PDF
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- 📊 **Reportes** - Exportación a Excel y PDF
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## � Estructura de Documentación
 
-### Premium Partners
+⚠️ **IMPORTANTE PARA AGENTES/IA**: 
+- **Archivos de contexto esenciales** deben permanecer en la raíz: `ARCHITECTURE.md`, `PRD.md`, `MODELS.md`, `ESTADO_ACTUAL.md`
+- **Documentación adicional, scripts y archivos auxiliares** deben crearse en la carpeta `docs/` con la siguiente estructura:
+  - `docs/mcp-setup/` - Configuraciones MCP y IA
+  - `docs/scripts/` - Scripts de automatización
+  - `docs/database-backups/` - Respaldos de BD
+  - `docs/workflows/` - Flujos de trabajo
+  - `docs/guides/` - Guías adicionales
+  - `docs/testing/` - Documentación de pruebas
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Ver `docs/README.md` para más detalles sobre la organización.
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## �🛠️ Tecnologías
 
-## Code of Conduct
+### Backend
+- **Laravel 8.83.27** - Framework PHP (Actualizada)
+- **MySQL 8.0+** - Base de datos (Desarrollo)
+- **PHP 7.4.33** - Lenguaje de programación (Desarrollo)
+- **Laragon** - Entorno de desarrollo local
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Frontend
+- **Laravel UI 3.4** - Scaffolding de autenticación
+- **Bootstrap** - Framework CSS
+- **Laravel Mix** - Compilación de assets
+- **CKEditor 5** - Editor de texto enriquecido
 
-## Security Vulnerabilities
+### Dependencias Clave
+- `laravel/sanctum` - Autenticación API
+- `maatwebsite/excel` - Exportación Excel
+- `barryvdh/laravel-dompdf` - Generación PDF
+- `guzzlehttp/guzzle` - Cliente HTTP
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
+
+## ⚙️ Instalación
+
+### Prerrequisitos
+
+```bash
+PHP >= 7.3
+Composer
+MySQL >= 5.7
+Node.js & npm (para assets)
+```
+
+### Pasos de Instalación
+
+1. **Clonar el repositorio**
+```bash
+git clone https://github.com/szystems/asonata.git
+cd asonata
+```
+
+2. **Instalar dependencias PHP**
+```bash
+composer install
+```
+
+3. **Instalar dependencias JavaScript**
+```bash
+npm install
+```
+
+4. **Configurar entorno**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+5. **Configurar base de datos**
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=asonata
+DB_USERNAME=tu_usuario
+DB_PASSWORD=tu_password
+```
+
+6. **Migrar base de datos**
+```bash
+php artisan migrate
+```
+
+7. **Compilar assets**
+```bash
+npm run dev
+# O para producción:
+npm run prod
+```
+
+8. **Iniciar servidor**
+```bash
+php artisan serve
+```
+
+La aplicación estará disponible en `http://localhost:8000`
+
+---
+
+## 📊 Documentación Técnica
+
+### Documentos Principales
+- [ARCHITECTURE.md](ARCHITECTURE.md) - Arquitectura técnica completa
+- [MODELS.md](MODELS.md) - Documentación de modelos y relaciones  
+- [PRD.md](PRD.md) - Product Requirements Document
+- [ESTADO_ACTUAL.md](ESTADO_ACTUAL.md) - Estado actual del proyecto
+- [mcp-setup-guide.md](mcp-setup-guide.md) - Configuración para agentes IA
+
+### Modelos Principales
+- `Atleta` - Gestión de atletas registrados
+- `Inscription` - Inscripciones a competencias
+- `Payment` - Control de pagos
+- `Team` - Gestión de equipos
+- `User` - Usuarios del sistema
+
+---
+
+## 🚀 Comandos Útiles
+
+```bash
+# Desarrollo
+php artisan serve
+npm run dev
+npm run watch
+
+# Base de datos
+php artisan migrate
+php artisan migrate:fresh --seed
+php artisan tinker
+
+# Producción
+npm run prod
+php artisan config:cache
+php artisan route:cache
+composer install --optimize-autoloader --no-dev
+```
+
+---
+
+## 🤖 Configuración para Agentes IA
+
+Este proyecto incluye documentación completa para trabajar con agentes de IA mediante herramientas MCP (Model Context Protocol). Ver [mcp-setup-guide.md](mcp-setup-guide.md) para configuración detallada.
+
+### Contexto Completo Disponible
+- ✅ Arquitectura técnica documentada
+- ✅ Modelos y relaciones mapeados
+- ✅ Estado actual analizado
+- ✅ Requerimientos de producto definidos
+- ✅ Estructura de archivos completa
+
+---
+
+## 📈 Estado del Proyecto
+
+- **Funcionalidad:** 8/10 ✅ Operativo
+- **Mantenibilidad:** 5/10 ⚠️ Requiere mejoras
+- **Seguridad:** 4/10 ❌ Necesita atención
+- **Testing:** 1/10 ❌ Crítico
+- **Documentación:** 8/10 ✅ Completa
+
+---
+
+## 🤝 Contribuir
+
+1. Fork del repositorio
+2. Crear rama: `git checkout -b feature/nueva-funcionalidad`
+3. Commit: `git commit -am 'Add nueva funcionalidad'`
+4. Push: `git push origin feature/nueva-funcionalidad`
+5. Crear Pull Request
+
+---
+
+## 📄 Licencia
+
+Proyecto propiedad de ASONATA - Asociación Nacional de Atletismo.
+Todos los derechos reservados.
+
+---
+
+*Última actualización: Septiembre 2025*
 
 ## License
 
