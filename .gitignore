@@ -38,6 +38,13 @@ yarn-error.log*
 # Archivos de respaldo automático del IDE
 *~
 .#*
+public/clear-cache.php
+public/diagnostico-ads.php
+public/limpiar-malware-2026.php
+public/scanner-malware.php
+public/limpiar_malware.php
+public/compare-config.php
+public/test-limpieza.php
 \#*#
 
 # Archivos duplicados comunes
