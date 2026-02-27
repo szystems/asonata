@@ -1,219 +1,74 @@
-# ASONATA - Sistema de Gestión Deportiva
+# ASONATA - Sports Association Management System
 
-![Laravel](https://img.shields.io/badge/Laravel-8.83.27-red.svg)
-![PHP](https://img.shields.io/badge/PHP-7.4.33-blue.svg)
-![MySQL](https://img.shields.io/badge/MySQL-8.0+-orange.svg)
-![Status](https://img.shields.io/badge/Status-Desarrollo_Activo-green.svg)
-![Environment](https://img.shields.io/badge/Environment-Laragon-purple.svg)
+[![Laravel](https://img.shields.io/badge/Laravel-8.x-red.svg)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-7.4%2B%7C8.0%2B-blue.svg)](https://php.net)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-orange.svg)](https://mysql.com)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-**Sistema de Gestión Deportiva para Asociaciones de Atletismo**
+**ASONATA** is a comprehensive sports association management platform built with **Laravel 8**, designed to streamline the administration of athletics organizations. It provides centralized tools for athlete management, event registration, payment processing, team organization, and automated communications.
 
----
+## Key Features
 
-## 📋 Descripción
+- **Athlete Management** — Full CRUD with automatic age-based categorization and profile tracking.
+- **Event Registration** — Competition sign-up system with automated email notifications and status tracking.
+- **Payment Processing** — Financial management module with payment tracking, receipts, and reporting.
+- **Team Organization** — Group athletes by categories and skill levels for training and competition.
+- **Attendance Tracking** — Training session logging and attendance records for coaches and administrators.
+- **Automated Communications** — Email notifications for registrations, payments, and news distribution.
+- **Reporting & Export** — Generate PDF and Excel reports for financial summaries, athlete rosters, and event data.
 
-ASONATA es una aplicación web desarrollada en Laravel 8 para la gestión integral de asociaciones deportivas de atletismo. Permite administrar atletas, inscripciones, pagos, equipos, horarios y comunicaciones de manera eficiente y centralizada.
+## Technical Architecture
 
-### 🎯 Funcionalidades Principales
+### Tech Stack
+| Layer | Technology |
+|---|---|
+| **Backend** | PHP 8.0+, Laravel 8 (Eloquent ORM, Form Requests, Middleware) |
+| **Database** | MySQL 8.0+ (Normalized Schema, Indexed Queries) |
+| **Frontend** | Blade Templates, Bootstrap 5, Laravel Mix |
+| **PDF/Excel** | DomPDF, Maatwebsite Excel |
+| **Authentication** | Laravel Sanctum + Laravel UI |
+| **Rich Text** | CKEditor 5 |
 
-- 👥 **Gestión de Atletas** - CRUD completo con categorización automática
-- 📝 **Sistema de Inscripciones** - Registro a competencias con notificaciones
-- 💰 **Control Financiero** - Gestión de pagos y reportes
-- 🏃‍♂️ **Gestión de Equipos** - Organización por categorías y niveles
-- 📅 **Control de Asistencia** - Registro y seguimiento de entrenamientos
-- 📧 **Comunicaciones** - Emails automáticos y sistema de noticias
-- 📊 **Reportes** - Exportación a Excel y PDF
+### Architecture Highlights
+- **Modular Design** — Cleanly separated modules for Athletes, Events, Payments, and Teams following Laravel conventions.
+- **Eloquent Relationships** — Complex data relationships (Athlete → Teams → Events → Payments) modeled with Laravel's ORM.
+- **Form Request Validation** — Dedicated validation classes ensuring data integrity across all input points.
+- **Automated Categorization** — Age-based athlete classification using computed model attributes.
+- **Role-Based Access** — Multi-level permissions for Administrators, Coaches, and Staff.
 
-- 📊 **Reportes** - Exportación a Excel y PDF
+## Getting Started
 
----
+### Requirements
+- PHP 7.4+ (8.0+ recommended)
+- Composer 2.0+
+- Node.js 14+
+- MySQL 8.0+
 
-## � Estructura de Documentación
-
-⚠️ **IMPORTANTE PARA AGENTES/IA**: 
-- **Archivos de contexto esenciales** deben permanecer en la raíz: `ARCHITECTURE.md`, `PRD.md`, `MODELS.md`, `ESTADO_ACTUAL.md`
-- **Documentación adicional, scripts y archivos auxiliares** deben crearse en la carpeta `docs/` con la siguiente estructura:
-  - `docs/mcp-setup/` - Configuraciones MCP y IA
-  - `docs/scripts/` - Scripts de automatización
-  - `docs/database-backups/` - Respaldos de BD
-  - `docs/workflows/` - Flujos de trabajo
-  - `docs/guides/` - Guías adicionales
-  - `docs/testing/` - Documentación de pruebas
-
-Ver `docs/README.md` para más detalles sobre la organización.
-
----
-
-## �🛠️ Tecnologías
-
-### Backend
-- **Laravel 8.83.27** - Framework PHP (Actualizada)
-- **MySQL 8.0+** - Base de datos (Desarrollo)
-- **PHP 7.4.33** - Lenguaje de programación (Desarrollo)
-- **Laragon** - Entorno de desarrollo local
-
-### Frontend
-- **Laravel UI 3.4** - Scaffolding de autenticación
-- **Bootstrap** - Framework CSS
-- **Laravel Mix** - Compilación de assets
-- **CKEditor 5** - Editor de texto enriquecido
-
-### Dependencias Clave
-- `laravel/sanctum` - Autenticación API
-- `maatwebsite/excel` - Exportación Excel
-- `barryvdh/laravel-dompdf` - Generación PDF
-- `guzzlehttp/guzzle` - Cliente HTTP
-
----
-
-## ⚙️ Instalación
-
-### Prerrequisitos
-
-```bash
-PHP >= 7.3
-Composer
-MySQL >= 5.7
-Node.js & npm (para assets)
-```
-
-### Pasos de Instalación
-
-1. **Clonar el repositorio**
+### Installation
 ```bash
 git clone https://github.com/szystems/asonata.git
 cd asonata
-```
-
-2. **Instalar dependencias PHP**
-```bash
 composer install
-```
-
-3. **Instalar dependencias JavaScript**
-```bash
 npm install
-```
-
-4. **Configurar entorno**
-```bash
 cp .env.example .env
 php artisan key:generate
-```
-
-5. **Configurar base de datos**
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=asonata
-DB_USERNAME=tu_usuario
-DB_PASSWORD=tu_password
-```
-
-6. **Migrar base de datos**
-```bash
-php artisan migrate
-```
-
-7. **Compilar assets**
-```bash
+php artisan migrate --seed
 npm run dev
-# O para producción:
-npm run prod
-```
-
-8. **Iniciar servidor**
-```bash
 php artisan serve
 ```
 
-La aplicación estará disponible en `http://localhost:8000`
+The application will be available at `http://localhost:8000`.
 
----
+## Documentation
 
-## 📊 Documentación Técnica
-
-### Documentos Principales
-- [ARCHITECTURE.md](ARCHITECTURE.md) - Arquitectura técnica completa
-- [MODELS.md](MODELS.md) - Documentación de modelos y relaciones  
-- [PRD.md](PRD.md) - Product Requirements Document
-- [ESTADO_ACTUAL.md](ESTADO_ACTUAL.md) - Estado actual del proyecto
-- [mcp-setup-guide.md](mcp-setup-guide.md) - Configuración para agentes IA
-
-### Modelos Principales
-- `Atleta` - Gestión de atletas registrados
-- `Inscription` - Inscripciones a competencias
-- `Payment` - Control de pagos
-- `Team` - Gestión de equipos
-- `User` - Usuarios del sistema
-
----
-
-## 🚀 Comandos Útiles
-
-```bash
-# Desarrollo
-php artisan serve
-npm run dev
-npm run watch
-
-# Base de datos
-php artisan migrate
-php artisan migrate:fresh --seed
-php artisan tinker
-
-# Producción
-npm run prod
-php artisan config:cache
-php artisan route:cache
-composer install --optimize-autoloader --no-dev
-```
-
----
-
-## 🤖 Configuración para Agentes IA
-
-Este proyecto incluye documentación completa para trabajar con agentes de IA mediante herramientas MCP (Model Context Protocol). Ver [mcp-setup-guide.md](mcp-setup-guide.md) para configuración detallada.
-
-### Contexto Completo Disponible
-- ✅ Arquitectura técnica documentada
-- ✅ Modelos y relaciones mapeados
-- ✅ Estado actual analizado
-- ✅ Requerimientos de producto definidos
-- ✅ Estructura de archivos completa
-
----
-
-## 📈 Estado del Proyecto
-
-- **Funcionalidad:** 8/10 ✅ Operativo
-- **Mantenibilidad:** 5/10 ⚠️ Requiere mejoras
-- **Seguridad:** 4/10 ❌ Necesita atención
-- **Testing:** 1/10 ❌ Crítico
-- **Documentación:** 8/10 ✅ Completa
-
----
-
-## 🤝 Contribuir
-
-1. Fork del repositorio
-2. Crear rama: `git checkout -b feature/nueva-funcionalidad`
-3. Commit: `git commit -am 'Add nueva funcionalidad'`
-4. Push: `git push origin feature/nueva-funcionalidad`
-5. Crear Pull Request
-
----
-
-## 📄 Licencia
-
-Proyecto propiedad de ASONATA - Asociación Nacional de Atletismo.
-Todos los derechos reservados.
-
----
-
-*Última actualización: Septiembre 2025*
+- [ARCHITECTURE.md](ARCHITECTURE.md) — Technical architecture overview
+- [MODELS.md](MODELS.md) — Model documentation and relationships
+- [PRD.md](PRD.md) — Product Requirements Document
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
+**Built by [Otto Szarata](https://github.com/szystems)** — Senior Full-Stack Developer | Victoria, BC, Canada
