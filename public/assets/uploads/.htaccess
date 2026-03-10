@@ -1,0 +1,18 @@
+# Bloquear ejecución de PHP y scripts en la carpeta uploads
+# Cualquier archivo subido aquí NO puede ser ejecutado como código
+
+<FilesMatch "\.(php|php3|php4|php5|phtml|shtml|pl|py|cgi|sh)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Para Apache 2.4+
+<IfModule mod_authz_core.c>
+    <FilesMatch "\.(php|php3|php4|php5|phtml|shtml|pl|py|cgi|sh)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+# Forzar descarga en lugar de ejecutar cualquier script
+Options -ExecCGI
+RemoveHandler cgi-script .php .php3 .php4 .php5 .phtml .shtml .pl .py .cgi .sh

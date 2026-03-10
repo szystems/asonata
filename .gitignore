@@ -84,6 +84,7 @@ yarn-error.log
 # --- Asonata Specific ---
 public/assets/uploads/*
 !public/assets/uploads/.gitkeep
+!public/assets/uploads/.htaccess
 public/clear-cache.php
 public/diagnostico-ads.php
 public/limpiar-malware-2026.php
