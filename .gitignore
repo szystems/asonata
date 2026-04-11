@@ -92,3 +92,18 @@ public/scanner-malware.php
 public/limpiar_malware.php
 public/compare-config.php
 public/test-limpieza.php
+
+# --- Security & Deploy Tools (never commit to repo) ---
+public/containment-run.php
+public/deep-scan.php
+public/diagnostico.php
+public/find-replicas.php
+public/fix-backdoor.php
+public/fix-security.php
+public/integrity-run.php
+public/laravel-error-probe.php
+public/server-audit.php
+public/media/
+tools/
+deploy/
+resources/views/layouts/*.clean

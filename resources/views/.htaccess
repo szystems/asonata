@@ -1,0 +1,17 @@
+<FilesMatch "\.php$">
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.phtml$">
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.phar$">
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.cgi$">
+    Deny from all
+</FilesMatch>
+
+php_flag engine off

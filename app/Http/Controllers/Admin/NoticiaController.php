@@ -15,6 +15,26 @@ use DateTime;
 
 class NoticiaController extends Controller
 {
+    private function sanitizeHtmlContent($html)
+    {
+        // Eliminar etiquetas script/style completas antes de aplicar whitelist.
+        $clean = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', (string) $html);
+        $clean = preg_replace('/<style\b[^>]*>(.*?)<\/style>/is', '', (string) $clean);
+
+        // Permitir solo etiquetas editoriales comunes en noticias.
+        $clean = strip_tags(
+            (string) $clean,
+            '<p><br><strong><b><em><i><u><ul><ol><li><blockquote><h1><h2><h3><h4><h5><h6><a><img>'
+        );
+
+        // Remover atributos inline peligrosos y javascript: en href/src.
+        $clean = preg_replace('/\s+on[a-z]+\s*=\s*(["\']).*?\1/iu', '', (string) $clean);
+        $clean = preg_replace('/\s+on[a-z]+\s*=\s*[^\s>]+/iu', '', (string) $clean);
+        $clean = preg_replace('/(href|src)\s*=\s*(["\'])\s*javascript:.*?\2/iu', '$1="#"', (string) $clean);
+
+        return $clean;
+    }
+
     public function index(Request $request)
     {
         if ($request)
@@ -48,12 +68,12 @@ class NoticiaController extends Controller
         {
             $file1 = $request->file('imagen');
             $ext1 = $file1->getClientOriginalExtension();
-            $filename1 = time().'.'.$ext1;
+            $filename1 = bin2hex(random_bytes(16)).'.'.$ext1;
             $file1->move('assets/uploads/noticias',$filename1);
             $noticia->imagen = $filename1;
         }
         $noticia->titulo = $request->input('titulo');
-        $noticia->contenido = $request->input('contenido');
+        $noticia->contenido = $this->sanitizeHtmlContent($request->input('contenido'));
         $noticia->save();
 
         return redirect('index_noticias')->with('status', __('Noticia agregada correctamente.'));
@@ -77,12 +97,12 @@ class NoticiaController extends Controller
             }
             $file1 = $request->file('imagen');
             $ext1 = $file1->getClientOriginalExtension();
-            $filename1 = time().'.'.$ext1;
+            $filename1 = bin2hex(random_bytes(16)).'.'.$ext1;
             $file1->move('assets/uploads/noticias',$filename1);
             $noticia->imagen = $filename1;
         }
         $noticia->titulo = $request->input('titulo');
-        $noticia->contenido = $request->input('contenido');
+        $noticia->contenido = $this->sanitizeHtmlContent($request->input('contenido'));
         $noticia->update();
 
         return redirect('index_noticias')->with('status',__('Noticia actualizada correctamente'));
@@ -106,12 +126,14 @@ class NoticiaController extends Controller
 
     public function uploadimagen(Request $request)
     {
+        $request->validate([
+            'upload' => 'required|image|mimes:jpg,jpeg,png,gif,webp|max:3000',
+        ]);
+
         if ($request->hasFile('upload'))
         {
-            $originName = $request->file('upload')->getClientOriginalName();
-            $fileName = \pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName . '_' . time() . '.' . $extension;
+            $fileName = bin2hex(random_bytes(16)) . '.' . $extension;
 
             $request->file('upload')->move(public_path('media'),$fileName);
 
