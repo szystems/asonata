@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('delete:inscriptions')->dailyAt('1:00');
+        $schedule->command('security:scan-php')->everyThirtyMinutes();
     }
 
     /**

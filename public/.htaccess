@@ -1,9 +1,26 @@
+# SECURITY: Solo index.php puede ejecutarse como PHP en este directorio.
+# Cualquier otro .php (incluyendo shells subidas por atacantes) devuelve 403.
+<FilesMatch "^(?!index\.php$).+\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# SECURITY: Bloquear ejecucion de scripts CGI/Perl/Shell
+<FilesMatch "\.(?:cgi|haxor|pl|py|sh|rb)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
 
     RewriteEngine On
+
+    # Redirigir www a no-www para garantizar consistencia de sesion
+    RewriteCond %{HTTP_HOST} ^www\.asonataxela\.com [NC]
+    RewriteRule ^(.*)$ https://asonataxela.com/$1 [R=301,L]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .

@@ -12,6 +12,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Asonata Xela</title>
+    <meta name="google-site-verification" content="QqZbDYdEjdmk1-DlGmRaU8fnnnKRmTBinVyJN6GRP9I" />
     <meta name="keywords" content="HTML5 Template">
     <meta name="description" content="Asonata">
     <meta name="author" content="Szystems">

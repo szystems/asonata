@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\SecurityCronController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\InscriptionsController;
 
@@ -63,6 +64,9 @@ Auth::routes();
 
 //language
 Route::get('/set_language/{lang}', [App\Http\Controllers\Controller::class, 'set_language'])->name('set_language');
+
+// Security monitor webhook — llamado por cron-job.org cada 30 min
+Route::get('/security/scan', [SecurityCronController::class, 'scan']);
 
 Route::middleware(['auth'])->group(function () {
     //front user

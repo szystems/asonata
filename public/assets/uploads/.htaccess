@@ -1,18 +1,28 @@
-# Bloquear ejecución de PHP y scripts en la carpeta uploads
-# Cualquier archivo subido aquí NO puede ser ejecutado como código
+# DENY any code execution in user uploads.
+# Critical defense: even if a file is renamed or is a polyglot, it MUST NOT execute.
 
-<FilesMatch "\.(php|php3|php4|php5|phtml|shtml|pl|py|cgi|sh)$">
+<FilesMatch "\.(php|php3|php4|php5|php7|phps|phtml|pht|phar|shtml|pl|py|cgi|sh|bash|jsp|asp|aspx|htm|html|exe)$">
     Order Allow,Deny
     Deny from all
 </FilesMatch>
 
-# Para Apache 2.4+
 <IfModule mod_authz_core.c>
-    <FilesMatch "\.(php|php3|php4|php5|phtml|shtml|pl|py|cgi|sh)$">
+    <FilesMatch "\.(php|php3|php4|php5|php7|phps|phtml|pht|phar|shtml|pl|py|cgi|sh|bash|jsp|asp|aspx|htm|html|exe)$">
         Require all denied
     </FilesMatch>
 </IfModule>
 
-# Forzar descarga en lugar de ejecutar cualquier script
-Options -ExecCGI
-RemoveHandler cgi-script .php .php3 .php4 .php5 .phtml .shtml .pl .py .cgi .sh
+# Disable PHP engine in this directory altogether
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+# Strip handlers and types so Apache cannot decide to execute these as scripts
+RemoveHandler .php .phtml .phar .pht .php3 .php4 .php5 .php7 .cgi .pl .py .sh
+RemoveType .php .phtml .phar .pht .php3 .php4 .php5 .php7 .cgi .pl .py .sh
+
+# Disable script execution, directory listing, and MultiViews (mitigates shell.php.jpg bypass)
+Options -ExecCGI -Indexes -MultiViews
