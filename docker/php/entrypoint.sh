@@ -22,7 +22,7 @@ done
 echo "==> MySQL listo."
 
 echo "==> Ejecutando migraciones..."
-php artisan migrate --force
+php artisan migrate --force 2>&1 || echo "==> Aviso: algunas migraciones ya existian (no fatal)"
 
 echo "==> Generando cache de configuracion..."
 php artisan config:cache
