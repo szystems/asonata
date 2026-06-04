@@ -1,28 +1,8 @@
 # Dockerfile.prod — Asonata (Laravel 8 + Mix)
+# Assets CSS/JS pre-compilados con: npm install --legacy-peer-deps && npm run production
 
 # =============================================================================
-# Stage 1: Node builder (Laravel Mix / webpack)
-# =============================================================================
-FROM node:18-alpine AS node-builder
-
-WORKDIR /app
-
-# Herramientas para compilar módulos nativos de npm
-RUN apk add --no-cache python3 make g++
-
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
-
-COPY webpack.mix.js ./
-COPY resources/ ./resources/
-COPY public/ ./public/
-
-RUN npm run production && \
-    test -f /app/public/mix-manifest.json || \
-    (echo "ERROR: mix-manifest.json no fue generado" && exit 1)
-
-# =============================================================================
-# Stage 2: PHP base
+# Stage 1: PHP base
 # =============================================================================
 FROM php:8.0-fpm-alpine AS php-base
 
@@ -54,7 +34,7 @@ RUN apk add --no-cache \
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # =============================================================================
-# Stage 3: PHP builder (dependencias Composer)
+# Stage 2: PHP builder (dependencias Composer)
 # =============================================================================
 FROM php-base AS php-builder
 
@@ -69,7 +49,7 @@ RUN composer install \
     --prefer-dist
 
 # =============================================================================
-# Stage 4: App final
+# Stage 3: App final
 # =============================================================================
 FROM php-base AS app
 
@@ -77,11 +57,10 @@ WORKDIR /app
 
 COPY . .
 COPY --from=php-builder /app/vendor ./vendor
-COPY --from=node-builder /app/public/js ./public/js
-COPY --from=node-builder /app/public/css ./public/css
-COPY --from=node-builder /app/public/mix-manifest.json ./public/mix-manifest.json
 
-RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache && chown -R www-data:www-data storage bootstrap/cache && chmod -R 775 storage bootstrap/cache
+RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
 
 COPY docker/php/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh

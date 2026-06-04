@@ -8,7 +8,6 @@
 /public/hot
 /public/storage
 /public/build
-/public/mix-manifest.json
 /storage/*.key
 /bootstrap/cache/*.php
 
