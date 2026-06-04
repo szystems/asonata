@@ -20,9 +20,12 @@ services:
       - LOG_LEVEL=error
       - APP_KEY
       - SECURITY_CRON_TOKEN
-      - DB_DATABASE
-      - DB_USERNAME
-      - DB_PASSWORD
+      - DB_CONNECTION=mysql
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=dbasonatanuevo
+      - DB_USERNAME=szasonata
+      - DB_PASSWORD=0XGiSjLZ3fE2t1CAxgC1UDOHIHigRLYS
       - MAIL_HOST=smtp.ipage.com
       - MAIL_PORT=465
       - MAIL_ENCRYPTION=ssl
@@ -79,9 +82,12 @@ services:
       - SESSION_DOMAIN=.asonataxela.com
       - APP_KEY
       - SECURITY_CRON_TOKEN
-      - DB_DATABASE
-      - DB_USERNAME
-      - DB_PASSWORD
+      - DB_CONNECTION=mysql
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=dbasonatanuevo
+      - DB_USERNAME=szasonata
+      - DB_PASSWORD=0XGiSjLZ3fE2t1CAxgC1UDOHIHigRLYS
       - MAIL_HOST=smtp.ipage.com
       - MAIL_PORT=465
       - MAIL_ENCRYPTION=ssl
@@ -100,10 +106,10 @@ services:
     image: mysql:8.4
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD
-      - MYSQL_DATABASE=${DB_DATABASE}
-      - MYSQL_USER=${DB_USERNAME}
-      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=YqpHpRwb9lbmeaCtbVLAQQIwYPqtL7
+      - MYSQL_DATABASE=dbasonatanuevo
+      - MYSQL_USER=szasonata
+      - MYSQL_PASSWORD=0XGiSjLZ3fE2t1CAxgC1UDOHIHigRLYS
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
