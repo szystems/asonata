@@ -3,15 +3,28 @@ set -e
 
 echo "==> Esperando MySQL en mysql:3306..."
 until nc -z mysql 3306; do
-  echo "   MySQL no disponible aún — esperando 3s..."
+  echo "   MySQL no disponible aun - esperando 3s..."
   sleep 3
 done
-echo "==> MySQL disponible."
+
+echo "==> Puerto MySQL abierto. Verificando que acepte conexiones..."
+until php -r "
+try {
+    \$pdo = new PDO('mysql:host=mysql;port=3306', getenv('DB_USERNAME'), getenv('DB_PASSWORD'));
+    exit(0);
+} catch (Exception \$e) {
+    exit(1);
+}
+" 2>/dev/null; do
+  echo "   MySQL iniciando - esperando 3s..."
+  sleep 3
+done
+echo "==> MySQL listo."
 
 echo "==> Ejecutando migraciones..."
 php artisan migrate --force
 
-echo "==> Generando cache de configuración..."
+echo "==> Generando cache de configuracion..."
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
