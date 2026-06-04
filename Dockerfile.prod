@@ -3,18 +3,23 @@
 # =============================================================================
 # Stage 1: Node builder (Laravel Mix / webpack)
 # =============================================================================
-FROM node:16-alpine AS node-builder
+FROM node:18-alpine AS node-builder
 
 WORKDIR /app
 
+# Herramientas para compilar módulos nativos de npm
+RUN apk add --no-cache python3 make g++
+
 COPY package*.json ./
-RUN npm ci
+RUN npm install --legacy-peer-deps
 
 COPY webpack.mix.js ./
 COPY resources/ ./resources/
 COPY public/ ./public/
 
-RUN npm run production
+RUN npm run production && \
+    test -f /app/public/mix-manifest.json || \
+    (echo "ERROR: mix-manifest.json no fue generado" && exit 1)
 
 # =============================================================================
 # Stage 2: PHP base
