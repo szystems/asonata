@@ -35,7 +35,7 @@ services:
       - MAIL_PASSWORD
     volumes:
       - storage_private:/app/storage/app
-      - public_assets:/app/public/assets
+      - public_root:/app/public
     depends_on:
       - mysql
     networks:
@@ -48,7 +48,7 @@ services:
     restart: unless-stopped
     volumes:
       - storage_private:/app/storage/app:ro
-      - public_assets:/app/public/assets:ro
+      - public_root:/app/public:ro
     depends_on:
       - app
     networks:
@@ -120,7 +120,7 @@ services:
 
 volumes:
   storage_private:
-  public_assets:
+  public_root:
   mysql_data:
 
 networks:
