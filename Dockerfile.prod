@@ -33,6 +33,10 @@ RUN apk add --no-cache \
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+# Límites de subida/POST (inscripción de atleta sube hasta 5 archivos).
+# Se hereda en los stages app y scheduler.
+COPY docker/php/uploads.ini /usr/local/etc/php/conf.d/zz-uploads.ini
+
 # =============================================================================
 # Stage 2: PHP builder (dependencias Composer)
 # =============================================================================
