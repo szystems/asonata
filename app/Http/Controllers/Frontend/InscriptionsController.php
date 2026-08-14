@@ -18,7 +18,7 @@ use App\Http\Requests\InscriptionFormRequest;
 use Illuminate\Support\Facades\File;
 use PDF;
 use DB;
-use Illuminate\Support\Facades\Mail;
+use App\Helpers\MailSafe;
 use App\Mail\InscriptionMail;
 
 class InscriptionsController extends Controller
@@ -247,20 +247,15 @@ class InscriptionsController extends Controller
         $inscription->inscription_number = $inscription_number;
         $inscription->update();
 
-        try {
-            Mail::to($atleta->email)->send(new InscriptionMail($inscription));
-            Mail::to($atleta->responsible_email)->send(new InscriptionMail($inscription));
-            Mail::to($config->email)->send(new InscriptionMail($inscription));
-        }
-        catch (exception $e) {
+        $mailOk = MailSafe::send($atleta->email, new InscriptionMail($inscription));
+        $mailOk = MailSafe::send($atleta->responsible_email, new InscriptionMail($inscription)) && $mailOk;
+        $mailOk = MailSafe::send($config->email, new InscriptionMail($inscription)) && $mailOk;
+
+        if ($mailOk) {
+            $request->session()->flash('alert-success', __('The registration has been created correctly, save this information to be able to consult again if your request has been confirmed, any questions or comments, contact us'));
+        } else {
             $request->session()->flash('alert-success', __('The registration has been created correctly, save this information to be able to consult again if your request has been confirmed, any questions or comments, contact us. Automatic mail could not be sent.'));
-
-            return view('frontend.inscription.inscriptionform', compact('atleta','class','config','inscription'));
         }
-
-
-
-        $request->session()->flash('alert-success', __('The registration has been created correctly, save this information to be able to consult again if your request has been confirmed, any questions or comments, contact us'));
 
         return view('frontend.inscription.inscriptionform', compact('atleta','class','config','inscription'));
     }
@@ -399,18 +394,16 @@ class InscriptionsController extends Controller
         $inscription->inscription_number = $inscription_number;
         $inscription->update();
 
-        try {
-            Mail::to($atleta->email)->send(new InscriptionMail($inscription));
-            Mail::to($atleta->responsible_email)->send(new InscriptionMail($inscription));
-            Mail::to($config->email)->send(new InscriptionMail($inscription));
-        }
-        catch (exception $e) {
+        $mailOk = MailSafe::send($atleta->email, new InscriptionMail($inscription));
+        $mailOk = MailSafe::send($atleta->responsible_email, new InscriptionMail($inscription)) && $mailOk;
+        $mailOk = MailSafe::send($config->email, new InscriptionMail($inscription)) && $mailOk;
+
+        if ($mailOk) {
+            $request->session()->flash('alert-success', __('The registration has been created correctly, save this information to be able to consult again if your request has been confirmed, any questions or comments, contact us'));
+        } else {
             $request->session()->flash('alert-success', __('The registration has been created correctly, save this information to be able to consult again if your request has been confirmed, any questions or comments, contact us. Automatic mail could not be sent.'));
-
-            return view('frontend.inscription.inscriptionform', compact('atleta','class','config','inscription'));
         }
 
-        $request->session()->flash('alert-success', __('The registration has been created correctly, save this information to be able to consult again if your request has been confirmed, any questions or comments, contact us'));
         return view('frontend.inscription.inscriptionform', compact('atleta','class','config','inscription'));
     }
 

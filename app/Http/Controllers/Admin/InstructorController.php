@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Config;
 use PDF;
 use DB;
-use Illuminate\Support\Facades\Mail;
+use App\Helpers\MailSafe;
 use App\Mail\UserMail;
 
 class InstructorController extends Controller
@@ -83,9 +83,9 @@ class InstructorController extends Controller
         $user->timezone = $request->input('timezone');
         $user->save();
 
-        Mail::to($user->email)->send(new UserMail($user));
+        $mailOk = MailSafe::send($user->email, new UserMail($user));
 
-        return redirect('instructores')->with('status', __('Instructor Added Successfully'));
+        return redirect('instructores')->with('status', MailSafe::status(__('Instructor Added Successfully'), $mailOk));
     }
 
     public function edituser($id)

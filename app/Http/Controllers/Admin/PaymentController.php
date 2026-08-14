@@ -20,7 +20,7 @@ use DateTime;
 use DateTimeZone;
 use PDF;
 use DB;
-use Illuminate\Support\Facades\Mail;
+use App\Helpers\MailSafe;
 use App\Mail\PaymentMail;
 use App\Exports\PaymentsExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -280,8 +280,8 @@ class PaymentController extends Controller
                     $atleta = Atleta::find($inscription->atleta_id);
                     $idclass = $inscription->class_id;
 
-                    Mail::to($atleta->email)->send(new PaymentMail($inscription));
-                    Mail::to($atleta->responsible_email)->send(new PaymentMail($inscription));
+                    MailSafe::send($atleta->email, new PaymentMail($inscription));
+                    MailSafe::send($atleta->responsible_email, new PaymentMail($inscription));
 
                     return redirect('show-inscription/'.$inscription->id)->with('status', __('Exoneration added successfully'));
 
@@ -311,8 +311,8 @@ class PaymentController extends Controller
                     $atleta = Atleta::find($inscription->atleta_id);
                     $idclass = $inscription->class_id;
 
-                    Mail::to($atleta->email)->send(new PaymentMail($inscription));
-                    Mail::to($atleta->responsible_email)->send(new PaymentMail($inscription));
+                    MailSafe::send($atleta->email, new PaymentMail($inscription));
+                    MailSafe::send($atleta->responsible_email, new PaymentMail($inscription));
 
                     return redirect('show-inscription/'.$inscription->id)->with('status', __('Payment and exoneration added successfully'));
                 }
@@ -337,8 +337,8 @@ class PaymentController extends Controller
             $atleta = Atleta::find($inscription->atleta_id);
             $idclass = $inscription->class_id;
 
-            Mail::to($atleta->email)->send(new PaymentMail($inscription));
-            Mail::to($atleta->responsible_email)->send(new PaymentMail($inscription));
+            MailSafe::send($atleta->email, new PaymentMail($inscription));
+            MailSafe::send($atleta->responsible_email, new PaymentMail($inscription));
 
             return redirect('show-inscription/'.$inscription->id)->with('status', __('Payment Added Successfully'));
         }
@@ -370,8 +370,8 @@ class PaymentController extends Controller
             $atleta = Atleta::find($inscription->atleta_id);
             $idclass = $inscription->class_id;
 
-            Mail::to($atleta->email)->send(new PaymentMail($inscription));
-            Mail::to($atleta->responsible_email)->send(new PaymentMail($inscription));
+            MailSafe::send($atleta->email, new PaymentMail($inscription));
+            MailSafe::send($atleta->responsible_email, new PaymentMail($inscription));
 
             return redirect('show-inscription/'.$inscription->id)->with('status', __('Pago de varios realizado exitosamente!'));
         }

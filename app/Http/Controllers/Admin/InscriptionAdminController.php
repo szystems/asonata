@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\File;
 use PDF;
 use DB;
 use DateTime;
-use Illuminate\Support\Facades\Mail;
+use App\Helpers\MailSafe;
 use App\Mail\InscriptionMail;
 use App\Mail\InscriptionUpdateMail;
 use Carbon\Carbon;
@@ -210,8 +210,8 @@ class InscriptionAdminController extends Controller
 
             $atleta = Atleta::find($idatleta);
 
-            Mail::to($atleta->email)->send(new InscriptionMail($inscription));
-            Mail::to($atleta->responsible_email)->send(new InscriptionMail($inscription));
+            MailSafe::send($atleta->email, new InscriptionMail($inscription));
+            MailSafe::send($atleta->responsible_email, new InscriptionMail($inscription));
 
             return redirect('inscriptions')->with('status', __('Inscription Added Successfully'));
         }
@@ -358,13 +358,8 @@ class InscriptionAdminController extends Controller
             }
             $inscription->update();
 
-            try {
-                Mail::to($atleta->email)->send(new InscriptionUpdateMail($inscription));
-                Mail::to($atleta->responsible_email)->send(new InscriptionUpdateMail($inscription));
-            }
-            catch (exception $e) {
-                return redirect('show-inscription/'.$id)->with('status', __('Inscription Updated Successfully'));
-            }
+            MailSafe::send($atleta->email, new InscriptionUpdateMail($inscription));
+            MailSafe::send($atleta->responsible_email, new InscriptionUpdateMail($inscription));
 
             return redirect('show-inscription/'.$id)->with('status', __('Inscription Updated Successfully'));
 
@@ -433,13 +428,8 @@ class InscriptionAdminController extends Controller
                         $inscription->notes = 'La inscripción fue confirmada.';
                         $inscription->update();
 
-                        try {
-                            Mail::to($atleta->email)->send(new InscriptionUpdateMail($inscription));
-                            Mail::to($atleta->responsible_email)->send(new InscriptionUpdateMail($inscription));
-                        }
-                        catch (exception $e) {
-                            return redirect('show-inscription/'.$id)->with('status', __('Inscription Updated Successfully'));
-                        }
+                        MailSafe::send($atleta->email, new InscriptionUpdateMail($inscription));
+                        MailSafe::send($atleta->responsible_email, new InscriptionUpdateMail($inscription));
 
                         return redirect('show-inscription/'.$id)->with('status', __('Inscription Confirmed Successfully'));
 
@@ -472,13 +462,8 @@ class InscriptionAdminController extends Controller
                         $inscription->notes = 'La inscripción fue confirmada.';
                         $inscription->update();
 
-                        try {
-                            Mail::to($atleta->email)->send(new InscriptionUpdateMail($inscription));
-                            Mail::to($atleta->responsible_email)->send(new InscriptionUpdateMail($inscription));
-                        }
-                        catch (exception $e) {
-                            return redirect('show-inscription/'.$id)->with('status', __('Inscription Updated Successfully'));
-                        }
+                        MailSafe::send($atleta->email, new InscriptionUpdateMail($inscription));
+                        MailSafe::send($atleta->responsible_email, new InscriptionUpdateMail($inscription));
 
                         return redirect('show-inscription/'.$id)->with('status', __('Inscription Confirmed Successfully'));
 
@@ -488,13 +473,8 @@ class InscriptionAdminController extends Controller
                         $inscription->notes = 'La inscripción fue rechazada porque la clase ya finalizo.';
                         $inscription->update();
 
-                        try {
-                            Mail::to($atleta->email)->send(new InscriptionUpdateMail($inscription));
-                            Mail::to($atleta->responsible_email)->send(new InscriptionUpdateMail($inscription));
-                        }
-                        catch (exception $e) {
-                            return redirect('show-inscription/'.$id)->with('status', __('Registration was rejected the class has already ended'));
-                        }
+                        MailSafe::send($atleta->email, new InscriptionUpdateMail($inscription));
+                        MailSafe::send($atleta->responsible_email, new InscriptionUpdateMail($inscription));
 
                         return redirect('show-inscription/'.$id)->with('status', __('Registration was rejected the class has already ended'));
                     }
@@ -508,13 +488,8 @@ class InscriptionAdminController extends Controller
                     $inscription->notes = 'La inscripción fue rechazada por falta de cupo en la clase seleccionada';
                     $inscription->update();
 
-                    try {
-                        Mail::to($atleta->email)->send(new InscriptionUpdateMail($inscription));
-                        Mail::to($atleta->responsible_email)->send(new InscriptionUpdateMail($inscription));
-                    }
-                    catch (exception $e) {
-                        return redirect('show-inscription/'.$id)->with('status', __('Registration was rejected due to lack of space in the selected class'));
-                    }
+                    MailSafe::send($atleta->email, new InscriptionUpdateMail($inscription));
+                    MailSafe::send($atleta->responsible_email, new InscriptionUpdateMail($inscription));
 
                     return redirect('show-inscription/'.$id)->with('status', __('Registration was rejected due to lack of space in the selected class'));
                 }
@@ -531,13 +506,8 @@ class InscriptionAdminController extends Controller
                 }
                 $inscription->update();
 
-                try {
-                    Mail::to($atleta->email)->send(new InscriptionUpdateMail($inscription));
-                    Mail::to($atleta->responsible_email)->send(new InscriptionUpdateMail($inscription));
-                }
-                catch (exception $e) {
-                    return redirect('show-inscription/'.$id)->with('status', 'La inscripción se edito correctamente a: Rechazada');
-                }
+                MailSafe::send($atleta->email, new InscriptionUpdateMail($inscription));
+                MailSafe::send($atleta->responsible_email, new InscriptionUpdateMail($inscription));
 
                 return redirect('show-inscription/'.$id)->with('status', 'La inscripción se edito correctamente a: Rechazada');
             } else {
@@ -549,13 +519,8 @@ class InscriptionAdminController extends Controller
                 }
                 $inscription->update();
 
-                try {
-                    Mail::to($atleta->email)->send(new InscriptionUpdateMail($inscription));
-                    Mail::to($atleta->responsible_email)->send(new InscriptionUpdateMail($inscription));
-                }
-                catch (exception $e) {
-                    return redirect('show-inscription/'.$id)->with('status', __('Inscription Updated Successfully'));
-                }
+                MailSafe::send($atleta->email, new InscriptionUpdateMail($inscription));
+                MailSafe::send($atleta->responsible_email, new InscriptionUpdateMail($inscription));
 
                 return redirect('show-inscription/'.$id)->with('status', __('Inscription Updated Successfully'));
             }
@@ -566,13 +531,8 @@ class InscriptionAdminController extends Controller
         }elseif (($request->input('inscription_status') == '1' and ($inscription->inscription_status == '3')) or ($request->input('inscription_status') == '1' and ($inscription->inscription_status == '4')) or ($request->input('inscription_status') == '1' and ($inscription->inscription_status == '5'))) {
             //si se quiere confirmar una inscripcion que fue expulsado, retirado o promovido no se podra realizar
 
-            try {
-                Mail::to($atleta->email)->send(new InscriptionUpdateMail($inscription));
-                Mail::to($atleta->responsible_email)->send(new InscriptionUpdateMail($inscription));
-            }
-            catch (exception $e) {
-                return redirect('show-inscription/'.$id)->with('status', __('The registration has already been changed to status: promoted, expelled or withdrawn, so it cannot be changed to confirmed status.'));
-            }
+            MailSafe::send($atleta->email, new InscriptionUpdateMail($inscription));
+            MailSafe::send($atleta->responsible_email, new InscriptionUpdateMail($inscription));
 
             return redirect('show-inscription/'.$id)->with('status', __('The registration has already been changed to status: promoted, expelled or withdrawn, so it cannot be changed to confirmed status.'));
         }
@@ -586,13 +546,8 @@ class InscriptionAdminController extends Controller
             }
             $inscription->update();
 
-            try {
-                Mail::to($atleta->email)->send(new InscriptionUpdateMail($inscription));
-                Mail::to($atleta->responsible_email)->send(new InscriptionUpdateMail($inscription));
-            }
-            catch (exception $e) {
-                return redirect('show-inscription/'.$id)->with('status', __('Se cambio el estado de la inscripción y ya no se encuentra activa.'));
-            }
+            MailSafe::send($atleta->email, new InscriptionUpdateMail($inscription));
+            MailSafe::send($atleta->responsible_email, new InscriptionUpdateMail($inscription));
 
             return redirect('show-inscription/'.$id)->with('status', __('Se cambio el estado de la inscripción y ya no se encuentra activa.'));
         }

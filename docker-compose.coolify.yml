@@ -26,9 +26,11 @@ services:
       - DB_DATABASE=dbasonatanuevo
       - DB_USERNAME=szasonata
       - DB_PASSWORD=0XGiSjLZ3fE2t1CAxgC1UDOHIHigRLYS
+      - MAIL_MAILER=smtp
       - MAIL_HOST=smtp.ipage.com
       - MAIL_PORT=465
       - MAIL_ENCRYPTION=ssl
+      - MAIL_TIMEOUT=15
       - MAIL_FROM_ADDRESS=oszarata@szystems.com
       - MAIL_FROM_NAME=Asonata
       - MAIL_USERNAME
@@ -90,9 +92,11 @@ services:
       - DB_DATABASE=dbasonatanuevo
       - DB_USERNAME=szasonata
       - DB_PASSWORD=0XGiSjLZ3fE2t1CAxgC1UDOHIHigRLYS
+      - MAIL_MAILER=smtp
       - MAIL_HOST=smtp.ipage.com
       - MAIL_PORT=465
       - MAIL_ENCRYPTION=ssl
+      - MAIL_TIMEOUT=15
       - MAIL_FROM_ADDRESS=oszarata@szystems.com
       - MAIL_FROM_NAME=Asonata
       - MAIL_USERNAME

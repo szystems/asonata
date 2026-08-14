@@ -21,7 +21,7 @@ use App\Models\Team;
 use App\Models\TeamMember;
 use PDF;
 use DB;
-use Illuminate\Support\Facades\Mail;
+use App\Helpers\MailSafe;
 use App\Mail\ContactMail;
 
 class FrontendController extends Controller
@@ -60,9 +60,13 @@ class FrontendController extends Controller
 
         $config = Config::first();
 
-        Mail::to($config->email)->send(new ContactMail($name, $email, $phone, $subject, $mensaje));
+        $mailOk = MailSafe::send($config->email, new ContactMail($name, $email, $phone, $subject, $mensaje));
 
-        $request->session()->flash('alert-success', "Tu mensaje se ha enviado, muchas gracias por comunicarte con Asonata Xela");
+        if ($mailOk) {
+            $request->session()->flash('alert-success', "Tu mensaje se ha enviado, muchas gracias por comunicarte con Asonata Xela");
+        } else {
+            $request->session()->flash('alert-danger', __('Your message could not be sent. Please try again later.'));
+        }
 
         return view('frontend.contact', compact('config'));
     }

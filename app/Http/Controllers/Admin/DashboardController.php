@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Config;
 use PDF;
 use DB;
-use Illuminate\Support\Facades\Mail;
+use App\Helpers\MailSafe;
 use App\Mail\UserMail;
 
 class DashboardController extends Controller
@@ -82,9 +82,9 @@ class DashboardController extends Controller
         $user->timezone = $request->input('timezone');
         $user->save();
 
-        Mail::to($user->email)->send(new UserMail($user));
+        $mailOk = MailSafe::send($user->email, new UserMail($user));
 
-        return redirect('users')->with('status', __('User Added Successfully'));
+        return redirect('users')->with('status', MailSafe::status(__('User Added Successfully'), $mailOk));
     }
 
     public function edituser($id)
